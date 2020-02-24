@@ -1,10 +1,11 @@
 
 ### Aceri's Portfolio
 
+
+```
+
+```
 ***
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━▲━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
           Hi and welcome !,
 
           This is an **ongoing work portfolio** with examples of past projects: 
@@ -12,9 +13,8 @@
           At your service for any collaboration, question, comment, etc. 
 
           Thanks,
+***          
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━▼━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
                                                                                            -------------- 
                                                                                            David Pellon     
                                                                                            aceri@rbx.life   
