@@ -1,0 +1,45 @@
+SetCustomBacktestProc("");
+if (Status("action") == actionPortfolio)
+{
+	dateFrom=DateTimeConvert(2,Status("rangefromdate"));
+	dateTo=DateTimeConvert(2,Status("rangetodate"),Status("rangetotime"));
+	daysintest=DateTimeDiff( dateTo, dateFrom )/86000 +1;
+	
+	bo = GetBacktesterObject();
+	bo.backtest();
+	
+	st = bo.getperformancestats(0);
+	NumTrades=st.GetValue("AllQty");
+	TradesDay=NumTrades/daysintest;	
+		
+	CARMDD = st.GetValue( "CAR/MDD" ) ; 
+	RRR=st.GetValue("RRR");
+	AVGPLP=st.GetValue("AllAvgProfitLossPercent");
+	NPP=st.GetValue("NetProfitPercent");
+			
+	meg= IIf(CARMDD <0 AND RRR <0, -1*100*( CARMDD^1.2 )*RRR,100*( CARMDD^1.2 )*RRR);
+	//meg=Nz(meg,-999999999999999999-abs(NPP));
+	//meg_before_penalty=meg;
+	// ***************************
+	// OUT OF RANGE INCENTIVES
+	// ***************************
+	//NPP_Incentivo=iif(NPP<0,-sqrt(log(abs(NPP))),sqrt(log(NPP)));
+	//AVGPLP_Incentivo=AVGPLP*0.01;
+	TradesDay_Incentivo=TradesDay*500000;
+	// ***************************
+	intrd=0; innpp=0; inavg=0;inmdd=0;
+	if (TradesDay<0.05) { meg= meg*TradesDay;intrd=meg*TradesDay;}
+	//meg=meg+NPP_Incentivo;
+	if (AVGPLP<8) { meg=meg/100;inavg=meg;}
+	bo.AddCustomMetric("TrDay", TradesDay);
+	bo.AddCustomMetric("HDays", daysintest);	
+	//bo.AddCustomMetric("meg_pre_Incentivo", meg_before_penalty);	
+	bo.AddCustomMetric("In_TD", intrd);	
+	//bo.AddCustomMetric("In_AVGPLP", inavg);	
+	//bo.AddCustomMetric("In_NPP", innpp);	
+	bo.AddCustomMetric("<","<");	
+	bo.AddCustomMetric("CMR", meg*1000);	
+	bo.AddCustomMetric(">",">");	
+
+
+}

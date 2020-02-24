@@ -1,0 +1,132 @@
+/*
+********
+ZX2 Ratio
+********
+
+Use the following variables in your model
+
+StaticVarSet(Name()+"_TRADE_RATIO_MIN",0.25); 			//Trades / day min  (out of that limit the models will be penalized)
+StaticVarSet(Name()+"_TRADE_RATIO_MAX",1.25); 			//Trades / day max  (out of that limit the models will be penalized)
+StaticVarSet(Name()+"_TRADE_SPREAD",2.5);			    //How scattered/clustered we want trades to be (between 0 to 5). To discourage very clustered trade zones
+StaticVarSet(Name()+"_TRADE_OUTRANGE_PENALTY",15);  	//Penalty for Models with trade ratios out of trade_range. Increase for models with ultra high growth (or the opposite).
+
+*/
+
+
+
+SetOption("UseCustomBacktestProc", True );
+
+
+
+
+
+
+  
+if( Status("action") == actionPortfolio ) 
+{ 
+
+	Initialized=0;
+	TRADE_RATIO_MIN=0;
+	TRADE_RATIO_MAX=0.1;
+	TRADE_SPREAD=0;
+	TRADE_OUTRANGE_PENALTY=0;
+
+	dateFrom=DateTimeConvert(2,Status("rangefromdate"));
+	dateTo=DateTimeConvert(2,Status("rangetodate"),Status("rangetotime"));
+	daysintest=DateTimeDiff( dateTo, dateFrom )/86000 +1;
+	
+	ZXActive="On";
+    start_price=0;
+    end_price=0;
+    NumTrades = 0; 
+    trading_penalty=1;	
+
+    bo = GetBacktesterObject(); 
+    bo.Backtest(True);
+
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+   { 
+		Initialized=1;
+		StaticClose=StaticVarGet(trade.Symbol+"_close");
+		start_price=Lookup(StaticClose,dateFrom);
+		end_price=Lookup(StaticClose,dateTo,-1);			
+		TRADE_RATIO_MIN			= StaticVarGet(trade.Symbol+"_TRADE_RATIO_MIN")/2;
+		TRADE_RATIO_MAX			= StaticVarGet(trade.Symbol+"_TRADE_RATIO_MAX")/2;
+		TRADE_SPREAD 			= StaticVarGet(trade.Symbol+"_TRADE_SPREAD");
+		TRADE_OUTRANGE_PENALTY  = StaticVarGet(trade.Symbol+"_TRADE_OUTRANGE_PENALTY");
+		break;	
+   }     
+
+    
+   
+    st = bo.GetPerformanceStats( 0 );
+    NumTrades=st.GetValue("AllQty");
+
+	TradesDay=NumTrades/daysintest;
+   
+    if (TradesDay<TRADE_RATIO_MIN)
+    {
+		trading_penalty=100*(1+abs(TRADE_RATIO_MIN-TradesDay));
+    }
+    if (TradesDay>TRADE_RATIO_MAX)
+    {
+		trading_penalty=100*(1+abs(TradesDay-TRADE_RATIO_MAX));
+    }
+    
+   
+   indices =BarIndex();
+   firstIndex = LastValue(ValueWhen(Status("firstbarinrange"), indices));
+   lastIndex =  LastValue(ValueWhen(Status("lastbarinrange"), indices));
+   barsInRange = lastIndex - firstIndex + 1; 
+    
+    bh_profit =  abs(100*(end_price - start_price)/start_price) ;
+    
+    profit = st.GetValue("NetProfitPercent");
+    StartCurr=1000;
+    FinalCurr=1000*(1+profit/100);
+    StartAssets=StartCurr/start_price;
+    FinalAssets=FinalCurr/end_price;
+    profitA=((FinalCurr/StartCurr)-1)*100;
+    profitB=((FinalAssets/StartAssets)-1)*100;
+    AvgBarsHeld=Nz(st.GetValue("AllAvgBarsHeld"),1);
+    OptimalTradeSpread=barsInRange/NumTrades;
+    bo.AddCustomMetric( "% B&H Profit",bh_profit);
+
+
+	if (TRADE_RATIO_MIN==0 AND TRADE_RATIO_MAX==0)
+    {
+		ZXActive="Off";
+		trading_penalty=0;
+		RatioSpread=0;
+		TRADE_SPREAD=0;
+		
+	}
+	else
+	{
+		RatioSpread=(AvgBarsHeld/OptimalTradeSpread);
+	}
+	
+	ratio=Nz(st.GetValue("UlcerPerformanceIndex"),-99999+profit);
+	
+	ZX4b=IIf(Initialized==0,-99999999,Nz( ratio  - (trading_penalty^TRADE_OUTRANGE_PENALTY)*(1+RatioSpread)^TRADE_SPREAD,-99999+ratio)) ;
+
+	
+    
+    bo.AddCustomMetric( "Net%Y",profit/(daysintest/365));
+    bo.AddCustomMetric( "Net%D",profit/daysintest);
+    bo.AddCustomMetric( "ZX4b", ZX4b); 
+    bo.AddCustomMetric( "RatioSpread",RatioSpread);
+    //bo.AddCustomMetric( "AvgBarsHeld",AvgBarsHeld);
+    //bo.AddCustomMetric( "OptimTradeSpread",OptimalTradeSpread);
+    bo.AddCustomMetric( "TrPenalty", trading_penalty); 
+    bo.AddCustomMetric( "FnPenalty", trading_penalty^TRADE_OUTRANGE_PENALTY);
+    bo.AddCustomMetric( "MIN TrRatio",TRADE_RATIO_MIN*2);
+    bo.AddCustomMetric( "NOW TrRatio",TradesDay*2);
+    bo.AddCustomMetric( "MAX TrRatio",TRADE_RATIO_MAX*2);
+    bo.AddCustomMetric( "Days",daysintest);
+    bo.AddCustomMetric( "ZX4?", ZXActive); 
+    bo.AddCustomMetric(">>>",">>>");
+    
+    //bo.AddCustomMetric( "%/Trade",profit/NumTrades);
+    
+} 

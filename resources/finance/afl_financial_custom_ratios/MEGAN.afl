@@ -1,0 +1,16 @@
+SetCustomBacktestProc("");
+if (Status("action") == actionPortfolio)
+{
+	bo = GetBacktesterObject();
+	bo.backtest();
+	st = bo.getperformancestats(0);
+	geom = (st.getvalue("EndingCapital")/st.getvalue("InitialCapital"))^(1/sqrt(st.GetValue("StandardError")));
+	geomp = 100*(geom-1); //geom percentage
+	mtpy = 252/st.getvalue("AllAvgBarsHeld"); //maximum number of trades per year
+	meg= mtpy*ln(geom); //max exponential growth rate (annual)
+	bo.addcustommetric("End", st.getvalue("EndingCapital"));	
+	bo.addcustommetric("Ini", st.getvalue("InitialCapital"));	
+	bo.addcustommetric("StdErr", sqrt(sqrt(st.GetValue("StandardError"))));	
+	bo.addcustommetric("Geom%", geomp);	
+	bo.addcustommetric("MEGAN", meg);	
+}

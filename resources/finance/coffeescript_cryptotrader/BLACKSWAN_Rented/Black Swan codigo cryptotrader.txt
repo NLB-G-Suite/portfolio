@@ -1,0 +1,377 @@
+###################### 
+######################        
+####  Black Swan  ####
+######################
+######################
+Base        =  54
+
+A1          =  15.6
+B1          =   7.1
+C1          = -31.6
+D1          =   7.9
+
+P1          = 121 
+P2          = 193
+P3          = 102
+P4          = 174
+
+ST1         = 147
+ST2         =  95
+ST3         = 303
+ST4         = 187
+
+FL1         =  -6
+FL2         = -22
+FL3         =  -4 
+FL4         = -19
+
+TL1         =   10.59
+TS1         =  -14.01
+
+######################################
+BOTNAME     = "Black Swan" 
+MINIMUM     = 0.01
+LIMIT       = 0
+WARNING     = 1000000
+PLOT        = false
+LOGGING     = false
+MANUAL      = true #askParam 'Manual Trading Friendly       ', true
+SPLIT       = askParam 'Split Order between [10-35]     ', 4
+INTERVAL    = askParam 'Hours between reports ', 1
+VERBOSE     = true #askParam 'Show detailed reports?        ', true
+EMAIL       = false #askParam 'Send Emails?                  ', true
+CONSERVATIVE= false #askParam 'Conservative Trading          ', false
+######################################
+
+
+class TRADE
+    @BUY: (ins, split, timeout) ->
+        n = 1
+        buying = true
+        assets = portfolio.positions[ins.curr()].amount/ins.price
+        orderSize = assets/split
+        while buying
+            if split>1 and assets > (orderSize * 1.1) and assets > 1
+                amount = (0.9+0.2*Math.random())*orderSize
+                debug "Iceberg order ##{n}"
+                if buy(ins, amount, null, timeout)
+                    assets = portfolio.positions[ins.curr()].amount / ins.price
+                    n++
+            else
+                debug "Iceberg last order"
+                if buy ins
+                    buying = false
+                    debug "Finished Buying"
+    @SELL: (ins, split, timeout) ->
+        n = 1
+        selling = true
+        assets = portfolio.positions[ins.asset()].amount
+        orderSize = assets/split
+        while selling
+            if split>1 and assets > (orderSize * 1.1) and assets > 1
+                amount = (0.9+0.2*Math.random())*orderSize
+                debug "Iceberg order ##{n}"
+                if sell(ins, amount, null, timeout)
+                    assets = portfolio.positions[ins.asset()].amount
+                    n++
+            else
+                debug "Iceberg last order"
+                if sell ins
+                    selling = false
+                    debug "Finished Selling"
+                    
+class FUNCTIONS
+    @DX: (a,b) ->
+        (a-b)/((a+b)/2)
+    @LR: (data,period,lag) ->
+        results = talib.LINEARREG
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1 - lag
+            optInTimePeriod: period
+        _.last(results)
+    @LRS: (data,period,lag) ->
+        results = talib.LINEARREG_SLOPE
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1 - lag
+            optInTimePeriod: period
+        _.last(results)
+    @ZS: (data, p, st, fl) ->
+        result=(data[data.length-1]-FUNCTIONS.LR(data,p,0)+FUNCTIONS.LRS(data,p,0)*fl)/FUNCTIONS.ST(data,st)
+        result
+    @ST: (data, period) ->
+        results = talib.STDDEV
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+            optInNbDev:1
+        _.last(results)
+
+
+class STATS
+    @tradestats: (context, data, storage) ->
+        STATS.calc(context,data, storage)
+        STATS.concise(context, storage)
+    @fullstats: (context, data, storage)->
+        STATS.calc(context,data, storage)
+        STATS.display(context, storage)
+    @calc: (context,data, storage) ->
+        ins = data.instruments[0]
+        price = ins.price
+        curr = portfolio.positions[ins.curr()].amount
+        assets = portfolio.positions[ins.asset()].amount
+        storage.tradeasset = ins.asset().toUpperCase()
+        storage.tradecurr = ins.curr().toUpperCase()
+        ##Leave these alone
+        if storage.calctick<=1
+            storage.max_sp=storage.max_sl=storage.max_lp=storage.max_ll=0
+            storage.long_profit=storage.long_loss=storage.short_profit=storage.short_loss=0
+            storage.trades=storage.long_win=storage.long_lose=storage.short_win=storage.short_lose=0
+            storage.holding_assets=storage.holding_curr=true
+            storage.ltp=storage.lsp=storage.lbp=ins.price
+        if assets/(curr+0.01)>0.9
+            holding_assets=true
+        if curr/(assets+0.01)>0.9
+            holding_curr=true
+        buy = holding_assets and not storage.holding_assets
+        sell = holding_curr and not storage.holding_curr
+        storage.holding_assets  =   holding_assets
+        storage.holding_curr    =   holding_curr
+        
+        if buy
+            storage.trades++
+            storage.lbp=storage.ltp=price
+            diff=storage.lsp-storage.lbp            #profitable buy: last sell price - buy price > 0
+            pdiff=100*diff/storage.lsp              #percent fiat profit(shorting)=(lsp-lbp)/lsp
+            storage.lt_profit=(pdiff).toFixed(1)    #percent asset profit(selling+rebuying)=(lsp-lbp)/lbp
+            storage.last_trade="Buy"
+            if diff>0
+                storage.short_win++
+                storage.short_profit+=diff
+                if pdiff>storage.max_sp
+                    storage.max_sp=pdiff
+            if diff<0
+                storage.short_lose++
+                storage.short_loss+=diff
+                if pdiff<storage.max_sl
+                    storage.max_sl=pdiff
+        
+        if sell
+            storage.trades++
+            storage.lsp=storage.ltp=price
+            diff=storage.lsp-storage.lbp            #profitable sell: last sell price - last buy price > 0
+            pdiff=100*diff/storage.lbp              #percent fiat profit(long)=(lsp-lbp)/lbp
+            storage.lt_profit=(pdiff).toFixed(1)    #last trade profit
+            storage.last_trade="Sell"
+            if diff>0
+                storage.long_win++
+                storage.long_profit+=diff
+                if pdiff>storage.max_lp
+                    storage.max_lp=pdiff
+            if diff<0
+                storage.long_lose++
+                storage.long_loss+=diff
+                if pdiff<storage.max_ll
+                    storage.max_ll=pdiff
+        storage.last_trade          ?=  "None"
+        storage.lt_profit           ?=  0
+        storage.l_winners           =   if storage.trades<2 then 0 else "#{storage.long_win}/#{storage.long_win+storage.long_lose} = #{(100*storage.long_win/(storage.long_win+storage.long_lose+10e-6)).toFixed(1)}%"
+        storage.s_winners           =   if storage.trades<2 then 0 else "#{storage.short_win}/#{storage.short_win+storage.short_lose} = #{(100*storage.short_win/(storage.short_win+storage.short_lose+10e-6)).toFixed(1)}%"
+        storage.pl_winners          =   if storage.trades<2 then "0.0 %" else "#{(100*storage.long_win/(storage.long_win+storage.long_lose+10e-6)).toFixed(1)}%"
+        storage.ps_winners          =   if storage.trades<2 then "0.0 %" else "#{(100*storage.short_win/(storage.short_win+storage.short_lose+10e-6)).toFixed(1)}%"
+        storage.total_gain          =   if storage.trades<2 then 0 else (storage.long_profit+storage.short_profit+storage.long_loss+storage.short_loss)
+        storage.total_long_gain     =   if storage.trades<2 then 0 else storage.long_profit+storage.long_loss
+        storage.total_short_gain    =   if storage.trades<2 then 0 else storage.short_profit+storage.short_loss
+        lpr                         =   if storage.trades<2 then 0 else (storage.long_profit/(-storage.long_loss+10e-6)).toFixed(2)
+        spr                         =   if storage.trades<2 then 0 else (storage.short_profit/(-storage.short_loss+10e-6)).toFixed(2)
+        storage.long_profit_ratio   =   if lpr>100 then 100 else if lpr<0.01 then 0 else lpr
+        storage.short_profit_ratio  =   if spr>100 then 100 else if spr<0.01 then 0 else spr
+        
+        #Record number of times bot has been automatically restarted
+        storage.restarts?=-1
+        if context.restart
+            storage.restarts++
+            context.restart=false
+
+        storage.price           =   price
+        storage.curr            =   (curr).toFixed(2)
+        storage.assets          =   (assets)
+        storage.startprice      ?=  (price)
+        storage.start_curr      ?=  (curr+assets*price)
+        storage.start_assets    ?=  (assets+curr/price)
+        storage.curr_lim        =   (curr+assets*price)                                     #Currency limit: account value in currency
+        storage.asset_lim       =   (assets+curr/price)                                     #Asset limit: account value in assets
+        storage.bh_gain         =   ((price/storage.startprice-1)*storage.start_curr).toFixed(2)        #Buy and hold gain
+        storage.p_bh_gain       =   ((price/storage.startprice-1)*100).toFixed(2)                       #percent buy and hold gain
+        storage.curr_gain       =   (storage.curr_lim-storage.start_curr).toFixed(2)
+        storage.p_curr_gain     =   ((storage.curr_lim/storage.start_curr-1)*100).toFixed(2)
+        storage.asset_gain      =   (storage.asset_lim-storage.start_assets).toFixed(2)
+        storage.p_asset_gain    =   ((storage.asset_lim/storage.start_assets-1)*100).toFixed(2)
+        storage.days            =   (storage.calctick*ins.period/1440)
+        storage.freq            =   if storage.days<=1 then storage.trades else (storage.trades/storage.days).toFixed(1)
+        
+        #plot 
+        #    Currency_Gain : parseFloat(storage.p_curr_gain)
+        #    Asset_Gain    : parseFloat(storage.p_asset_gain)
+
+    @concise: (context, storage) ->
+        if storage.last_trade=="Buy"
+            info  " **************** #{context.botname} **************** "
+            info  " Long Opened, Short Closed. #{(storage.lt_profit)} % Profit"
+        if storage.last_trade=="Sell"
+            warn  " **************** #{context.botname} **************** "
+            warn  " Short Opened, Long Closed. #{(storage.lt_profit)} % Profit"
+
+    @display: (context, storage) ->
+        restarts=Math.max(storage.restarts,0)
+        if storage.holding_curr
+            warn  " **************** #{context.botname} **************** "
+            warn "|Current Position| Short #{(storage.curr/storage.ltp).toFixed(2)} #{storage.tradeasset} @ #{storage.ltp} #{storage.tradecurr}"
+            warn "|Current Profit  | #{((storage.ltp-storage.price)*100/storage.ltp).toFixed(2)}%  | Last Profit: #{(storage.lt_profit)} %"
+        if storage.holding_assets
+            info  " **************** #{context.botname} **************** "
+            info "|Current Position| Long #{(storage.assets).toFixed(2)} #{storage.tradeasset} @ #{storage.ltp} #{storage.tradecurr}"
+            info "|Current Profit  | #{((storage.price-storage.ltp)*100/storage.ltp).toFixed(2)}%  | Last Profit: #{(storage.lt_profit)} %"
+        debug  "|Day              | #{(storage.days).toFixed(1)}                  | Trades   |#{(storage.trades).toFixed(0)}"
+        debug  "|Trade Freq      | #{storage.freq}                                | Restarts |#{restarts}" 
+        debug  "|Equity (#{storage.tradecurr})    | #{(storage.curr_lim).toFixed(2)}     | Start    |#{(storage.start_curr).toFixed(2)}"
+        debug  "|Equity (#{storage.tradeasset})    | #{(storage.asset_lim).toFixed(2)}     | Start    |#{(storage.start_assets).toFixed(2)}"
+        if VERBOSE
+            debug  "|Wins:    Longs  | #{storage.pl_winners}                           | P/L      |#{storage.long_profit_ratio}"
+            debug  "|Wins:    Shorts | #{storage.ps_winners}                           | P/L      |#{storage.short_profit_ratio}"
+            debug  "|Max Win: Longs  | #{(storage.max_lp).toFixed(1)} %                | Max Loss |#{(storage.max_ll).toFixed(1)}%"
+            debug  "|Max Win: Shorts | #{(storage.max_sp).toFixed(1)} %                | Max Loss |#{(storage.max_sl).toFixed(1)}%"
+            debug  "|Total Profit    | #{storage.p_curr_gain}% (#{ storage.tradecurr}), #{storage.p_asset_gain }% (#{storage.tradeasset})"
+            debug  "|B&H Profit      | #{storage.p_bh_gain  }% (#{ storage.tradecurr})"
+            
+            
+init: (context)->
+
+    context.botname         = BOTNAME
+    context.statsinterval   = INTERVAL
+    context.min             = MINIMUM
+    context.restarts        = true
+    
+    context.CK=[]
+    context.mytick=0        
+    
+    
+handle: (context, data, storage)->
+    ins = data.instruments[0]
+    storage.calctick?=0
+    STATS.calc(context,data,storage)
+    if storage.calctick%((60/ins.period)*context.statsinterval)  ==0 then STATS.display(context, storage)
+    storage.calctick++
+    
+    close = ins.close[ins.close.length-1]
+    storage.tick?=0
+    storage.tick++
+
+    storage.fv?=_.last(ins.close)
+
+    c=Math.log(ins.close[ins.close.length-1])/Math.log(Base)
+
+    ck= []
+    
+    for n in [0 .. ins.close.length-1]
+        ck.push (Math.log(ins.close[n])/Math.log(Base))    
+
+
+    signal=0
+    
+    Sum1= A1*FUNCTIONS.ZS(ck,P1,ST1,FL1) + B1*FUNCTIONS.ZS(ck,P2,ST2,FL2) + C1*FUNCTIONS.ZS(ck,P3,ST3,FL3) + D1*FUNCTIONS.ZS(ck,P4,ST4,FL4)
+
+
+    BUY=  (Sum1 >= TL1) 
+    SELL= (Sum1 <= TS1) 
+    
+    plot
+        X: storage.fv * 0.95 * (1 + TL1 * 0.00025)
+        D: storage.fv * 0.95 * (1 + Sum1 * 0.00025)
+        Y: storage.fv * 0.95 * (1 + TS1 * 0.00025)    
+    
+    bullmode=BUY
+    bearmode=SELL
+    
+    #LOGIC
+    long=short=0
+    storage.sell?=true
+    storage.buy?=true
+    if  bullmode and storage.sell
+        storage.buy = true
+        storage.sell = false
+        long=1
+        storage.tradecounter = 5
+    if  bearmode and storage.buy
+        storage.sell = true
+        storage.buy = false
+        short=1
+        storage.tradecounter = 5
+    #FINAL BUY-SELL Conditions
+    if long==1
+        storage.BUY = true
+        storage.SELL = false
+    if short==1
+        storage.BUY=false
+        storage.SELL=true
+
+    
+#TRADING
+    price = ins.price
+    curr = portfolio.positions[ins.curr()].amount
+    assets = portfolio.positions[ins.asset()].amount
+    if ins.period == 30
+        TIMEOUT     = 45
+        if SPLIT<10 then SPLIT=10
+        if SPLIT > 30  then TIMEOUT = 35
+        if SPLIT > 50 then SPLIT = 50
+    if ins.period == 15
+        TIMEOUT     = 25
+        if SPLIT<10 then SPLIT=10
+        if SPLIT > 30  then TIMEOUT = 15
+        if SPLIT > 50 then SPLIT = 50
+     #account balance limit
+    if LIMIT > 0
+        if (curr+assets*price) > LIMIT
+            warn "Account balance greater than #{LIMIT} #{ins.curr()}, trading disabled. Please upgrade to the Unlimited version"
+            storage.BUY = storage.SELL = false   
+    if (curr+assets*price) > WARNING and ins.period == 15
+        warn "Account balance greater than #{WARNING} #{ins.curr()}, please run on 30 minute ticks or split your balance among multiple accounts with different tick offsets"
+   
+    
+    if storage.BUY and curr>context.min*price and storage.tradecounter>0
+        plotMark
+            Buy: ins.price
+        TRADE.BUY(ins, SPLIT, TIMEOUT)
+        STATS.tradestats(context,data, storage)
+    if storage.SELL and assets > context.min and storage.tradecounter>0
+        plotMark
+            Sell: ins.price
+        TRADE.SELL(ins, SPLIT, TIMEOUT)
+        STATS.tradestats(context,data, storage)
+    if MANUAL
+        storage.tradecounter-=1
+    if PLOT
+        plot
+            m1:lr1
+            m2:lr2
+            m3:lr3
+            m4:lr4
+    setPlotOptions
+        Currency_Gain:
+            secondary: true
+        Asset_Gain:
+            secondary: true
+        Buy:
+            color: 'green'
+        Sell:
+            color: 'red'
+
+    if LOGGING
+        debug "m1: #{(lr1).toFixed(6)} m2: #{(lr2).toFixed(6)} m3: #{(lr3).toFixed(6)} m4: #{(lr4).toFixed(6)} diff(3,4): #{(FUNCTIONS.DIFF(lr3,lr4)).toFixed(3)}"
+
+            
+            
+          

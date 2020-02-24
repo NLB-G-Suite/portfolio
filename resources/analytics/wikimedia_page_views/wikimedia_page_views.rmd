@@ -1,0 +1,846 @@
+---
+title: "Working with Wikimedia Pageviews Data"
+author: "David Pellon"
+date: "Feb 22, 2020"
+output: html_document
+
+---
+
+```{r section_date, include=TRUE, fig.width=15,fig.height=11}
+knitr::opts_chunk$set(echo = TRUE)
+Sys.time()
+```
+
+## Working with Wikimedia Pageviews Data
+
+This vignette shows how to scrap data from dump.wikimedia.org. 
+
+It is focused on wikimedia pageviews from *dumps.wikimedia.org*. 
+Wikimedia provides access to raw table dates on lists of compressed .gz files grouped in year-monthly web links.
+
+This work does not pursue any specific investigation or analysis but scraping the data, process it and plotting it.
+
+It is more about practicing skills than other thing.
+Said that. Hope you find it interesting.
+
+
+## Configuration
+
+I will be using knitr to publish the document on the web as a markdown document.
+
+I use multiple libraries listed below. I have a created a number of non very polished functions (due very restricted time limits)
+
+Additionally to *wikimedia* data, I have included *ISO codes* for country aggregations and *google trends* outputs.
+
+
+
+```{r section_setup, include=TRUE, fig.width=15,fig.height=11}
+
+
+
+library(sqldf)
+library(dplyr)
+library(httr)
+library(rvest)
+library(purrr)
+library(XML)
+library(plotrix)
+library(ggplot2)
+library(tidyverse)
+library(cartography)
+library(sp)
+library(countrycode)
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# CONSTANTS
+# ------------------------------------------------------------
+#    CONST_WORKING_MONTH : (string)
+#                dump.wikimedia.org datafiles folder
+#    CONST_LOAD_FROM_DISK : (1/0)
+#                load data from disk instead
+#                                 of downloading it
+#    CONST_SAVE_DOWNLOADED_DATA : (1/0)
+#               will save the downloaded data for future use
+#    CONST VERBOSITY: (0/1/2)
+#               used for debugging
+#               use higher value for more console output
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+CONST_VERBOSITY <- 1
+CONST_WORKING_MONTH <- "2020-02"
+
+CONST_FORCE_DOWNLOAD <- 0
+CONST_SAVE_DOWNLOADED <- 1
+CONST_DOWNLOAD_ONLY_NEW <- 1
+CONST_DELAY_DOWNLOAD <- 30
+CONST_FILTER_MONTH <-1
+# Delay between each download In seconds
+CONST_AGGREGATE_TO_MONTHLY <- 0
+# WARNING !! - Memory Intensive ! Can even crash your system
+#            - Use with filtering
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# IMPORTANT !!!!
+# ------------------------------------------------------------
+# CONST_TOTAL_DAYS IS HARDCODED TO AVOID DOWNLOADING
+# EVERY SINGLE DAY  AND OVERLOADING THE WEBSERVER
+# LIMITING THE NUMBER OF DAYS TO DOWNLOAD TO 1
+# ------------------------------------------------------------
+CONST_TOTAL_DAYS <- 0
+# set to 0 to disable hardcoding and use all days in the web month dir
+# Or the value you need to force.
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+count_DaysThisMonth <-
+  function(month_Dir_df, verbose = CONST_VERBOSITY) {
+    # --------------------------------------------------------------------------------------------
+    # Receives a Dataframe with the day / hour available .gz files from dump.wikimedia.org
+    # Returns:  total number of days
+    # --------------------------------------------------------------------------------------------
+    return(length(unique(month_Dir_df$days))) }
+
+count_HoursThisDay <-
+  function(month_Dir_df, this_Day, verbose = CONST_VERBOSITY) {
+    # --------------------------------------------------------------------------------------------
+    # Receives a Dataframe with the day / hour available .gz files from dump.wikimedia.org
+    #               and the specific day with format "20200221"
+    # Returns:  total number of hourly files with data for a given day
+    # --------------------------------------------------------------------------------------------
+    return(as.numeric(sqldf(paste("SELECT COUNT(days) FROM month_Dir_df WHERE days='",this_Day,"'",sep = ""))))}
+
+
+get_MonthDir_df <-
+  function(month_WebDir, verbose = CONST_VERBOSITY) {
+    # --------------------------------------------------------------------------------------------
+    # Receives a string with a month with the format "2020-02" like dump.wikimedia URL format
+    # Returns:  a dataframe with the monthly days and hours with equivalent gz file with page views
+    # --------------------------------------------------------------------------------------------
+    table <- readLines(paste("https://dumps.wikimedia.org/other/pageviews/2020/",month_WebDir,"/",sep = ""))
+    dtable <- as.data.frame(unlist(table))
+    names(dtable) <- c("tags")
+    page_views_df <- as.data.frame(dtable[grepl('<a href="pageviews-', dtable$tags), ])
+    names(page_views_df) <- c("tags")
+    foo <- data.frame(do.call("rbind", strsplit(as.character(page_views_df$tags), "-",fixed = TRUE)))[, c("X2", "X3")]
+    foo$X1 <- data.frame(do.call("rbind", strsplit(as.character(foo$X3), ".",fixed = TRUE)))[, 1]
+    foo$X3 <- NULL
+    names(foo) <- c("days", "hours")
+    return(foo)
+  }
+
+total_views_ByPage <-
+  function(page_views_df,
+           TopN = 0,
+           page_title_Search = "",
+           verbose = CONST_VERBOSITY) {
+    # --------------------------------------------------------------------------------------------
+    # Receives a Dataframe with the day / hour available .gz files from dump.wikimedia.org
+    # Returns:  total number of days
+    # --------------------------------------------------------------------------------------------
+    if (page_title_Search == "") {
+      query_df <-
+        sqldf(
+          "SELECT page_title, SUM(count_views) as total_views FROM page_views_df GROUP BY page_title ORDER BY total_views DESC"
+        )
+    } else {
+      query_df <-
+        sqldf(
+          paste(
+            "SELECT page_title, SUM(count_views) as total_views FROM page_views_df WHERE UPPER(page_title) LIKE UPPER('",
+            page_title_Search,
+            "' GROUP BY page_title ORDER BY total_views DESC",
+            sep = ""
+          )
+        )
+    }
+    if (TopN > 0) {
+      query_df <- head(query_df, TopN)
+    }
+    return(TopN)
+  }
+
+total_views_ByDomain <-
+  function(page_views_df,
+           TopN = 0,
+           page_title_Search = "",
+           verbose = CONST_VERBOSITY) {
+    # --------------------------------------------------------------------------------------------
+    # Receives a Dataframe with the day / hour available .gz files from dump.wikimedia.org
+    # Returns:  total number of days
+    # --------------------------------------------------------------------------------------------
+    if (page_title_Search == "") {
+      query_df <-
+        sqldf(
+          "SELECT domain_code, SUM(count_views) as total_views FROM page_views_df GROUP BY domain_code ORDER BY total_views DESC"
+        )
+    } else {
+      query_df <-
+        sqldf(
+          paste(
+            "SELECT domain_code, SUM(count_views) as total_views FROM page_views_df WHERE UPPER(page_title) LIKE UPPER('",
+            page_title_Search,
+            "') GROUP BY domain_code ORDER BY total_views DESC",
+            sep = ""
+          )
+        )
+    }
+    if (TopN > 0) {
+      query_df <- head(query_df, TopN)
+    }
+    return(query_df)
+  }
+
+
+
+circular_bar_plot <-
+  function(twoColumn_df,
+           title = "",
+           xtext = "",
+           ytext = "",
+           use_log_scale = 0,
+           startcolor = "black",
+           endcolor = "orange",
+           use_scale_width = 0,
+           verbose = CONST_VERBOSITY) {
+    # --------------------------------------------------------------------------------------------
+    # Receives a two column dataframe with labels and numbers
+    # Displays a Circular bar plot
+    # --------------------------------------------------------------------------------------------
+
+    chart_Data <- data.frame(
+      id = numeric(),
+      angle = numeric(),
+      hjust = numeric(),
+      value = numeric(),
+      label = character(),
+      stringsAsFactors = FALSE
+    )
+    max_LengthAllowedInLabel <- 25
+    min_LabelTextSize <- 5
+    max_LabelTextSize <- 10
+    number_of_bars <- nrow(twoColumn_df)
+    for (i in 1:number_of_bars)
+    {
+      chart_Data[i, 1] <- i
+      chart_Data[i, 2] <-
+        90 - 360 * (i - 0.5) / number_of_bars
+      chart_Data[i, 3] <-
+        ifelse(chart_Data[i, 2] < -90, 1, 0)
+      chart_Data[i, 2] <-
+        ifelse(chart_Data[i, 2] < -90, chart_Data[i, 2] + 180, chart_Data[i, 2])
+      chart_Data[i, 4] <-
+        ifelse(use_log_scale == 1, log(twoColumn_df[i, 2]), twoColumn_df[i, 2])
+      chart_Data[i, 5] <-
+        gsub(
+          "_",
+          " ",
+          substr(twoColumn_df[i, 1], 1, max_LengthAllowedInLabel)
+        )
+    }
+    chart_Data <- as.data.frame(chart_Data)
+
+    # Rescaling the label text size depending on the string length. With a @hardcoded maximum of 20 characters
+    max_StringLengthInColumn <-
+      max(nchar(chart_Data$label, type = "chars"), na.rm = TRUE)
+
+    label_TextScaling <-
+      min(
+        round(
+          max_LengthAllowedInLabel / max_StringLengthInColumn * min_LabelTextSize,
+          0
+        ),
+        max_LabelTextSize
+      )
+
+    p <-
+      ggplot(chart_Data, aes(
+        x = as.factor(id),
+        y = value,
+        fill = value
+      )) +
+      geom_bar(
+        stat = "identity",
+        width = ifelse(
+          use_scale_width == 1,
+          0.9 * (chart_Data$value / chart_Data$value[1])^3,
+          0.9
+        )
+      ) +
+      scale_fill_continuous(low = startcolor, high = endcolor) +
+      ylim(-chart_Data[1, 4], chart_Data[1, 4] * 1.1) +
+      coord_polar(start = 0) +
+      geom_text(
+        data = chart_Data,
+        aes(
+          x = id,
+          y = value * 1.01,
+          label = label,
+          hjust = hjust
+        ),
+        color = "black",
+        fontface = "bold",
+        alpha = 0.6,
+        size = label_TextScaling,
+        angle = chart_Data$angle,
+        inherit.aes = FALSE,
+        nudge_y = 6
+      ) +
+      labs(x = xtext, y = ytext) +
+      ggtitle(paste(title, ifelse(use_log_scale ==
+        1, " (Log Scale)", ""), sep = ""))
+    p
+  }
+
+filter_Domains <-  function(page_views_df,filter_str, filter_out = 0, verbose = CONST_VERBOSITY) 
+  {
+    # --------------------------------------------------------------------------------------------
+    # Receives a Dataframe and a domain code filter string "en, es, fr". filter_out to 1 or 0
+    # specifies if the domain codes should be the ones remaining or removed.
+    # Returns:  Dataframe
+    # --------------------------------------------------------------------------------------------
+    toMatch <-
+      unlist(strsplit(as.character(filter_str), ",", fixed = TRUE))
+    filtered_domain_codes <-
+      unique(grep(
+        paste(toMatch, collapse = "|"),
+        page_views_df$domain_code,
+        value = TRUE
+      ))
+
+    if (filter_out == 0) {
+      ret <-
+        page_views_df[page_views_df$domain_code %in% filtered_domain_codes, ]
+    } else {
+      ret <-
+        page_views_df[!page_views_df$domain_code %in% filtered_domain_codes, ]
+    }
+    return(ret)
+  }
+
+
+get_Day_page_views <-
+  function(month_Dir_df,
+           this_Day,
+           filter_str = "",
+           filter_out = 0,
+           verbose = CONST_VERBOSITY) {
+    # --------------------------------------------------------------------------------------------
+    # Receives a Dataframe with the day / hour available .gz files from dump.wikimedia.org
+    # Returns:  Dataframe with the page views for a given day
+    #      "domain_code", "page_title", "count_views", "total_response_size", "date", "hour"
+    # --------------------------------------------------------------------------------------------
+    this_Year <- substr(this_Day, 1, 4)
+    this_MonthDir <-
+      paste(this_Year, "-", substr(this_Day, 5, 6), sep = "")
+    # Initializing and empty day_data dataframe in which we will collect all the data in the loop
+    page_views_Day_df <-
+      data.frame(
+        domain_code = character(),
+        page_title = character(),
+        count_view = integer(),
+        date = character(),
+        hour = character(),
+        stringsAsFactors = FALSE
+      )
+    count_Hours <- count_HoursThisDay(month_Dir_df, this_Day)
+    if (CONST_VERBOSITY > 0) {
+      print(paste("Downloading data for day - ", this_Day, sep = ""))
+    }
+    for (k in 1:count_Hours)
+    {
+      this_Hour <- month_Dir_df$hours[k]
+      url <-
+        paste(
+          "https://dumps.wikimedia.org/other/pageviews/",
+          this_Year,
+          "/",
+          this_MonthDir,
+          "/pageviews-",
+          this_Day,
+          "-",
+          this_Hour,
+          ".gz",
+          sep = ""
+        )
+      if (verbose == 2) {
+        print(
+          paste(
+            "       Downloading data for hour - ",
+            this_Hour,
+            " [",
+            k,
+            "/",
+            count_Hours,
+            "] -> ",
+            url,
+            sep = ""
+          )
+        )
+      }
+      tmp <- tempfile()
+      download.file(url, tmp)
+      new_Data <-
+        read.csv(
+          gzfile(tmp),
+          sep = " ",
+          header = FALSE,
+          stringsAsFactors = FALSE
+        )
+      names(new_Data) <-
+        c(
+          "domain_code",
+          "page_title",
+          "count_views",
+          "total_response_size"
+        )
+      new_Data <- as.data.frame(new_Data)
+      new_Data$date <- this_Day
+      new_Data$hour <- this_Hour
+      if (filter_str != "") {
+        before_Rows <- nrow(new_Data)
+        new_Data <-
+          filter_Domains(new_Data, filter_str, filter_out)
+        after_Rows <- nrow(new_Data)
+        if (verbose == 1) {
+          print(
+            paste(
+              "Applied filter domain_code=",
+              filter_str,
+              " ",
+              ifelse(filter_out == 0, " - Inclusive ", " - Exclusive "),
+              " - Reduced from : ",
+              before_Rows,
+              " to ",
+              after_Rows,
+              " rows",
+              sep = ""
+            )
+          )
+        }
+      }
+      # We bind dataframe to dataframe by row to collect them all
+      page_views_Day_df <- rbind(page_views_Day_df, new_Data)
+    }
+    return(page_views_Day_df)
+  }
+
+
+map_plot_page_views_Europe <- function(page_views_df,
+                                       main_Title = "",
+                                       use_Log_Scale = 0,
+                                       start_Color = "black",
+                                       end_Color = "orange",
+                                       annotation_Author = "",
+                                       annotation_Sources = "",
+                                       page_title_Search = "",
+                                       verbose = CONST_VERBOSITY) {
+  # --------------------------------------------------------------------------------------------
+  # Receives a page views dataframe
+  #      - optional - page_title_Search paramter
+  #                 - use_log_scale for visibility & clarity when extreme differences
+  #                 - other presentation options
+  # Plots an european map with the relative weight of total page views
+  # --------------------------------------------------------------------------------------------
+
+  # We will use the european domain codes from nuts2006
+  data(nuts2006)
+  european_codes <- paste(tolower(nuts0.df$id), collapse = ",")
+  page_views_df$domain_code <-
+    substr(page_views_df$domain_code, 1, 2)
+  if (page_title_Search == "") {
+    total_views_by_domain <-
+      sqldf(
+        "SELECT domain_code, SUM(count_views) as total_views FROM page_views_df GROUP BY domain_code ORDER BY total_views DESC"
+      )
+  } else {
+    total_views_by_domain <-
+      sqldf(
+        paste(
+          "SELECT domain_code, SUM(count_views) as total_views FROM page_views_df WHERE UPPER(page_title) LIKE UPPER('",
+          page_Title_Search,
+          "' GROUP BY domain_code ORDER BY total_views DESC"
+        )
+      )
+    main_Title <-
+      paste(main_Title, " - Search ", page_title_Search, sep = "")
+  }
+  if (use_Log_Scale == 1) {
+    total_views_by_domain$total_views <- log(total_views_by_domain$total_views)
+  }
+  rm(page_views_Month_df_copy)
+  european_domain_codes_df <-
+    filter_Domains(total_views_by_domain,
+      filter_str = european_codes,
+      filter_out = 0
+    )
+  names(european_domain_codes_df) <- c("id", "value")
+  european_domain_codes_df$id <-
+    toupper(european_domain_codes_df$id)
+  european_domain_codes_df$total_views <-
+    as.double(european_domain_codes_df$total_views)
+  # The map plot library needs to have all the country codes filled, even when zero
+  missing_domains <-
+    nuts0.df[!nuts0.df$id %in% european_domain_codes_df$id, ][1]
+  missing_domains$total_views <- 0
+  european_domain_codes_df < -rbind(missing_domains, european_domain_codes_df)
+
+  plot(nuts0.spdf, col = start_Color, add = FALSE)
+  propSymbolsLayer(
+    spdf = nuts0.spdf,
+    df = european_domain_codes_df,
+    var = "total_views",
+    symbols = "circle",
+    col = end_Color,
+    legend.pos = "right",
+    legend.title.txt = legend,
+    legend.style = "c"
+  )
+  layoutLayer(
+    title = main_Title,
+    author = annotation_Author,
+    sources = annotation_Sources,
+    scale = TRUE,
+    south = TRUE
+  )
+}
+
+init_page_views_df <-
+  function() {
+  # --------------------------------------------------------------------------------------------
+  # Initializes a dataframe with the structure below
+  # --------------------------------------------------------------------------------------------  
+    return(
+      data.frame(
+        domain_code = character(),
+        page_title = character(),
+        count_view = integer(),
+        date = character(),
+        hour = character(),
+        stringsAsFactors = FALSE
+      )
+    )
+  }
+
+european_codes <- function()
+{
+  # --------------------------------------------------------------------------------------------
+  # Returns a comma separated string with 3166-1 two character country domain codes
+  # Used to be given as parameter to map plots for package cartography
+  # --------------------------------------------------------------------------------------------  
+  data(nuts2006)
+  return(paste(tolower(nuts0.df$id), collapse = ","))
+}
+world_codes <- function() 
+{
+  # --------------------------------------------------------------------------------------------
+  # Returns a comma separated string with 3166-1 two character country domain codes
+  # Used to be given as parameter to map plots for package cartography
+  # --------------------------------------------------------------------------------------------  
+  
+  library(countrycode)
+  paste(tolower(list(codelist$genc2c)),collapse='"')
+  world_codes<-unlist(codelist$genc2c)
+  world_codes[!is.na(world_codes)]
+  return(gsub("NA,","",  paste(tolower(world_codes),collapse=",")))
+}
+
+
+  query_aggregate_daily_to_monthly <- function(input_filename_String, search_String,count_Days=1,month_Dir_df,domain_filter_string = "",domain_filter_exclusivity = 0 ,CONST_VERBOSITY = 0,save_filename = "")
+  {
+  # --------------------------------------------------------------------------------------------
+  # Aggregates every daily page_view dataframe in disk into a monthly one
+  # --------------------------------------------------------------------------------------------
+  # Receives:
+  #     - search_String = query to filter by page titles 
+  #     - count_Days = number of days in the month 
+  #     - domain_filter_string = query to filter by domain code (ISO 3166-1 two char country codes
+  #             (should be provided as a comma separated string) i.e. : "en,es,fr,de"
+  #     - CONST_VERBOSITY = Will log more information to the console
+  #     - save_filename - a specific file name can be provided or it will create one automatically
+  # --------------------------------------------------------------------------------------------  
+    monthly_df <- init_page_views_df()
+    for (k in 1:count_Days)
+    {
+      daily_df <- init_page_views_df()
+      this_Day <- unique(month_Dir_df$days)[k]
+      if (CONST_VERBOSITY > 0) {print(paste("Aggregating day ",k," of ",count_Days,sep=""))}
+      load(input_filename_String)
+      assign(output_name,filtered_df)
+      save(list=output_name,file = filename)
+      
+      if(domain_filter_string != "") page_views_Day_df$domain_code  <- substr(page_views_Day_df$domain_code, 1, 2)
+
+      page_views_Day_df <- filter_Domains(page_views_Day_df, filter_str = domain_filter_string, filter_out = domain_filter_exclusivity )
+    
+      daily_df <- sqldf(paste("select domain_code,page_title,count_views,total_response_size,date,hour from page_views_Day_df where upper(page_title) like '%",toupper(search_String),"%'",sep = ""))
+      monthly_df <- rbind(monthly_df, daily_df )
+      if (CONST_VERBOSITY > 0) {print(paste("Aggregating date = '",this_Day,"'  daily_rows = ",nrow(daily_df)," to monthly existing rows = ", nrow(monthly_df),sep = "") ) }
+    }
+    if (save_filename == "")
+    {
+      output_name=paste("query_",gsub(" ","_",search_String),"_",unique(month_Dir_df$days)[1],"-",unique(month_Dir_df$days)[count_Days],sep="")
+      
+    } else {output_name = save_filename }
+    save(assign(output_name,monthly_df), file=paste(output_name,".Rda",sep = ""))
+    return(monthly_df)
+  }
+
+
+  repackage_by_domain <- function(count_Days = 0,domain_filter_string = "",CONST_VERBOSITY = 0)
+  {
+  # --------------------------------------------------------------------------------------------
+  # Repackages (loads & saves) page view daily data in smaller sizes based on provided domain codes
+  # --------------------------------------------------------------------------------------------
+  # Receives:
+  #     - count_Days = number of days in the month 
+  #     - domain_filter_string = query to filter by domain code (ISO 3166-1 two char country codes
+  #             (should be provided as a comma separated string) i.e. : "en,es,fr,de"
+  #     - CONST_VERBOSITY = Will log more information to the console
+  # --------------------------------------------------------------------------------------------  
+    month_Dir_df <- get_MonthDir_df(CONST_WORKING_MONTH)
+    if (count_Days == 0) count_Days <- count_DaysThisMonth(month_Dir_df)
+    for (k in 1:count_Days)
+    {
+      daily_df <- init_page_views_df()
+      this_Day <- unique(month_Dir_df$days)[k]
+      print(paste("Aggregating day ",k," of ",count_Days,sep=""))
+      filename <- paste("page_views_Day_df_", this_Day, ".Rda", sep = "")
+      load(filename)
+      if(domain_filter_string != "") page_views_Day_df$domain_code  <- substr(page_views_Day_df$domain_code, 1, 2)
+
+      filtered_df <- filter_Domains(page_views_Day_df, filter_str = domain_filter_string, filter_out = 0 )
+      output_name=paste("page_views_Day_df_",this_Day,"_fs_",domain_filter_string,sep = "")
+      filename=paste(output_name,".Rda",sep = "")
+      print(paste("Original file rows (",nrow(page_views_Day_df),") > filtered by (",domain_filter_string,") > final rows (",nrow(filtered_df),") > save to (",filename,")",sep = ""))
+      assign(output_name,filtered_df)
+      save(list=output_name,file = filename)
+      print(paste("Freeing ",nrow(output_name)," rows removing variable (",output_name,") already in disk at (",filename,")",sep = ""))
+      rm(page_views_Day_df)
+      rm(filtered_df)
+    } 
+  }
+
+  
+file_shard_by_domain(count_Days=0,"en")
+file_shard_by_domain(count_Days=0,european_codes())
+file_shard_by_domain(count_Days=0,world_codes())
+
+
+
+```  
+    
+## Data Processing
+
+Using two loops I get a table with the different hours and gz filenames for a given month.
+
+The script downloads each gz, uncompress them and adds them up to a dataframe
+
+NOTE: I have hardcoded total_days=1 to avoid looping through all the month (time limnits) 
+  
+```{r section_Data_Processing, include=TRUE, fig.width=15,fig.height=11}  
+
+
+rm(list = ls(all.names = TRUE)) #will clear all objects includes hidden objects.
+gc() #free up memrory and report the memory usage.
+
+
+if (CONST_VERBOSITY > 0) {print(paste("LOG > The verbosity level is ", CONST_VERBOSITY, sep = ""))}
+
+month_Dir_df <- get_MonthDir_df(CONST_WORKING_MONTH)
+count_Days <- ifelse(CONST_TOTAL_DAYS > 0,CONST_TOTAL_DAYS,  count_DaysThisMonth(month_Dir_df))
+
+if (CONST_VERBOSITY > 0 &  CONST_TOTAL_DAYS > 0) {
+  print(paste("LOG > Number of days is hardcoded in code to ",CONST_TOTAL_DAYS, " . Available days for this month would be ",
+          count_DaysThisMonth(month_Dir_df),sep = "") )}
+if (CONST_VERBOSITY > 0) {print(paste("LOG > Number of days to obtain - ", count_Days, sep = ""))}
+
+page_views_Month_df <- init_page_views_df()
+
+for (k in 1:count_Days)
+{
+        # Initializing page_views_Day_df where we will store every daily pageview
+        page_views_Day_df <- init_page_views_df()
+        this_Day <- unique(month_Dir_df$days)[k]
+        filename <- paste("page_views_Day_df_", this_Day, ".Rda", sep = "")
+        #if (CONST_VERBOSITY > 0) {print(paste("LOG > Downloading - Day ", k, " from ", count_Days, sep = "")) }
+     
+        # If the file to download already exists and we only want new files we will simply skip and show a message about itwhen needed
+        if (file.exists(filename) & CONST_DOWNLOAD_ONLY_NEW == 1) 
+        {
+          #if (CONST_VERBOSITY > 0) {print(paste("LOG > File already donwloaded. Skipping load from disk - Day ",k ," from ",  count_Days, sep = "") ) }
+        }       
+          # Now, either because we want to reload every file or because the file does not exist in disk we need to download it
+          if (CONST_FORCE_DOWNLOAD == 1 | !file.exists(filename)) 
+          { 
+            page_views_Day_df <- get_Day_page_views(month_Dir_df, this_Day)
+            if (CONST_SAVE_DOWNLOADED == 1)  save(page_views_Day_df, file = filename )
+            if (CONST_DELAY_DOWNLOAD > 0) 
+                {
+                  #if (CONST_VERBOSITY > 0) {print(paste("LOG > CONST_DELAY_IN_DOWNLOADS = ",CONST_DELAY_DOWNLOAD, " seconds ",sep = "") ) }
+                  Sys.sleep(CONST_DELAY_DOWNLOAD)
+                }
+          }
+        page_views_Day_df <-filter_Domains(page_views_Day_df, filter_str = "", filter_out = 0 )
+        if (CONST_AGGREGATE_TO_MONTHLY == 1) 
+          {
+          page_views_Month_df <-rbind(page_views_Month_df, page_views_Day_df)
+          #if (CONST_VERBOSITY > 0) {print(paste("Aggregating ",this_Day," rows (",nrow(page_views_Day_df),") to montly existing rows (", nrow(page_views_Month_df),sep = "") ) }
+          }
+        rm(page_views_Day_df)
+        
+}  
+
+
+count_days=7
+monthly_coronavirus <- query_aggregate_daily_to_monthly(search_String = "coronavirus",count_days,month_Dir_df,domain_filter_string = "en" ,domain_filter_exclusivity = 0 ,CONST_VERBOSITY = 1)
+monthly_kobe_bryant <- query_aggregate_daily_to_monthly(search_String = "kobe bryant",count_days,month_Dir_df,domain_filter_string = "en",domain_filter_exclusivity = 0 ,CONST_VERBOSITY = 1)
+monthly_vladimir_putin  <- query_aggregate_daily_to_monthly(search_String = "vladimir putin" ,count_days,month_Dir_df,domain_filter_string = world_codes(),domain_filter_exclusivity = 0 ,CONST_VERBOSITY = 1)
+monthly_donald_trump   <- query_aggregate_daily_to_monthly(search_String = "donald trump"  ,count_days,month_Dir_df,domain_filter_string = world_codes(),domain_filter_exclusivity = 0 ,CONST_VERBOSITY = 1)
+monthly_emmanuel_macron   <- query_aggregate_daily_to_monthly(search_String = "emmanuel macron"  ,count_days,month_Dir_df,domain_filter_string = world_codes(),domain_filter_exclusivity = 1 ,CONST_VERBOSITY = 1)
+monthly_brexit   <- query_aggregate_daily_to_monthly(search_String = "brexit"  ,count_days,month_Dir_df,domain_filter_string = european_codes(),domain_filter_exclusivity = 0 ,CONST_VERBOSITY = 1)
+
+```
+
+## Data Exploration
+
+Now that we have dowloaded the data we can do some initial exploration of the data
+
+The Top 10 Domains with the highest number of page views for the day:
+
+```{r section_total_views_ByDomain, include=TRUE, fig.width=15,fig.height=11}
+
+total_views_ByDomain_df <- total_views_ByDomain( page_views_df = page_views_Month_df,TopN = 5, page_title_Search = ""  )
+total_views_ByDomain_df
+```
+
+A basic pie chart would be:
+
+```{r section_total_views_ByDomain_pie, include=TRUE, fig.width=15,fig.height=11}
+
+pie3D(
+  total_views_ByDomain_df$total_views,
+  labels   = total_views_ByDomain_df$domain_code,
+  explode  = 0.1,
+  shade    = 0.7,
+  theta    = 1,
+  radius   = 0.9,
+  main     = "Pie Chart of Total Views by Top Domains"
+)
+```
+
+A relative weight representation of total page views grouped by European Domain Codes (ISO 3166-1)
+
+
+```{r section_total_views_ByDomain_map_plot, include=TRUE, fig.width=15,fig.height=11}
+
+
+map_plot_page_views_Europe(
+  page_views_Month_df,
+  title  = "Wikimedia Total Page Views by Domain Code (ISO 3166-1) in the European Region",
+  author = "David Pellon",
+  sources = "Wikimedia",
+  legend = "Total Page Views",
+  page_title_Search = ""
+)
+```
+
+
+
+Now the 10 top Pages Titles with highest number of page views:
+
+```{r top10PageTitles_byPage, include=TRUE, fig.width=15,fig.height=11}
+
+
+page_views_ByPage <-
+  total_views_ByPage(
+    page_views_df = page_views_Month_df,
+    TopN = 10,
+    page_title_Search = ""
+  )
+page_views_ByPage
+```
+
+And the pie chart would be :
+
+Note: As it won't be pretty with such long page titles, I will display only the first 20 (?) characters.
+
+```{r section_page_views_ByPage_circular_bar_plot, include=TRUE, fig.width=15,fig.height=11}
+
+
+circular_bar_plot(
+  page_views_ByPage,
+  use_log = 0,
+  title = paste(
+    "Top 10 Page Links Aggregated Page Views for ",
+    this_Day,
+    sep = "",
+    use_log_scale = 1
+  )
+)
+```
+
+
+Can we see what countries pay more attention nowadays to link "CoronaVirus" ?
+
+```{r section_total_views_ByDomain_Search_Coronavirus, include=TRUE, fig.width=15,fig.height=11}
+
+total_views_ByDomain_Search_Coronavirus <- total_views_ByDomain( page_views_df = page_views_Month_df,TopN = 10, page_title_Search = "Coronavirus"  )
+
+circular_bar_plot(
+  total_views_ByDomain_Search_Coronavirus
+  use_log = 0,
+  title = paste(
+    "Top 10 Domain Codes Page Views Searching in Wikimedia for 'Coronavirus'",
+    this_Day,
+    sep = "",
+    use_log_scale = 1
+  )
+)
+```
+
+How is the geographical interest distribution on European countries?
+
+
+```{r section_, include=TRUE, fig.width=15,fig.height=11}
+monthly_coronavirus <- query_aggregate_daily_to_monthly(search_String = "coronavirus",count_days,month_Dir_df,domain_filter_string = european_codes() ,domain_filter_exclusivity = 0 ,CONST_VERBOSITY = 1)
+
+map_plot_page_views_Europe(
+  monthly_coronavirus,
+  title = "Wikimedia Total 'Coronavirus' Page Views by Domain Code (ISO 3166-1) in the European Region",
+  author                    = "aceri",
+  sources                   = "Wikimedia",
+  legend                    = "Total Page Views",
+  page_title_Search         = ""
+)
+```
+
+
+
+## Observations
+
+Very interesting open data from *wikimedia* that can be used for multiple purposes. 
+
+But sometimes the good things do not come alone. I have found quite problematic to handle such amount of data with R.
+Queries are very cost intensive and would certainly benefit from parallel map reduction.
+
+This has been a quick draft scraping & processing experiment from some wikipedia data. 
+
+They provide very rich and diverse statistic (and contribution!) resources like:
+
+[Wikistats Contributing & Deployment](https://wikitech.wikimedia.org/wiki/Analytics/Systems/Wikistats_2#Contributing_and_Deployment)
+[Wikimedia All Projects](https://stats.wikimedia.org/index.html#/all-projects)
+[Github Analytics Wikistats](https://github.com/wikimedia/analytics-wikistats2/search?o=desc&q=release&s=committer-date&type=Commits)
+
+
+A more thorough examination would be needed to decide on the best tools and data sources for any desired outcome.
+
+     ,.
+ __.'_
+|__|__|
+|     |      
+|-___-|
+'.___.' DP
+
+

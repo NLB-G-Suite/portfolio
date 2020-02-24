@@ -1,0 +1,15 @@
+SPLIT FUNDS IN HALF CRYPTOTRADER
+
+    @SPLIT: (instrument, balance_curr, balance_btc) ->
+        price = instrument.price
+
+        if balance_curr > (balance_btc * price)
+            curr_surplus = balance_curr - (balance_btc * price)
+            buy_amount = (curr_surplus / 2) / price
+            buy instrument,buy_amount,price,60
+        if (balance_btc * price) > balance_curr
+            btc_surplus = balance_btc - (balance_curr / price)
+            sell_amount = btc_surplus / 2 
+            sell instrument,sell_amount,price,60
+
+        return

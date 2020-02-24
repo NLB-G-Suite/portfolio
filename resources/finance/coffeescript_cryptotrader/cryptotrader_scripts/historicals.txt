@@ -1,0 +1,15 @@
+
+
+init: (context)->
+    
+
+handle: (context, data, storage)->
+
+    ins = data.instruments[0]
+    o = ins.open[ins.open.length-1]
+    c = ins.close[ins.close.length-1]
+    h = ins.high[ins.high.length-1]
+    l = ins.low[ins.low.length-1]
+    v = ins.volume[ins.volume.length-1]
+    
+    debug(",#{o},#{c},#{h},#{l},#{v}")

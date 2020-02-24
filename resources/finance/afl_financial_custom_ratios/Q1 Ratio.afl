@@ -1,0 +1,22 @@
+SetCustomBacktestProc(""); 
+
+/* Now custom-backtest procedure follows */ 
+
+function dx(a,b)
+{
+	return (a-b)/((a+b)/2);
+}
+
+if( Status("action") == actionPortfolio ) 
+{ 
+    bo = GetBacktesterObject(); 
+
+    bo.Backtest(); // run default backtest procedure 
+
+    st = bo.GetPerformanceStats(0); // get stats for all trades 
+
+    expectancy = dx(st.GetValue("EndingCapital"),st.GetValue("InitialCapital"))*st.GetValue("RecoveryFactor")*st.GetValue("CAR/MDD"); 
+
+    // Here we add custom metric to backtest report 
+    bo.AddCustomMetric( "Q1 Ratio", expectancy ); 
+} 

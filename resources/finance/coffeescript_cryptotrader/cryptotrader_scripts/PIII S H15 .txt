@@ -1,0 +1,195 @@
+################################
+################################        
+#####        P III         #####
+################################
+################################        
+
+adj=1
+
+pLRL1=91*adj
+pLRL2=77*adj
+pSTDL1=54*adj
+pSTDL2=97*adj
+kL1=1.228966593742371
+kL2=4.150186061859131
+ThresL=-0.167073488235474
+################################        
+pLRS1=99*adj
+pLRS2=52*adj
+pSTDS1=98*adj
+pSTDS2=71*adj
+kS1=2.81065821647644
+kS2=2.701518058776856
+ThresS=0.967513382434845
+################################        
+CP1=103*adj
+CP2=172*adj
+CT=0
+FP1=127*adj
+FP2=14*adj
+FT=0.101164758205414
+################################        
+SUP=96
+SUT=8.486547470092773
+SDP=4
+SDT=-9.493317604064941
+
+
+################################
+###      Ordering options    ###
+################################
+BACKTESTING = false             #Set to false before live trading!!
+################################
+###   Logging/Debug options  ###
+################################
+TICKLENGTH =    15              #Current period in minutes
+MESSAGES =      true           #Display conditions every tick
+##################################################################################################
+
+
+class FUNCTIONS
+    @DX: (a,b) ->
+        (a-b)/((a+b)/2)
+    @LR: (data,period) ->
+        results = talib.LINEARREG
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)
+    @SL: (data,period) ->
+        results = talib.LINEARREG_SLOPE
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)        
+    @ST: (data, period) ->
+        sum1=sum2=0
+        for i in [1..period]
+            select=data.length-1-period+i
+            sum1=sum1+(data[select]*data[select])
+            sum2=sum2+data[select]
+            #log("i=#{i} | select=#{select} | data[#{select}]=#{data[select]} | sum1=#{sum1} | sum2=#{sum2}")
+        sum2=sum2*sum2
+        v=((period*sum1)-sum2)/(period*(period-1))
+        #log("v=#{v}")
+        result=Math.sqrt(v)
+        result
+
+
+
+
+init: (context)->
+    
+
+handle: (context, data, storage)->
+
+    ins = data.instruments[0]
+    price = ins.close[ins.close.length-1]
+    c=ins.close
+
+    storage.tick=storage.tick+1
+    
+    signal=0
+
+
+    L2=(( FUNCTIONS.LR(c,pLRL1)+(FUNCTIONS.ST(c,pSTDL1)*kL1) ) + ( FUNCTIONS.LR(c,pLRL2)+(FUNCTIONS.ST(c,pSTDL2)*kL2) ))/2
+    S2=(( FUNCTIONS.LR(c,pLRS1)+(FUNCTIONS.ST(c,pSTDS1)*kS1) ) + ( FUNCTIONS.LR(c,pLRS2)+(FUNCTIONS.ST(c,pSTDS2)*kS2) ))/2
+    
+
+    DU=FUNCTIONS.DX(price,L2)
+    DD=FUNCTIONS.DX(price,S2)
+    
+    #Market Crashing
+    if FUNCTIONS.DX(FUNCTIONS.LR(c,CP1),FUNCTIONS.LR(c,CP2)) < CT
+        Cr=1
+    else
+        Cr=0
+        
+    if FUNCTIONS.DX(FUNCTIONS.LR(c,FP1),FUNCTIONS.LR(c,FP2)) > FT
+        Fo=1
+    else
+        Fo=0
+        
+    SD=SU=0
+    
+    #debug("slope #{SDP} = #{FUNCTIONS.SL(c,SDP)}")
+    
+    if FUNCTIONS.SL(c,SDP)<SDT
+        SD=1
+
+    if FUNCTIONS.SL(c,SUP)>SUT
+        SU=1
+    
+
+
+    if (DU>ThresL and Cr==0 and SD==0) or Fo==1
+        signal=1
+    else
+        if (DD<ThresS and Fo==0 and SU==0) or Cr==1
+            signal=-1
+
+
+    
+    #debug("L2: #{L2} | S2: #{S2} | DU: #{DU} | DD: #{DD} | Cr: #{Cr} | Fo: #{Fo} | NT: #{NT}")
+
+    if signal==0
+        signal=storage.lastsignal
+        debug("signal=0")
+
+
+    #debug("S #{signal} | pLRL1: #{FUNCTIONS.LR(c,pLRL1)} | pLRL2: #{FUNCTIONS.LR(c,pLRL2)} | pSTDL1: #{FUNCTIONS.ST(c,pSTDL1)} | pSTDL2: #{FUNCTIONS.ST(c,pSTDL2)}")
+
+
+
+    price = ins.close[ins.close.length - 1]
+    curr = portfolio.positions[ins.curr()].amount
+    assets = portfolio.positions[ins.asset()].amount
+
+    if signal==1 and curr>25 
+        buy ins
+        debug("Trying to Buy at #{price}")
+        if storage.lastsignal==-1
+            storage.numtrades=storage.numtrades+1
+        storage.lastsignal=signal
+    else
+        if signal==-1 and assets>0.1
+            sell ins
+            debug("Trying to Sell at #{price}")
+            sell ins
+            if storage.lastsignal==1
+                storage.numtrades=storage.numtrades+1
+            storage.lastsignal=signal
+
+
+    storage.startprice?=price
+    storage.startXBT?=curr+assets*price
+    storage.startETH?=assets+curr/price
+
+    context.currencyLimit=(curr+assets*price).toFixed(2)
+    context.assetLimit=(assets+curr/price).toFixed(2)
+    context.BHgain=((price/storage.startprice-1)*storage.startXBT).toFixed(2)
+    context.percentBHgain=((price/storage.startprice-1)*100).toFixed(2)
+    context.XBTGain=(context.currencyLimit-storage.startXBT).toFixed(2)
+    context.percentXBTGain=((context.currencyLimit/storage.startXBT-1)*100).toFixed(2)
+    context.ETHgain=(context.assetLimit-storage.startETH).toFixed(2)
+    context.percentETHgain=((context.assetLimit/storage.startETH-1)*100).toFixed(2)
+
+    if MESSAGES==true
+        debug  " Start in CNY: #{storage.startXBT.toFixed(2)} | TOT in CNY :    #{context.currencyLimit} | Start in BTC: #{storage.startETH.toFixed(2)} | TOT in BTC: #{context.assetLimit}" 
+        debug  " B&H % gain:  #{context.percentBHgain}% | Total B&H profit:     #{context.BHgain} | Account value in CNY:     #{context.assetLimit} " 
+        debug  " CNY % gain: #{context.percentXBTGain}% | Total CNY profit:    #{context.XBTGain} | CNY holdings:            #{curr.toFixed(2)}"        
+        debug  " BTC % gain:  #{context.percentETHgain}% | Total BTC profit:     #{context.ETHgain} | Asset holdings:           #{assets.toFixed(2)}"  
+        debug  " ****************************************************************************************** "     
+              
+            
+            
+            
+           
+
+              
+            
+            
+            
+          

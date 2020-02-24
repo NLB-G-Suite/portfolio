@@ -1,0 +1,2 @@
+FORFILES /P "Y:" /M *.* /S /D -30 /C "cmd /c move @file o:\pictures\Fotos\ORDENAR\"
+pause

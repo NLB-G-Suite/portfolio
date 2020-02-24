@@ -1,0 +1,74 @@
+/*
+**********
+ SBRatio
+**********
+*/
+
+DESIRED_TRADES_DAY=2;
+
+function dx(a,b)
+{
+	return (a-b)/((a+b)/2);
+}
+
+SetOption("UseCustomBacktestProc", True );
+  
+if( Status("action") == actionPortfolio ) 
+{ 
+    bo = GetBacktesterObject(); 
+    bo.Backtest(True);
+    
+    start_price=0;
+    end_price=0;
+    NumTrades = 0; 
+    trading_penalty=1;
+    
+    dateFrom=DateTimeConvert(2,Status("rangefromdate"));
+    dateTo=DateTimeConvert(2,Status("rangetodate"),Status("rangetotime"));
+    daysintest=DateTimeDiff( dateTo, dateFrom )/86000 +1;
+
+    
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+   { 
+        NumTrades++; 
+        if (NumTrades==1)
+        {
+			StaticClose=StaticVarGet(trade.Symbol+"_close");
+			start_price=Lookup(StaticClose,dateFrom);
+			end_price=Lookup(StaticClose,dateTo,-1);		
+		}
+   } 
+   for( trade = bo.GetFirstOpenPos(); trade; trade = bo.GetNextOpenPos() ) 
+   { 
+        NumTrades++; 
+   }
+   
+   penalty_pct_zone=0.2;     
+   
+    TradesDay=NumTrades/daysintest;   
+   
+    if (TradesDay>DESIRED_TRADES_DAY*(1+penalty_pct_zone) OR TradesDay<DESIRED_TRADES_DAY*(1-penalty_pct_zone))
+    {
+		trading_penalty=(100*(1+abs(TradesDay-DESIRED_TRADES_DAY))^2);
+    }
+   
+    
+    bh_profit =  abs(100*(end_price - start_price)/start_price) ;
+    st = bo.GetPerformanceStats( 0 );
+    profit = st.GetValue("NetProfitPercent");
+    bo.AddCustomMetric( "% B&H Profit",bh_profit);
+    
+    
+
+    SBRatio=(profit - bh_profit)  / trading_penalty ;
+    
+    
+    bo.AddCustomMetric( "SBRatio", SBRatio); 
+    bo.AddCustomMetric( "TrPenalty", trading_penalty); 
+    bo.AddCustomMetric( "MIN TrRatio",DESIRED_TRADES_DAY*(1-penalty_pct_zone));
+    bo.AddCustomMetric( "NOW TrRatio",NumTrades/daysintest);
+    bo.AddCustomMetric( "MAX TrRatio",DESIRED_TRADES_DAY*(1+penalty_pct_zone));
+    bo.AddCustomMetric( "%/Dia",profit/daysintest);
+    bo.AddCustomMetric( "%/Trade",profit/NumTrades);
+    
+} 

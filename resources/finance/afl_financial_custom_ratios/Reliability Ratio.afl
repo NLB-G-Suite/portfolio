@@ -1,0 +1,114 @@
+/* 
+
+######################
+Reliability Ratio (RR)
+######################
+
+def: "...the ability to be relied on or depended on, as for accuracy, honesty, or achievement...."
+
+Strategy:
+=========
+It tries to reward consistency no matter the market condition, taking in consideration how much eans related to the buy and hold but this not only for Fiat but for both sides of the trade, Fiat and the Asset
+So either if the asset is crashing or booming, this ratio will reward how well the model is earning against the BuyAndHold
+
+Calculation:
+============
+
+Dx(a,b)=(a-b)/((a+b)/2)
+Rartio = Dx ( (%ProfitFiat + % ProfitAsset)/2 , %BuyHold)
+
+
+Interpretation:
+===============
+Value goes from -1 to 1. It should never get to those values.
+
+ 1 - The model is extremely reliable and earns incredible percents on any market condition compared to just holding either Fiat or the Asset.
+-1 - The model is extremely unreliable and loses very big percents on any market condition compared to just holding either Fiat or the Asset.
+
+
+SuperBots Team @ 2016
+
+*/ 
+
+
+
+
+function dx(a,b)
+{
+	return (a-b)/((a+b)/2);
+}
+
+
+
+	SetCustomBacktestProc(""); 
+    start_price=0;
+    end_price=0;
+    bh_gain_PCT=0;
+    curr_gain_PCT=0;
+    assets_gain_PCT=0;
+    
+    start_curr=0;
+    start_assets=0;
+    end_curr=0;
+    end_assets=0;
+    actual_assets=0;
+    actual_curr=0;
+    
+
+if( Status("action") == actionPortfolio ) 
+{ 
+    bo = GetBacktesterObject(); 
+    bo.Backtest(True); 
+    
+    start_curr=bo.InitialEquity;
+    NumTrades = 0;    
+    
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+    {
+		NumTrades++;
+		if (NumTrades==1)
+		{
+			StaticClose=StaticVarGet(trade.Symbol+"_close");		
+			start_price=Lookup(StaticClose,DateTimeConvert(2,Status("rangefromtime")));
+			end_price=Lookup(StaticClose,DateTimeConvert(2,Status("rangetodate"),Status("rangetotime")),-1);
+			start_assets=trade.Shares;
+		}
+		actual_assets=trade.Shares;
+		actual_curr=bo.Equity;
+    }
+
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+    {
+    	NumTrades++;
+		actual_assets=trade.Shares;
+		actual_curr=bo.Equity;
+    }
+
+    
+	end_assets=actual_assets + actual_curr/end_price;
+	end_curr=end_assets/end_price;
+	start_curr = (start_curr + start_assets * start_price);
+	start_assets= (start_assets + start_curr / start_price);
+	end_curr = (end_curr + end_assets * end_price);
+	end_assets= (end_assets + end_curr / end_price);
+	curr_gain_PCT =  end_curr / start_curr ;
+	assets_gain_PCT =  end_assets / start_assets ;
+	bh_gain_PCT =  end_price / start_price ;
+	RR = (curr_gain_PCT + assets_gain_PCT)/2 - bh_gain_PCT; 
+
+	bo.AddCustomMetric( "% Curr Gain",curr_gain_PCT);
+	bo.AddCustomMetric( "% Assets Gain",assets_gain_PCT);
+	
+	bo.AddCustomMetric( "EndCurr", end_curr);
+	bo.AddCustomMetric( "EndAssts", end_assets);
+	
+	
+    bo.AddCustomMetric( "RR", RR ); 
+
+
+} 
+
+
+	
+
+

@@ -1,0 +1,26 @@
+You should create one R script called run_analysis.R that does the following.
+
+- Merges the training and the test sets to create one data set.
+
+	- training?
+		- 'train/X_train.txt': Training set.
+		- 'train/y_train.txt': Training labels.
+	- test sets?
+		- 'test/X_test.txt': Test set.
+		- 'test/y_test.txt': Test labels.	
+		
+	- how can we merge them?
+		- 'train/y_train.txt' and 'test/y_test.txt': labels. - numbers from 1 to 6 ??	
+		- both y and x_train have 7352 
+		- both y and x_test have 2947
+		* So we should be able to join x and y as columns into something like x_train, y_train, x_test, y_test and then link by Y into the same table
+		
+	- how do we do that in R ?
+
+- Extracts only the measurements on the mean and standard deviation for each measurement.
+
+- Uses descriptive activity names to name the activities in the data set
+
+- Appropriately labels the data set with descriptive variable names.
+
+- From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.

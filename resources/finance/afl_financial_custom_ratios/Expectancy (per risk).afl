@@ -1,0 +1,41 @@
+SetCustomBacktestProc(""); 
+
+
+
+MaxLossPercentStop = 10; // 10% max. loss stop 
+
+/* Now custom-backtest procedure follows */ 
+if( Status("action") == actionPortfolio ) 
+{ 
+    bo = GetBacktesterObject(); 
+
+    bo.Backtest(1); // run default backtest procedure 
+
+   SumProfitPerRisk = 0; 
+   NumTrades = 0; 
+
+   // iterate through closed trades first 
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+   { 
+      // risk is calculated as the maximum value we can loose per trade 
+      // in this example we are using  max. loss stop 
+      // it means we can not lose more than (MaxLoss%) of invested amount 
+      // hence ris 
+
+       Risk = ( MaxLossPercentStop / 100 ) * trade.GetEntryValue(); 
+       RMultiple = trade.GetProfit()/Risk; 
+
+       trade.AddCustomMetric("Initial risk $", Risk  ); 
+       trade.AddCustomMetric("R-Multiple", RMultiple  ); 
+
+       SumProfitPerRisk = SumProfitPerRisk + RMultiple; 
+       NumTrades++; 
+   } 
+
+    expectancy3 = SumProfitPerRisk / NumTrades; 
+
+    bo.AddCustomMetric( "Expectancy (per risk)", expectancy3 ); 
+
+    bo.ListTrades(); 
+
+} 

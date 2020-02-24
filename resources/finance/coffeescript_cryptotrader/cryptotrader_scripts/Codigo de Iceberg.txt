@@ -1,0 +1,53 @@
+SPLIT       = askParam 'Number of Orders(Max 30)',10
+TIMEOUT     = 34
+class TRADE
+    
+    @BUY: (ins, split, timeout) ->
+        n = 1
+        buying = true
+        assets = portfolio.positions[ins.curr()].amount/ins.price
+        orderSize = assets/split
+        while buying
+            if split>1 and assets > (orderSize * 1.1) and assets > 1
+                amount = (0.9+0.2*Math.random())*orderSize
+                debug "Iceberg order ##{n}"
+                if buy(ins, amount, null, timeout)
+                    assets = portfolio.positions[ins.curr()].amount / ins.price
+                    n++
+            else
+                debug "Iceberg last order"
+                if buy ins
+                    buying = false
+                    debug "Finished Buying"
+    @SELL: (ins, split, timeout) ->
+        n = 1
+        selling = true
+        assets = portfolio.positions[ins.asset()].amount
+        orderSize = assets/split
+        while selling
+            if split>1 and assets > (orderSize * 1.1) and assets > 1
+                amount = (0.9+0.2*Math.random())*orderSize
+                debug "Iceberg order ##{n}"
+                if sell(ins, amount, null, timeout)
+                    assets = portfolio.positions[ins.asset()].amount
+                    n++
+            else
+                debug "Iceberg last order"
+                if sell ins
+                    selling = false
+                    debug "Finished Selling"
+                    
+                    
+                    
+    if signal==1 and curr>0.1*price
+        TRADE.BUY(ins,SPLIT,TIMEOUT)
+        storage.lastsignal=signal
+        STATS.tradestats(context,data, storage)
+        plotMark
+            BUY: ins.price
+    if signal==-1 and assets>0.1
+        TRADE.SELL(ins,SPLIT,TIMEOUT)
+        storage.lastsignal=signal
+        STATS.tradestats(context,data, storage)
+        plotMark
+            SELL: ins.price

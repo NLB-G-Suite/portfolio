@@ -1,0 +1,1 @@
+powershell -noprofile -executionpolicy Bypass -Command "get-childitem %1 -recurse | unblock-file -verbose"

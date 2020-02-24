@@ -1,0 +1,37 @@
+/* First we need to enable custom backtest procedure and 
+** tell AmiBroker to use current formula 
+*/ 
+
+SetCustomBacktestProc(""); 
+
+/* Now custom-backtest procedure follows */ 
+
+if( Status("action") == actionPortfolio ) 
+{ 
+    bo = GetBacktesterObject(); 
+
+    bo.Backtest(); // run default backtest procedure 
+
+   SumProfitPer100Inv = 0; 
+   NumTrades = 0; 
+
+   // iterate through closed trades first 
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+   { 
+      // here we sum up profit per $100 invested 
+       SumProfitPer100Inv = SumProfitPer100Inv + trade.GetPercentProfit(); 
+       NumTrades++; 
+   } 
+
+   // iterate through eventually still open positions 
+   for( trade = bo.GetFirstOpenPos(); trade; trade = bo.GetNextOpenPos() ) 
+   { 
+       SumProfitPer100Inv = SumProfitPer100Inv + trade.GetPercentProfit(); 
+       NumTrades++; 
+   } 
+
+   expectancy2 = SumProfitPer100Inv / NumTrades; 
+
+    bo.AddCustomMetric( "Expectancy (per $100 inv.)", expectancy2 ); 
+
+} 

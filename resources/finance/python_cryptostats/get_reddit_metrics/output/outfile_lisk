@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8">
+        <title>/r/Lisk metrics (Lisk)</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Le styles -->
+        <link href="/static/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/app.css">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+
+                    <a class="brand" href="http://redditmetrics.com"><strong>reddit metrics</strong></a>
+
+                    <ul class="nav">
+                        <li><a href="http://redditmetrics.com">Home</a></li>
+                        <li><a href="/top">Top reddits</a></li>
+                        <li><a href="/history">History</a></li>
+                        <li><a href="/visuals">Visuals</a></li>
+                    </ul>
+
+                    <form method="GET" action="/redir.php" class="navbar-form pull-right">
+                        <div class="input-prepend">
+                            <span class="add-on">/r/</span>
+                            <input class="span3" name="reddit" type="text" placeholder="Reddit...">
+                            <button type="submit" class="btn btn-success">Get stats</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top:60px;">
+            <h1><a target="_blank" href="http://reddit.com/r/Lisk" rel="nofollow">/r/Lisk</a> metrics <small>(Lisk)</small></h1>
+            <blockquote>Lisk lets JavaScript developers deploy their own sidechain and develop blockchain applications on top of it.</blockquote>
+            <div class="row">
+
+                <div class="span12">
+
+                    <div class="tabbable">
+                        <span class="pull-right"><span id="compare_btn" class="btn btn-mini">Compare <span id="caret_down">&#9660;</span><span id="caret_up" class="hide">&#9650;</span></span></span>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab" onClick="javascript:tab1();">Subscriber Growth</a></li>
+                            <li><a href="#tab2" data-toggle="tab" onClick="javascript:tab2();">Total Subscribers</a></li>
+                            <li><a href="#tab3" data-toggle="tab" onClick="javascript:tab3();">Rank</a></li>
+                            <li><a href="#disqus_thread">Comments</a></li>
+                        </ul>
+                        <div id="compare_box" class="hide" style="padding-bottom: 14px;">
+                            <div class="form-inline">
+                                <input id="sub1" type="text" style="width: 182px;" placeholder="Subreddit 1">
+                                <input id="sub2" type="text" style="width: 182px;" placeholder="Subreddit 2 (optional)">
+                                <input id="sub3" type="text" style="width: 182px;" placeholder="Subreddit 3 (optional)">
+                                <input id="sub4" type="text" style="width: 182px;" placeholder="Subreddit 4 (optional)">
+                                <button id="compare" class="btn btn-success" style="width: 138px;">Compare</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content tab-content1">
+
+                            <div id="subscriber-growth"><span id="loading" class="label label-important">Loading...</span></div>
+
+                            <div id="total-subscribers"></div>
+
+                            <div id="rank-graph"></div>
+
+                        </div>
+                    </div>
+<center>
+
+<hr />
+
+<!-- 728 x 90 -->
+
+<!-- FM Leaderboard 728x90 Zone -->
+<script type='text/javascript' src='http://static.fmpub.net/zone/16467'></script>
+<!-- FM Leaderboard 728x90 Zone -->
+
+
+                    <hr />
+                    <div>
+                        <div class="pull-left" style="width: 605px;">
+
+                            <h3>Milestones</h3>
+
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <small class="milestones-header">Milestone</small>
+                                        </td>
+                                        <td style="min-width: 85px;">
+                                            <small class="milestones-header">Date</small>
+                                        </td>
+                                        <td>
+                                            <small class="milestones-header">Note</small>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    
+                                    <tr>
+                                        <td>
+                                            
+                                            
+                                            <label class="label label-success">1K</label>
+                                            
+                                            
+                                            
+                                            
+                                        </td>
+                                        <td>
+                                            Apr 19, 2016
+                                        </td>
+                                        <td>
+                                            
+                                            
+                                            
+                                                
+                                            /r/Lisk hits 1K subscribers 
+                                                
+                                            
+                                            
+                                            
+                                            
+                                            
+
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    
+                                    
+                                    <tr>
+                                        <td>
+                                            
+                                            
+                                            <label class="label label-success">500</label>
+                                            
+                                            
+                                            
+                                            
+                                        </td>
+                                        <td>
+                                            Mar 26, 2016
+                                        </td>
+                                        <td>
+                                            
+                                            
+                                            
+                                                
+                                            /r/Lisk hits 500 subscribers 
+                                                
+                                            
+                                            
+                                            
+                                            
+                                            
+
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    
+                                    
+                                    <tr>
+                                        <td>
+                                            
+                                            
+                                            <label class="label label-success">100</label>
+                                            
+                                            
+                                            
+                                            
+                                        </td>
+                                        <td>
+                                            Mar 18, 2016
+                                        </td>
+                                        <td>
+                                            
+                                            
+                                            
+                                                
+                                            /r/Lisk hits 100 subscribers 
+                                                
+                                            
+                                            
+                                            
+                                            
+                                            
+
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    
+                                    
+                                    <tr>
+                                        <td>
+                                            
+                                            
+                                            
+                                            <label class="label"><i class="icon icon-gift icon-white"></i> Creation</label>
+                                            
+                                            
+                                            
+                                        </td>
+                                        <td>
+                                            Jan 7, 2016
+                                        </td>
+                                        <td>
+                                            
+                                            
+                                            
+                                            /r/Lisk is born
+                                            
+                                            
+                                            
+
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                        <div class="pull-right" style="width: 300px;">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>
+
+                                            <table class="ranking-table">
+                                                <tr>
+                                                    <td style="border: 0;">
+                                                        <h6 class="rank-title">Total Subscribers</h6>
+                                                        <h2 class="rank">1,859</h2>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="rank-title">Subreddit Rank <i class="icon icon-info-sign" rel="tooltip" title="Subreddit rank is based on total subscriber count. Click Top Reddits link in the header to view the highest ranked subreddits."></i></h6>
+                                                        <h2 class="rank">16,747</h2>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                                                    <table class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <h5>Subreddit Growth</h5>
+                                                                    <small>How /r/Lisk growth compares with growth of 1,034,567 other subreddits.</small>
+                                                                </td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>No. 19,133</td><td>Fastest growing yesterday</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>No. 26,935</td><td>Fastest growing last 7 days</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>No. 30,064</td><td>Fastest growing last 30 days</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>No. 37,546</td><td>Fastest growing last 90 days</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+									
+
+<center>
+<!-- FM Medium Rectangle 300x250 Zone -->
+<script type='text/javascript' src='http://static.fmpub.net/zone/16466'></script>
+<!-- FM Medium Rectangle 300x250 Zone -->
+</center>	
+
+
+<table  class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                            
+                                
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+
+                    <hr />
+
+<div style="margin-top:30px; text-align:center; clear:all;">
+<!-- FM Content Well 650x300 Zone -->
+<script type='text/javascript' src='http://static.fmpub.net/zone/16479'></script>
+<!-- FM Content Well 650x300 Zone -->
+</div>
+<hr />
+
+<h3>Comments</h3>
+<div style="margin-top:30px; text-align:center;">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'redditmetrics1'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+<hr />
+    
+
+                    <div style="margin-top: 30px; margin-bottom: -6px;">
+                        <a target="_blank" href="http://reddit.com/r/TrendingReddits">
+                            <img width="940" height="227" src="/static/images/trendingreddits.png" alt="/r/TrendingReddits" title="Go to /r/TrendingReddits">
+                        </a>
+                    </div>
+
+                    <hr style="margin-top: 6px;" />
+                    <div class="pull-left" style="width: 600px;">
+                <p style="color: #6c6c6c">reddit metrics is a tool for tracking statistics of <a href="/history">1,034,567</a> reddits (572 created <a href="/history/2017-02-27">yesterday</a>) and discovering the fastest growing communities on reddit. We're not affiliated with reddit inc. </p>
+                </div>
+                <div class="pull-right" style="width: 200px;">
+                    <p align="right">
+                        <small><i class="icon icon-envelope"></i> <a href="/contact/us/">Contact Us</a><br />
+                    <img src="/static/images/spreddit5.gif" style="height: 12px;"> <a target="_blank" href="http://reddit.com/r/TrendingReddits/">/r/TrendingReddits</a></small>
+                    </p>
+                </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Le javascript
+      ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="http://redditmetrics.com/static/js/morris.min.js"></script>
+        <script>
+                                                            var reddit = 'Lisk';</script>
+
+
+        <script>
+
+                    function getRedditsFromURL() {
+                    if (window.location.hash) {
+                    var reddits = window.location.hash.substr(window.location.hash.indexOf('compare=') + 8).split('+');
+                            return reddits;
+                    } else {
+                    return false;
+                    }
+                    }
+
+            var compareReddits = getRedditsFromURL();
+                    var activeGraph = 'subscriber-growth';
+                    window.onload = function() {
+
+                    if (!compareReddits) {
+
+                    Morris.Area({
+                    element: 'subscriber-growth',
+                            data: [
+            {y: '2016-01-08', a: 0},
+            {y: '2016-01-09', a: 0},
+            {y: '2016-01-10', a: 0},
+            {y: '2016-01-11', a: 0},
+            {y: '2016-01-12', a: 0},
+            {y: '2016-01-13', a: 0},
+            {y: '2016-01-14', a: 0},
+            {y: '2016-01-15', a: 0},
+            {y: '2016-01-16', a: 0},
+            {y: '2016-01-17', a: 0},
+            {y: '2016-01-18', a: 0},
+            {y: '2016-01-19', a: 0},
+            {y: '2016-01-20', a: 0},
+            {y: '2016-01-21', a: 0},
+            {y: '2016-01-22', a: 0},
+            {y: '2016-01-23', a: 0},
+            {y: '2016-01-24', a: 0},
+            {y: '2016-01-25', a: 0},
+            {y: '2016-01-26', a: 0},
+            {y: '2016-01-27', a: 0},
+            {y: '2016-01-28', a: 0},
+            {y: '2016-01-29', a: 0},
+            {y: '2016-01-30', a: 1},
+            {y: '2016-01-31', a: 0},
+            {y: '2016-02-01', a: 0},
+            {y: '2016-02-02', a: 0},
+            {y: '2016-02-03', a: 0},
+            {y: '2016-02-04', a: 0},
+            {y: '2016-02-05', a: 0},
+            {y: '2016-02-06', a: 0},
+            {y: '2016-02-07', a: 0},
+            {y: '2016-02-08', a: 2},
+            {y: '2016-02-09', a: 0},
+            {y: '2016-02-10', a: 0},
+            {y: '2016-02-11', a: 3},
+            {y: '2016-02-12', a: 1},
+            {y: '2016-02-13', a: 0},
+            {y: '2016-02-14', a: 1},
+            {y: '2016-02-15', a: 0},
+            {y: '2016-02-16', a: 3},
+            {y: '2016-02-17', a: 3},
+            {y: '2016-02-18', a: 1},
+            {y: '2016-02-19', a: 5},
+            {y: '2016-02-20', a: 0},
+            {y: '2016-02-21', a: 2},
+            {y: '2016-02-22', a: 7},
+            {y: '2016-02-23', a: 5},
+            {y: '2016-02-24', a: 3},
+            {y: '2016-02-25', a: 0},
+            {y: '2016-02-26', a: 1},
+            {y: '2016-02-27', a: 2},
+            {y: '2016-02-28', a: 2},
+            {y: '2016-02-29', a: 4},
+            {y: '2016-03-01', a: 6},
+            {y: '2016-03-02', a: 5},
+            {y: '2016-03-03', a: 0},
+            {y: '2016-03-04', a: 2},
+            {y: '2016-03-05', a: 6},
+            {y: '2016-03-06', a: 3},
+            {y: '2016-03-07', a: 2},
+            {y: '2016-03-08', a: 2},
+            {y: '2016-03-09', a: 4},
+            {y: '2016-03-10', a: 0},
+            {y: '2016-03-11', a: 3},
+            {y: '2016-03-12', a: 2},
+            {y: '2016-03-12', a: -1},
+            {y: '2016-03-13', a: 2},
+            {y: '2016-03-14', a: 3},
+            {y: '2016-03-15', a: 3},
+            {y: '2016-03-16', a: 7},
+            {y: '2016-03-17', a: 13},
+            {y: '2016-03-18', a: 8},
+            {y: '2016-03-19', a: 3},
+            {y: '2016-03-20', a: 10},
+            {y: '2016-03-21', a: 32},
+            {y: '2016-03-22', a: 7},
+            {y: '2016-03-23', a: 17},
+            {y: '2016-03-24', a: 10},
+            {y: '2016-03-25', a: 310},
+            {y: '2016-03-26', a: 69},
+            {y: '2016-03-27', a: 15},
+            {y: '2016-03-28', a: 283},
+            {y: '2016-03-29', a: 6},
+            {y: '2016-03-30', a: 11},
+            {y: '2016-03-31', a: 4},
+            {y: '2016-04-01', a: 10},
+            {y: '2016-04-02', a: 3},
+            {y: '2016-04-03', a: 4},
+            {y: '2016-04-04', a: 4},
+            {y: '2016-04-05', a: 6},
+            {y: '2016-04-06', a: 12},
+            {y: '2016-04-07', a: 16},
+            {y: '2016-04-08', a: 9},
+            {y: '2016-04-09', a: 7},
+            {y: '2016-04-10', a: 8},
+            {y: '2016-04-11', a: 2},
+            {y: '2016-04-12', a: 4},
+            {y: '2016-04-13', a: 2},
+            {y: '2016-04-14', a: 5},
+            {y: '2016-04-15', a: 2},
+            {y: '2016-04-16', a: 1},
+            {y: '2016-04-17', a: 6},
+            {y: '2016-04-18', a: 8},
+            {y: '2016-04-19', a: 7},
+            {y: '2016-04-20', a: 4},
+            {y: '2016-04-21', a: 1},
+            {y: '2016-04-22', a: 0},
+            {y: '2016-04-23', a: 2},
+            {y: '2016-04-24', a: 2},
+            {y: '2016-04-25', a: 1},
+            {y: '2016-04-26', a: 1},
+            {y: '2016-04-27', a: 1},
+            {y: '2016-04-28', a: 0},
+            {y: '2016-04-29', a: 0},
+            {y: '2016-04-30', a: 0},
+            {y: '2016-05-01', a: 1},
+            {y: '2016-05-02', a: 2},
+            {y: '2016-05-03', a: 2},
+            {y: '2016-05-04', a: 2},
+            {y: '2016-05-05', a: 2},
+            {y: '2016-05-06', a: 0},
+            {y: '2016-05-07', a: 0},
+            {y: '2016-05-08', a: 1},
+            {y: '2016-05-09', a: 1},
+            {y: '2016-05-10', a: -1},
+            {y: '2016-05-11', a: 0},
+            {y: '2016-05-12', a: 2},
+            {y: '2016-05-13', a: 0},
+            {y: '2016-05-14', a: 2},
+            {y: '2016-05-15', a: 1},
+            {y: '2016-05-16', a: 3},
+            {y: '2016-05-17', a: 6},
+            {y: '2016-05-18', a: 14},
+            {y: '2016-05-19', a: 5},
+            {y: '2016-05-20', a: 5},
+            {y: '2016-05-21', a: 11},
+            {y: '2016-05-22', a: 22},
+            {y: '2016-05-23', a: 26},
+            {y: '2016-05-24', a: 51},
+            {y: '2016-05-25', a: 42},
+            {y: '2016-05-26', a: 57},
+            {y: '2016-05-27', a: 21},
+            {y: '2016-05-28', a: 12},
+            {y: '2016-05-29', a: 14},
+            {y: '2016-05-30', a: 9},
+            {y: '2016-05-31', a: 9},
+            {y: '2016-06-01', a: 7},
+            {y: '2016-06-02', a: 5},
+            {y: '2016-06-03', a: 10},
+            {y: '2016-06-04', a: 9},
+            {y: '2016-06-05', a: 13},
+            {y: '2016-06-06', a: 6},
+            {y: '2016-06-07', a: 5},
+            {y: '2016-06-08', a: 10},
+            {y: '2016-06-09', a: 8},
+            {y: '2016-06-10', a: 3},
+            {y: '2016-06-11', a: 5},
+            {y: '2016-06-12', a: 3},
+            {y: '2016-06-13', a: 7},
+            {y: '2016-06-14', a: 5},
+            {y: '2016-06-15', a: 7},
+            {y: '2016-06-16', a: 7},
+            {y: '2016-06-17', a: 14},
+            {y: '2016-06-18', a: 7},
+            {y: '2016-06-19', a: 11},
+            {y: '2016-06-20', a: 12},
+            {y: '2016-06-21', a: 9},
+            {y: '2016-06-22', a: 8},
+            {y: '2016-06-23', a: 3},
+            {y: '2016-06-24', a: 3},
+            {y: '2016-06-25', a: 1},
+            {y: '2016-06-26', a: 7},
+            {y: '2016-06-27', a: 7},
+            {y: '2016-06-28', a: 5},
+            {y: '2016-06-29', a: 7},
+            {y: '2016-06-30', a: 4},
+            {y: '2016-07-01', a: 4},
+            {y: '2016-07-02', a: 4},
+            {y: '2016-07-03', a: 4},
+            {y: '2016-07-04', a: 4},
+            {y: '2016-07-05', a: 4},
+            {y: '2016-07-06', a: 8},
+            {y: '2016-07-07', a: 2},
+            {y: '2016-07-08', a: 3},
+            {y: '2016-07-09', a: 1},
+            {y: '2016-07-10', a: -1},
+            {y: '2016-07-11', a: 10},
+            {y: '2016-07-12', a: 4},
+            {y: '2016-07-13', a: 8},
+            {y: '2016-07-14', a: 1},
+            {y: '2016-07-15', a: 5},
+            {y: '2016-07-16', a: 4},
+            {y: '2016-07-17', a: 2},
+            {y: '2016-07-18', a: 4},
+            {y: '2016-07-19', a: 0},
+            {y: '2016-07-20', a: 2},
+            {y: '2016-07-21', a: 1},
+            {y: '2016-07-22', a: 1},
+            {y: '2016-07-23', a: 1},
+            {y: '2016-07-24', a: 2},
+            {y: '2016-07-25', a: 5},
+            {y: '2016-07-26', a: 3},
+            {y: '2016-07-27', a: 1},
+            {y: '2016-07-28', a: 2},
+            {y: '2016-07-29', a: 2},
+            {y: '2016-07-30', a: 2},
+            {y: '2016-07-31', a: 3},
+            {y: '2016-08-01', a: 4},
+            {y: '2016-08-02', a: 1},
+            {y: '2016-08-03', a: 7},
+            {y: '2016-08-04', a: 3},
+            {y: '2016-08-05', a: 3},
+            {y: '2016-08-06', a: 1},
+            {y: '2016-08-07', a: 3},
+            {y: '2016-08-08', a: 2},
+            {y: '2016-08-09', a: 7},
+            {y: '2016-08-10', a: 4},
+            {y: '2016-08-11', a: 8},
+            {y: '2016-08-12', a: 2},
+            {y: '2016-08-13', a: 3},
+            {y: '2016-08-14', a: 2},
+            {y: '2016-08-15', a: 2},
+            {y: '2016-08-16', a: 3},
+            {y: '2016-08-17', a: 4},
+            {y: '2016-08-18', a: 10},
+            {y: '2016-08-19', a: 6},
+            {y: '2016-08-20', a: 6},
+            {y: '2016-08-21', a: 5},
+            {y: '2016-08-22', a: 0},
+            {y: '2016-08-23', a: 7},
+            {y: '2016-08-24', a: 8},
+            {y: '2016-08-25', a: 1},
+            {y: '2016-08-26', a: 1},
+            {y: '2016-08-27', a: 3},
+            {y: '2016-08-28', a: -1},
+            {y: '2016-08-29', a: 2},
+            {y: '2016-08-30', a: 0},
+            {y: '2016-08-31', a: 0},
+            {y: '2016-09-01', a: -3},
+            {y: '2016-09-02', a: 0},
+            {y: '2016-09-03', a: 0},
+            {y: '2016-09-04', a: 0},
+            {y: '2016-09-05', a: 2},
+            {y: '2016-09-06', a: 1},
+            {y: '2016-09-07', a: 2},
+            {y: '2016-09-08', a: 2},
+            {y: '2016-09-09', a: 2},
+            {y: '2016-09-10', a: 1},
+            {y: '2016-09-11', a: 2},
+            {y: '2016-09-12', a: 2},
+            {y: '2016-09-13', a: 8},
+            {y: '2016-09-14', a: 0},
+            {y: '2016-09-15', a: 3},
+            {y: '2016-09-16', a: 1},
+            {y: '2016-09-17', a: 2},
+            {y: '2016-09-18', a: 0},
+            {y: '2016-09-19', a: 1},
+            {y: '2016-09-20', a: -2},
+            {y: '2016-09-21', a: 2},
+            {y: '2016-09-22', a: -2},
+            {y: '2016-09-23', a: 0},
+            {y: '2016-09-24', a: 4},
+            {y: '2016-09-25', a: 1},
+            {y: '2016-09-26', a: 2},
+            {y: '2016-09-27', a: -1},
+            {y: '2016-09-28', a: 2},
+            {y: '2016-09-29', a: 1},
+            {y: '2016-09-30', a: 1},
+            {y: '2016-10-01', a: 2},
+            {y: '2016-10-02', a: -1},
+            {y: '2016-10-03', a: 3},
+            {y: '2016-10-04', a: 0},
+            {y: '2016-10-05', a: 2},
+            {y: '2016-10-06', a: 1},
+            {y: '2016-10-07', a: 1},
+            {y: '2016-10-08', a: 1},
+            {y: '2016-10-09', a: -1},
+            {y: '2016-10-10', a: 1},
+            {y: '2016-10-11', a: 3},
+            {y: '2016-10-12', a: 3},
+            {y: '2016-10-13', a: 4},
+            {y: '2016-10-14', a: 3},
+            {y: '2016-10-15', a: 2},
+            {y: '2016-10-16', a: 0},
+            {y: '2016-10-17', a: 0},
+            {y: '2016-10-18', a: 0},
+            {y: '2016-10-19', a: 0},
+            {y: '2016-10-20', a: 0},
+            {y: '2016-10-21', a: 0},
+            {y: '2016-10-22', a: 0},
+            {y: '2016-10-23', a: 0},
+            {y: '2016-10-24', a: 6},
+            {y: '2016-10-25', a: 0},
+            {y: '2016-10-26', a: 0},
+            {y: '2016-10-27', a: 0},
+            {y: '2016-10-28', a: 0},
+            {y: '2016-10-29', a: 0},
+            {y: '2016-10-30', a: 0},
+            {y: '2016-10-31', a: 0},
+            {y: '2016-11-01', a: 0},
+            {y: '2016-11-02', a: 0},
+            {y: '2016-11-03', a: 0},
+            {y: '2016-11-04', a: 0},
+            {y: '2016-11-05', a: 0},
+            {y: '2016-11-06', a: 0},
+            {y: '2016-11-07', a: 3},
+            {y: '2016-11-08', a: 0},
+            {y: '2016-11-09', a: 0},
+            {y: '2016-11-10', a: 1},
+            {y: '2016-11-11', a: 1},
+            {y: '2016-11-12', a: 0},
+            {y: '2016-11-13', a: -1},
+            {y: '2016-11-14', a: -1},
+            {y: '2016-11-15', a: -1},
+            {y: '2016-11-16', a: 2},
+            {y: '2016-11-17', a: 0},
+            {y: '2016-11-18', a: 1},
+            {y: '2016-11-19', a: -1},
+            {y: '2016-11-20', a: 0},
+            {y: '2016-11-21', a: 1},
+            {y: '2016-11-22', a: 1},
+            {y: '2016-11-23', a: -1},
+            {y: '2016-11-24', a: 0},
+            {y: '2016-11-25', a: 0},
+            {y: '2016-11-26', a: 0},
+            {y: '2016-11-27', a: 2},
+            {y: '2016-11-28', a: -1},
+            {y: '2016-11-29', a: -1},
+            {y: '2016-11-30', a: 2},
+            {y: '2016-12-01', a: 0},
+            {y: '2016-12-02', a: 0},
+            {y: '2016-12-03', a: 0},
+            {y: '2016-12-04', a: 3},
+            {y: '2016-12-05', a: -2},
+            {y: '2016-12-06', a: -1},
+            {y: '2016-12-07', a: -1},
+            {y: '2016-12-08', a: -1},
+            {y: '2016-12-09', a: -1},
+            {y: '2016-12-10', a: -1},
+            {y: '2016-12-11', a: -1},
+            {y: '2016-12-12', a: -1},
+            {y: '2016-12-13', a: -1},
+            {y: '2016-12-14', a: -1},
+            {y: '2016-12-15', a: -1},
+            {y: '2016-12-16', a: -1},
+            {y: '2016-12-17', a: -1},
+            {y: '2016-12-18', a: -1},
+            {y: '2016-12-19', a: -1},
+            {y: '2016-12-20', a: -1},
+            {y: '2016-12-21', a: -1},
+            {y: '2016-12-22', a: -1},
+            {y: '2016-12-23', a: -1},
+            {y: '2016-12-24', a: -1},
+            {y: '2016-12-25', a: -1},
+            {y: '2016-12-26', a: -1},
+            {y: '2016-12-27', a: -1},
+            {y: '2016-12-28', a: -1},
+            {y: '2016-12-29', a: -1},
+            {y: '2016-12-30', a: 19},
+            {y: '2016-12-31', a: 0},
+            {y: '2017-01-01', a: 1},
+            {y: '2017-01-02', a: 2},
+            {y: '2017-01-03', a: 2},
+            {y: '2017-01-04', a: 1},
+            {y: '2017-01-05', a: -2},
+            {y: '2017-01-06', a: 1},
+            {y: '2017-01-07', a: -1},
+            {y: '2017-01-08', a: 1},
+            {y: '2017-01-09', a: 0},
+            {y: '2017-01-10', a: 0},
+            {y: '2017-01-11', a: 2},
+            {y: '2017-01-12', a: 1},
+            {y: '2017-01-13', a: -2},
+            {y: '2017-01-14', a: 4},
+            {y: '2017-01-15', a: 1},
+            {y: '2017-01-16', a: 1},
+            {y: '2017-01-17', a: -1},
+            {y: '2017-01-18', a: 1},
+            {y: '2017-01-19', a: 1},
+            {y: '2017-01-20', a: 1},
+            {y: '2017-01-21', a: 0},
+            {y: '2017-01-22', a: -1},
+            {y: '2017-01-23', a: 1},
+            {y: '2017-01-24', a: 3},
+            {y: '2017-01-25', a: 2},
+            {y: '2017-01-26', a: 0},
+            {y: '2017-01-27', a: 0},
+            {y: '2017-01-28', a: 0},
+            {y: '2017-01-29', a: -1},
+            {y: '2017-01-30', a: 1},
+            {y: '2017-01-31', a: -1},
+            {y: '2017-02-01', a: 1},
+            {y: '2017-02-02', a: 1},
+            {y: '2017-02-03', a: 0},
+            {y: '2017-02-04', a: 1},
+            {y: '2017-02-05', a: 0},
+            {y: '2017-02-06', a: 0},
+            {y: '2017-02-07', a: 1},
+            {y: '2017-02-08', a: 2},
+            {y: '2017-02-09', a: 0},
+            {y: '2017-02-10', a: 1},
+            {y: '2017-02-11', a: 1},
+            {y: '2017-02-12', a: 1},
+            {y: '2017-02-13', a: 2},
+            {y: '2017-02-14', a: 0},
+            {y: '2017-02-15', a: 0},
+            {y: '2017-02-16', a: 0},
+            {y: '2017-02-17', a: -1},
+            {y: '2017-02-18', a: 1},
+            {y: '2017-02-19', a: 3},
+            {y: '2017-02-20', a: 1},
+            {y: '2017-02-21', a: 0},
+            {y: '2017-02-22', a: 0},
+            {y: '2017-02-23', a: 2},
+            {y: '2017-02-24', a: 0},
+            {y: '2017-02-25', a: -1},
+            {y: '2017-02-26', a: 2},
+            {y: '2017-02-27', a: 1}
+            
+                            ],
+                            pointSize:'',
+                            xkey: 'y',
+                            ykeys: ['a'],
+                            labels: ['Growth']
+                    });
+                            Morris.Area({
+                            element: 'total-subscribers',
+                                    data: [
+            {y: '2016-01-07', a: 1},
+            {y: '2016-01-08', a: 1},
+            {y: '2016-01-09', a: 1},
+            {y: '2016-01-10', a: 1},
+            {y: '2016-01-11', a: 1},
+            {y: '2016-01-12', a: 1},
+            {y: '2016-01-13', a: 1},
+            {y: '2016-01-14', a: 1},
+            {y: '2016-01-15', a: 1},
+            {y: '2016-01-16', a: 1},
+            {y: '2016-01-17', a: 1},
+            {y: '2016-01-18', a: 1},
+            {y: '2016-01-19', a: 1},
+            {y: '2016-01-20', a: 1},
+            {y: '2016-01-21', a: 1},
+            {y: '2016-01-22', a: 1},
+            {y: '2016-01-23', a: 1},
+            {y: '2016-01-24', a: 1},
+            {y: '2016-01-25', a: 1},
+            {y: '2016-01-26', a: 1},
+            {y: '2016-01-27', a: 1},
+            {y: '2016-01-28', a: 1},
+            {y: '2016-01-29', a: 1},
+            {y: '2016-01-30', a: 2},
+            {y: '2016-01-31', a: 2},
+            {y: '2016-02-01', a: 2},
+            {y: '2016-02-02', a: 2},
+            {y: '2016-02-03', a: 2},
+            {y: '2016-02-04', a: 2},
+            {y: '2016-02-05', a: 2},
+            {y: '2016-02-06', a: 2},
+            {y: '2016-02-07', a: 2},
+            {y: '2016-02-08', a: 4},
+            {y: '2016-02-09', a: 4},
+            {y: '2016-02-10', a: 4},
+            {y: '2016-02-11', a: 7},
+            {y: '2016-02-12', a: 8},
+            {y: '2016-02-13', a: 8},
+            {y: '2016-02-14', a: 9},
+            {y: '2016-02-15', a: 9},
+            {y: '2016-02-16', a: 12},
+            {y: '2016-02-17', a: 15},
+            {y: '2016-02-18', a: 16},
+            {y: '2016-02-19', a: 21},
+            {y: '2016-02-20', a: 21},
+            {y: '2016-02-21', a: 23},
+            {y: '2016-02-22', a: 30},
+            {y: '2016-02-23', a: 35},
+            {y: '2016-02-24', a: 38},
+            {y: '2016-02-25', a: 38},
+            {y: '2016-02-26', a: 39},
+            {y: '2016-02-27', a: 41},
+            {y: '2016-02-28', a: 43},
+            {y: '2016-02-29', a: 47},
+            {y: '2016-03-01', a: 53},
+            {y: '2016-03-02', a: 58},
+            {y: '2016-03-03', a: 58},
+            {y: '2016-03-04', a: 60},
+            {y: '2016-03-05', a: 66},
+            {y: '2016-03-06', a: 69},
+            {y: '2016-03-07', a: 71},
+            {y: '2016-03-08', a: 73},
+            {y: '2016-03-09', a: 77},
+            {y: '2016-03-10', a: 77},
+            {y: '2016-03-11', a: 80},
+            {y: '2016-03-12', a: 82},
+            {y: '2016-03-12', a: 81},
+            {y: '2016-03-13', a: 83},
+            {y: '2016-03-14', a: 86},
+            {y: '2016-03-15', a: 89},
+            {y: '2016-03-16', a: 96},
+            {y: '2016-03-17', a: 109},
+            {y: '2016-03-18', a: 117},
+            {y: '2016-03-19', a: 120},
+            {y: '2016-03-20', a: 130},
+            {y: '2016-03-21', a: 162},
+            {y: '2016-03-22', a: 169},
+            {y: '2016-03-23', a: 186},
+            {y: '2016-03-24', a: 196},
+            {y: '2016-03-25', a: 506},
+            {y: '2016-03-26', a: 575},
+            {y: '2016-03-27', a: 590},
+            {y: '2016-03-28', a: 873},
+            {y: '2016-03-29', a: 879},
+            {y: '2016-03-30', a: 890},
+            {y: '2016-03-31', a: 894},
+            {y: '2016-04-01', a: 904},
+            {y: '2016-04-02', a: 907},
+            {y: '2016-04-03', a: 911},
+            {y: '2016-04-04', a: 915},
+            {y: '2016-04-05', a: 921},
+            {y: '2016-04-06', a: 933},
+            {y: '2016-04-07', a: 949},
+            {y: '2016-04-08', a: 958},
+            {y: '2016-04-09', a: 965},
+            {y: '2016-04-10', a: 973},
+            {y: '2016-04-11', a: 975},
+            {y: '2016-04-12', a: 979},
+            {y: '2016-04-13', a: 981},
+            {y: '2016-04-14', a: 986},
+            {y: '2016-04-15', a: 988},
+            {y: '2016-04-16', a: 989},
+            {y: '2016-04-17', a: 995},
+            {y: '2016-04-18', a: 1003},
+            {y: '2016-04-19', a: 1010},
+            {y: '2016-04-20', a: 1014},
+            {y: '2016-04-21', a: 1015},
+            {y: '2016-04-22', a: 1015},
+            {y: '2016-04-23', a: 1017},
+            {y: '2016-04-24', a: 1019},
+            {y: '2016-04-25', a: 1020},
+            {y: '2016-04-26', a: 1021},
+            {y: '2016-04-27', a: 1022},
+            {y: '2016-04-28', a: 1022},
+            {y: '2016-04-29', a: 1022},
+            {y: '2016-04-30', a: 1022},
+            {y: '2016-05-01', a: 1023},
+            {y: '2016-05-02', a: 1025},
+            {y: '2016-05-03', a: 1027},
+            {y: '2016-05-04', a: 1029},
+            {y: '2016-05-05', a: 1031},
+            {y: '2016-05-06', a: 1031},
+            {y: '2016-05-07', a: 1031},
+            {y: '2016-05-08', a: 1032},
+            {y: '2016-05-09', a: 1033},
+            {y: '2016-05-10', a: 1032},
+            {y: '2016-05-11', a: 1032},
+            {y: '2016-05-12', a: 1034},
+            {y: '2016-05-13', a: 1034},
+            {y: '2016-05-14', a: 1036},
+            {y: '2016-05-15', a: 1037},
+            {y: '2016-05-16', a: 1040},
+            {y: '2016-05-17', a: 1046},
+            {y: '2016-05-18', a: 1060},
+            {y: '2016-05-19', a: 1065},
+            {y: '2016-05-20', a: 1070},
+            {y: '2016-05-21', a: 1081},
+            {y: '2016-05-22', a: 1103},
+            {y: '2016-05-23', a: 1129},
+            {y: '2016-05-24', a: 1180},
+            {y: '2016-05-25', a: 1222},
+            {y: '2016-05-26', a: 1279},
+            {y: '2016-05-27', a: 1300},
+            {y: '2016-05-28', a: 1312},
+            {y: '2016-05-29', a: 1326},
+            {y: '2016-05-30', a: 1335},
+            {y: '2016-05-31', a: 1344},
+            {y: '2016-06-01', a: 1351},
+            {y: '2016-06-02', a: 1356},
+            {y: '2016-06-03', a: 1366},
+            {y: '2016-06-04', a: 1375},
+            {y: '2016-06-05', a: 1388},
+            {y: '2016-06-06', a: 1394},
+            {y: '2016-06-07', a: 1399},
+            {y: '2016-06-08', a: 1409},
+            {y: '2016-06-09', a: 1417},
+            {y: '2016-06-10', a: 1420},
+            {y: '2016-06-11', a: 1425},
+            {y: '2016-06-12', a: 1428},
+            {y: '2016-06-13', a: 1435},
+            {y: '2016-06-14', a: 1440},
+            {y: '2016-06-15', a: 1447},
+            {y: '2016-06-16', a: 1454},
+            {y: '2016-06-17', a: 1468},
+            {y: '2016-06-18', a: 1475},
+            {y: '2016-06-19', a: 1486},
+            {y: '2016-06-20', a: 1498},
+            {y: '2016-06-21', a: 1507},
+            {y: '2016-06-22', a: 1515},
+            {y: '2016-06-23', a: 1518},
+            {y: '2016-06-24', a: 1521},
+            {y: '2016-06-25', a: 1522},
+            {y: '2016-06-26', a: 1529},
+            {y: '2016-06-27', a: 1536},
+            {y: '2016-06-28', a: 1541},
+            {y: '2016-06-29', a: 1548},
+            {y: '2016-06-30', a: 1552},
+            {y: '2016-07-01', a: 1556},
+            {y: '2016-07-02', a: 1560},
+            {y: '2016-07-03', a: 1564},
+            {y: '2016-07-04', a: 1568},
+            {y: '2016-07-05', a: 1572},
+            {y: '2016-07-06', a: 1580},
+            {y: '2016-07-07', a: 1582},
+            {y: '2016-07-08', a: 1585},
+            {y: '2016-07-09', a: 1586},
+            {y: '2016-07-10', a: 1585},
+            {y: '2016-07-11', a: 1595},
+            {y: '2016-07-12', a: 1599},
+            {y: '2016-07-13', a: 1607},
+            {y: '2016-07-14', a: 1608},
+            {y: '2016-07-15', a: 1613},
+            {y: '2016-07-16', a: 1617},
+            {y: '2016-07-17', a: 1619},
+            {y: '2016-07-18', a: 1623},
+            {y: '2016-07-19', a: 1623},
+            {y: '2016-07-20', a: 1625},
+            {y: '2016-07-21', a: 1626},
+            {y: '2016-07-22', a: 1627},
+            {y: '2016-07-23', a: 1628},
+            {y: '2016-07-24', a: 1630},
+            {y: '2016-07-25', a: 1635},
+            {y: '2016-07-26', a: 1638},
+            {y: '2016-07-27', a: 1639},
+            {y: '2016-07-28', a: 1641},
+            {y: '2016-07-29', a: 1643},
+            {y: '2016-07-30', a: 1645},
+            {y: '2016-07-31', a: 1648},
+            {y: '2016-08-01', a: 1652},
+            {y: '2016-08-02', a: 1653},
+            {y: '2016-08-03', a: 1660},
+            {y: '2016-08-04', a: 1663},
+            {y: '2016-08-05', a: 1666},
+            {y: '2016-08-06', a: 1667},
+            {y: '2016-08-07', a: 1670},
+            {y: '2016-08-08', a: 1672},
+            {y: '2016-08-09', a: 1679},
+            {y: '2016-08-10', a: 1683},
+            {y: '2016-08-11', a: 1691},
+            {y: '2016-08-12', a: 1693},
+            {y: '2016-08-13', a: 1696},
+            {y: '2016-08-14', a: 1698},
+            {y: '2016-08-15', a: 1700},
+            {y: '2016-08-16', a: 1703},
+            {y: '2016-08-17', a: 1707},
+            {y: '2016-08-18', a: 1717},
+            {y: '2016-08-19', a: 1723},
+            {y: '2016-08-20', a: 1729},
+            {y: '2016-08-21', a: 1734},
+            {y: '2016-08-22', a: 1734},
+            {y: '2016-08-23', a: 1741},
+            {y: '2016-08-24', a: 1749},
+            {y: '2016-08-25', a: 1750},
+            {y: '2016-08-26', a: 1751},
+            {y: '2016-08-27', a: 1754},
+            {y: '2016-08-28', a: 1753},
+            {y: '2016-08-29', a: 1755},
+            {y: '2016-08-30', a: 1755},
+            {y: '2016-08-31', a: 1755},
+            {y: '2016-09-01', a: 1752},
+            {y: '2016-09-02', a: 1752},
+            {y: '2016-09-03', a: 1752},
+            {y: '2016-09-04', a: 1752},
+            {y: '2016-09-05', a: 1754},
+            {y: '2016-09-06', a: 1755},
+            {y: '2016-09-07', a: 1757},
+            {y: '2016-09-08', a: 1759},
+            {y: '2016-09-09', a: 1761},
+            {y: '2016-09-10', a: 1762},
+            {y: '2016-09-11', a: 1764},
+            {y: '2016-09-12', a: 1766},
+            {y: '2016-09-13', a: 1774},
+            {y: '2016-09-14', a: 1774},
+            {y: '2016-09-15', a: 1777},
+            {y: '2016-09-16', a: 1778},
+            {y: '2016-09-17', a: 1780},
+            {y: '2016-09-18', a: 1780},
+            {y: '2016-09-19', a: 1781},
+            {y: '2016-09-20', a: 1779},
+            {y: '2016-09-21', a: 1781},
+            {y: '2016-09-22', a: 1779},
+            {y: '2016-09-23', a: 1779},
+            {y: '2016-09-24', a: 1783},
+            {y: '2016-09-25', a: 1784},
+            {y: '2016-09-26', a: 1786},
+            {y: '2016-09-27', a: 1785},
+            {y: '2016-09-28', a: 1787},
+            {y: '2016-09-29', a: 1788},
+            {y: '2016-09-30', a: 1789},
+            {y: '2016-10-01', a: 1791},
+            {y: '2016-10-02', a: 1790},
+            {y: '2016-10-03', a: 1793},
+            {y: '2016-10-04', a: 1793},
+            {y: '2016-10-05', a: 1795},
+            {y: '2016-10-06', a: 1796},
+            {y: '2016-10-07', a: 1797},
+            {y: '2016-10-08', a: 1798},
+            {y: '2016-10-09', a: 1797},
+            {y: '2016-10-10', a: 1798},
+            {y: '2016-10-11', a: 1801},
+            {y: '2016-10-12', a: 1804},
+            {y: '2016-10-13', a: 1808},
+            {y: '2016-10-14', a: 1811},
+            {y: '2016-10-15', a: 1813},
+            {y: '2016-10-16', a: 1813},
+            {y: '2016-10-17', a: 1813},
+            {y: '2016-10-18', a: 1813},
+            {y: '2016-10-19', a: 1813},
+            {y: '2016-10-20', a: 1813},
+            {y: '2016-10-21', a: 1813},
+            {y: '2016-10-22', a: 1813},
+            {y: '2016-10-23', a: 1813},
+            {y: '2016-10-24', a: 1819},
+            {y: '2016-10-25', a: 1819},
+            {y: '2016-10-26', a: 1819},
+            {y: '2016-10-27', a: 1819},
+            {y: '2016-10-28', a: 1819},
+            {y: '2016-10-29', a: 1819},
+            {y: '2016-10-30', a: 1819},
+            {y: '2016-10-31', a: 1819},
+            {y: '2016-11-01', a: 1819},
+            {y: '2016-11-02', a: 1819},
+            {y: '2016-11-03', a: 1819},
+            {y: '2016-11-04', a: 1819},
+            {y: '2016-11-05', a: 1819},
+            {y: '2016-11-06', a: 1819},
+            {y: '2016-11-07', a: 1822},
+            {y: '2016-11-08', a: 1822},
+            {y: '2016-11-09', a: 1822},
+            {y: '2016-11-10', a: 1823},
+            {y: '2016-11-11', a: 1824},
+            {y: '2016-11-12', a: 1824},
+            {y: '2016-11-13', a: 1823},
+            {y: '2016-11-14', a: 1822},
+            {y: '2016-11-15', a: 1821},
+            {y: '2016-11-16', a: 1823},
+            {y: '2016-11-17', a: 1823},
+            {y: '2016-11-18', a: 1824},
+            {y: '2016-11-19', a: 1823},
+            {y: '2016-11-20', a: 1823},
+            {y: '2016-11-21', a: 1824},
+            {y: '2016-11-22', a: 1825},
+            {y: '2016-11-23', a: 1824},
+            {y: '2016-11-24', a: 1824},
+            {y: '2016-11-25', a: 1824},
+            {y: '2016-11-26', a: 1824},
+            {y: '2016-11-27', a: 1826},
+            {y: '2016-11-28', a: 1825},
+            {y: '2016-11-29', a: 1824},
+            {y: '2016-11-30', a: 1826},
+            {y: '2016-12-01', a: 1826},
+            {y: '2016-12-02', a: 1826},
+            {y: '2016-12-03', a: 1826},
+            {y: '2016-12-04', a: 1829},
+            {y: '2016-12-05', a: 1827},
+            {y: '2016-12-06', a: 1826},
+            {y: '2016-12-07', a: 1825},
+            {y: '2016-12-08', a: 1824},
+            {y: '2016-12-09', a: 1823},
+            {y: '2016-12-10', a: 1822},
+            {y: '2016-12-11', a: 1821},
+            {y: '2016-12-12', a: 1820},
+            {y: '2016-12-13', a: 1819},
+            {y: '2016-12-14', a: 1818},
+            {y: '2016-12-15', a: 1817},
+            {y: '2016-12-16', a: 1816},
+            {y: '2016-12-17', a: 1815},
+            {y: '2016-12-18', a: 1814},
+            {y: '2016-12-19', a: 1813},
+            {y: '2016-12-20', a: 1812},
+            {y: '2016-12-21', a: 1811},
+            {y: '2016-12-22', a: 1810},
+            {y: '2016-12-23', a: 1809},
+            {y: '2016-12-24', a: 1808},
+            {y: '2016-12-25', a: 1807},
+            {y: '2016-12-26', a: 1806},
+            {y: '2016-12-27', a: 1805},
+            {y: '2016-12-28', a: 1804},
+            {y: '2016-12-29', a: 1803},
+            {y: '2016-12-30', a: 1822},
+            {y: '2016-12-31', a: 1822},
+            {y: '2017-01-01', a: 1823},
+            {y: '2017-01-02', a: 1825},
+            {y: '2017-01-03', a: 1827},
+            {y: '2017-01-04', a: 1828},
+            {y: '2017-01-05', a: 1826},
+            {y: '2017-01-06', a: 1827},
+            {y: '2017-01-07', a: 1826},
+            {y: '2017-01-08', a: 1827},
+            {y: '2017-01-09', a: 1827},
+            {y: '2017-01-10', a: 1827},
+            {y: '2017-01-11', a: 1829},
+            {y: '2017-01-12', a: 1830},
+            {y: '2017-01-13', a: 1828},
+            {y: '2017-01-14', a: 1832},
+            {y: '2017-01-15', a: 1833},
+            {y: '2017-01-16', a: 1834},
+            {y: '2017-01-17', a: 1833},
+            {y: '2017-01-18', a: 1834},
+            {y: '2017-01-19', a: 1835},
+            {y: '2017-01-20', a: 1836},
+            {y: '2017-01-21', a: 1836},
+            {y: '2017-01-22', a: 1835},
+            {y: '2017-01-23', a: 1836},
+            {y: '2017-01-24', a: 1839},
+            {y: '2017-01-25', a: 1841},
+            {y: '2017-01-26', a: 1841},
+            {y: '2017-01-27', a: 1841},
+            {y: '2017-01-28', a: 1841},
+            {y: '2017-01-29', a: 1840},
+            {y: '2017-01-30', a: 1841},
+            {y: '2017-01-31', a: 1840},
+            {y: '2017-02-01', a: 1841},
+            {y: '2017-02-02', a: 1842},
+            {y: '2017-02-03', a: 1842},
+            {y: '2017-02-04', a: 1843},
+            {y: '2017-02-05', a: 1843},
+            {y: '2017-02-06', a: 1843},
+            {y: '2017-02-07', a: 1844},
+            {y: '2017-02-08', a: 1846},
+            {y: '2017-02-09', a: 1846},
+            {y: '2017-02-10', a: 1847},
+            {y: '2017-02-11', a: 1848},
+            {y: '2017-02-12', a: 1849},
+            {y: '2017-02-13', a: 1851},
+            {y: '2017-02-14', a: 1851},
+            {y: '2017-02-15', a: 1851},
+            {y: '2017-02-16', a: 1851},
+            {y: '2017-02-17', a: 1850},
+            {y: '2017-02-18', a: 1851},
+            {y: '2017-02-19', a: 1854},
+            {y: '2017-02-20', a: 1855},
+            {y: '2017-02-21', a: 1855},
+            {y: '2017-02-22', a: 1855},
+            {y: '2017-02-23', a: 1857},
+            {y: '2017-02-24', a: 1857},
+            {y: '2017-02-25', a: 1856},
+            {y: '2017-02-26', a: 1858},
+            {y: '2017-02-27', a: 1859}
+            
+                                    ],
+                                    pointSize:'',
+                                    xkey: 'y',
+                                    ykeys: ['a'],
+                                    labels: ['Subscribers']
+                            });
+            
+                    var rankData = [
+            {y: '2016-01-07', a: 423639},
+            {y: '2016-01-08', a: 424501},
+            {y: '2016-01-09', a: 425428},
+            {y: '2016-01-10', a: 426525},
+            {y: '2016-01-11', a: 427578},
+            {y: '2016-01-12', a: 428431},
+            {y: '2016-01-13', a: 429324},
+            {y: '2016-01-14', a: 430129},
+            {y: '2016-01-15', a: 430847},
+            {y: '2016-01-16', a: 431888},
+            {y: '2016-01-17', a: 432970},
+            {y: '2016-01-18', a: 433726},
+            {y: '2016-01-19', a: 434450},
+            {y: '2016-01-20', a: 435029},
+            {y: '2016-01-21', a: 435682},
+            {y: '2016-01-22', a: 436636},
+            {y: '2016-01-23', a: 437630},
+            {y: '2016-01-24', a: 438804},
+            {y: '2016-01-25', a: 439584},
+            {y: '2016-01-26', a: 440372},
+            {y: '2016-01-27', a: 441223},
+            {y: '2016-01-28', a: 442051},
+            {y: '2016-01-29', a: 442948},
+            {y: '2016-01-30', a: 334039},
+            {y: '2016-01-31', a: 334359},
+            {y: '2016-02-01', a: 334683},
+            {y: '2016-02-02', a: 335049},
+            {y: '2016-02-03', a: 335133},
+            {y: '2016-02-04', a: 335698},
+            {y: '2016-02-05', a: 335985},
+            {y: '2016-02-06', a: 336231},
+            {y: '2016-02-07', a: 336828},
+            {y: '2016-02-08', a: 249890},
+            {y: '2016-02-09', a: 250167},
+            {y: '2016-02-10', a: 250441},
+            {y: '2016-02-11', a: 196199},
+            {y: '2016-02-12', a: 185268},
+            {y: '2016-02-13', a: 185414},
+            {y: '2016-02-14', a: 176218},
+            {y: '2016-02-15', a: 176386},
+            {y: '2016-02-16', a: 155717},
+            {y: '2016-02-17', a: 141525},
+            {y: '2016-02-18', a: 137736},
+            {y: '2016-02-19', a: 122161},
+            {y: '2016-02-20', a: 122249},
+            {y: '2016-02-21', a: 117627},
+            {y: '2016-02-22', a: 104711},
+            {y: '2016-02-23', a: 97762},
+            {y: '2016-02-24', a: 94267},
+            {y: '2016-02-25', a: 94341},
+            {y: '2016-02-26', a: 93280},
+            {y: '2016-02-27', a: 91280},
+            {y: '2016-02-28', a: 89399},
+            {y: '2016-02-29', a: 85868},
+            {y: '2016-03-01', a: 81269},
+            {y: '2016-03-02', a: 78012},
+            {y: '2016-03-03', a: 78070},
+            {y: '2016-03-04', a: 76910},
+            {y: '2016-03-05', a: 73577},
+            {y: '2016-03-06', a: 72145},
+            {y: '2016-03-07', a: 71245},
+            {y: '2016-03-08', a: 70355},
+            {y: '2016-03-09', a: 68614},
+            {y: '2016-03-10', a: 68653},
+            {y: '2016-03-11', a: 67499},
+            {y: '2016-03-12', a: 66782},
+            {y: '2016-03-12', a: 67201},
+            {y: '2016-03-14', a: 65345},
+            {y: '2016-03-15', a: 64333},
+            {y: '2016-03-16', a: 62154},
+            {y: '2016-03-17', a: 58520},
+            {y: '2016-03-18', a: 56585},
+            {y: '2016-03-19', a: 55947},
+            {y: '2016-03-20', a: 53797},
+            {y: '2016-03-21', a: 48307},
+            {y: '2016-03-22', a: 47379},
+            {y: '2016-03-23', a: 45100},
+            {y: '2016-03-24', a: 43975},
+            {y: '2016-03-25', a: 26727},
+            {y: '2016-03-26', a: 24954},
+            {y: '2016-03-27', a: 24579},
+            {y: '2016-03-28', a: 19830},
+            {y: '2016-03-29', a: 19773},
+            {y: '2016-03-30', a: 19640},
+            {y: '2016-03-31', a: 19611},
+            {y: '2016-04-01', a: 19500},
+            {y: '2016-04-02', a: 19481},
+            {y: '2016-04-03', a: 19445},
+            {y: '2016-04-04', a: 19412},
+            {y: '2016-04-05', a: 19364},
+            {y: '2016-04-06', a: 19250},
+            {y: '2016-04-07', a: 19096},
+            {y: '2016-04-08', a: 19010},
+            {y: '2016-04-09', a: 18942},
+            {y: '2016-04-10', a: 18871},
+            {y: '2016-04-11', a: 18858},
+            {y: '2016-04-12', a: 18825},
+            {y: '2016-04-13', a: 18816},
+            {y: '2016-04-14', a: 18773},
+            {y: '2016-04-15', a: 18766},
+            {y: '2016-04-16', a: 18761},
+            {y: '2016-04-17', a: 18719},
+            {y: '2016-04-18', a: 18660},
+            {y: '2016-04-19', a: 18612},
+            {y: '2016-04-20', a: 18594},
+            {y: '2016-04-21', a: 18606},
+            {y: '2016-04-22', a: 18615},
+            {y: '2016-04-23', a: 18613},
+            {y: '2016-04-24', a: 18620},
+            {y: '2016-04-25', a: 18631},
+            {y: '2016-04-26', a: 18636},
+            {y: '2016-04-27', a: 18644},
+            {y: '2016-04-28', a: 18656},
+            {y: '2016-04-29', a: 18665},
+            {y: '2016-04-30', a: 18671},
+            {y: '2016-05-01', a: 18672},
+            {y: '2016-05-02', a: 18669},
+            {y: '2016-05-03', a: 18663},
+            {y: '2016-05-04', a: 18652},
+            {y: '2016-05-05', a: 18672},
+            {y: '2016-05-06', a: 18687},
+            {y: '2016-05-07', a: 18691},
+            {y: '2016-05-08', a: 18694},
+            {y: '2016-05-09', a: 18701},
+            {y: '2016-05-10', a: 18722},
+            {y: '2016-05-11', a: 18731},
+            {y: '2016-05-12', a: 18725},
+            {y: '2016-05-13', a: 18732},
+            {y: '2016-05-14', a: 18725},
+            {y: '2016-05-15', a: 18721},
+            {y: '2016-05-16', a: 18713},
+            {y: '2016-05-17', a: 18715},
+            {y: '2016-05-18', a: 18601},
+            {y: '2016-05-19', a: 18576},
+            {y: '2016-05-20', a: 18534},
+            {y: '2016-05-21', a: 18431},
+            {y: '2016-05-22', a: 18242},
+            {y: '2016-05-23', a: 18024},
+            {y: '2016-05-24', a: 17620},
+            {y: '2016-05-25', a: 17272},
+            {y: '2016-05-26', a: 16840},
+            {y: '2016-05-27', a: 16689},
+            {y: '2016-05-28', a: 16597},
+            {y: '2016-05-29', a: 16500},
+            {y: '2016-05-30', a: 16445},
+            {y: '2016-05-31', a: 16379},
+            {y: '2016-06-01', a: 16381},
+            {y: '2016-06-02', a: 16347},
+            {y: '2016-06-03', a: 16291},
+            {y: '2016-06-04', a: 16244},
+            {y: '2016-06-05', a: 16164},
+            {y: '2016-06-06', a: 16135},
+            {y: '2016-06-07', a: 16112},
+            {y: '2016-06-08', a: 16041},
+            {y: '2016-06-09', a: 15991},
+            {y: '2016-06-10', a: 15984},
+            {y: '2016-06-11', a: 15977},
+            {y: '2016-06-12', a: 15978},
+            {y: '2016-06-13', a: 15952},
+            {y: '2016-06-14', a: 15922},
+            {y: '2016-06-15', a: 15878},
+            {y: '2016-06-16', a: 15847},
+            {y: '2016-06-17', a: 15777},
+            {y: '2016-06-18', a: 15730},
+            {y: '2016-06-19', a: 15669},
+            {y: '2016-06-20', a: 15601},
+            {y: '2016-06-21', a: 15548},
+            {y: '2016-06-22', a: 15498},
+            {y: '2016-06-23', a: 15487},
+            {y: '2016-06-24', a: 15482},
+            {y: '2016-06-25', a: 15480},
+            {y: '2016-06-26', a: 15456},
+            {y: '2016-06-27', a: 15424},
+            {y: '2016-06-28', a: 15401},
+            {y: '2016-07-07', a: 15246},
+            {y: '2016-07-07', a: 15242},
+            {y: '2016-07-08', a: 15242},
+            {y: '2016-07-09', a: 15241},
+            {y: '2016-07-10', a: 15257},
+            {y: '2016-07-11', a: 15207},
+            {y: '2016-07-12', a: 15194},
+            {y: '2016-07-13', a: 15162},
+            {y: '2016-07-14', a: 15168},
+            {y: '2016-07-15', a: 15146},
+            {y: '2016-07-16', a: 15128},
+            {y: '2016-07-17', a: 15127},
+            {y: '2016-07-18', a: 15111},
+            {y: '2016-07-19', a: 15120},
+            {y: '2016-07-20', a: 15234},
+            {y: '2016-07-21', a: 15236},
+            {y: '2016-07-22', a: 15239},
+            {y: '2016-07-23', a: 15234},
+            {y: '2016-07-24', a: 15232},
+            {y: '2016-07-25', a: 15219},
+            {y: '2016-07-26', a: 15206},
+            {y: '2016-07-27', a: 15215},
+            {y: '2016-07-28', a: 15211},
+            {y: '2016-07-29', a: 15206},
+            {y: '2016-07-30', a: 15201},
+            {y: '2016-07-31', a: 15194},
+            {y: '2016-08-01', a: 15170},
+            {y: '2016-08-02', a: 15175},
+            {y: '2016-08-03', a: 15154},
+            {y: '2016-08-04', a: 15202},
+            {y: '2016-08-05', a: 15196},
+            {y: '2016-08-06', a: 15204},
+            {y: '2016-08-07', a: 15204},
+            {y: '2016-08-08', a: 15202},
+            {y: '2016-08-09', a: 15162},
+            {y: '2016-08-10', a: 15151},
+            {y: '2016-08-11', a: 15113},
+            {y: '2016-08-12', a: 15113},
+            {y: '2016-08-13', a: 15108},
+            {y: '2016-08-14', a: 15129},
+            {y: '2016-08-15', a: 15131},
+            {y: '2016-08-16', a: 15121},
+            {y: '2016-08-17', a: 15111},
+            {y: '2016-08-18', a: 15086},
+            {y: '2016-08-19', a: 15070},
+            {y: '2016-08-20', a: 15049},
+            {y: '2016-08-21', a: 15033},
+            {y: '2016-08-22', a: 15045},
+            {y: '2016-08-23', a: 15009},
+            {y: '2016-08-24', a: 14979},
+            {y: '2016-08-25', a: 14982},
+            {y: '2016-08-26', a: 14985},
+            {y: '2016-08-27', a: 15000},
+            {y: '2016-08-28', a: 15011},
+            {y: '2016-08-29', a: 15019},
+            {y: '2016-08-30', a: 15019},
+            {y: '2016-09-01', a: 15058},
+            {y: '2016-09-01', a: 15019},
+            {y: '2016-09-02', a: 15067},
+            {y: '2016-09-03', a: 15084},
+            {y: '2016-09-04', a: 15101},
+            {y: '2016-09-05', a: 15095},
+            {y: '2016-09-06', a: 15099},
+            {y: '2016-09-07', a: 15099},
+            {y: '2016-09-08', a: 15097},
+            {y: '2016-09-09', a: 15094},
+            {y: '2016-09-10', a: 15092},
+            {y: '2016-09-11', a: 15099},
+            {y: '2016-09-12', a: 15101},
+            {y: '2016-09-13', a: 15069},
+            {y: '2016-09-14', a: 15076},
+            {y: '2016-09-15', a: 15070},
+            {y: '2016-09-16', a: 15073},
+            {y: '2016-09-17', a: 15068},
+            {y: '2016-09-18', a: 15073},
+            {y: '2016-09-19', a: 15076},
+            {y: '2016-09-20', a: 15135},
+            {y: '2016-09-21', a: 15131},
+            {y: '2016-09-22', a: 15165},
+            {y: '2016-09-23', a: 15169},
+            {y: '2016-09-24', a: 15158},
+            {y: '2016-09-25', a: 15162},
+            {y: '2016-09-26', a: 15158},
+            {y: '2016-09-28', a: 15186},
+            {y: '2016-09-29', a: 15189},
+            {y: '2016-09-30', a: 15192},
+            {y: '2016-10-01', a: 15192},
+            {y: '2016-10-02', a: 15211},
+            {y: '2016-10-03', a: 15213},
+            {y: '2016-10-04', a: 15224},
+            {y: '2016-10-05', a: 15223},
+            {y: '2016-10-06', a: 15220},
+            {y: '2016-10-07', a: 15218},
+            {y: '2016-10-08', a: 15220},
+            {y: '2016-10-09', a: 15239},
+            {y: '2016-10-10', a: 15238},
+            {y: '2016-10-11', a: 15228},
+            {y: '2016-10-12', a: 15226},
+            {y: '2016-10-13', a: 15215},
+            {y: '2016-10-16', a: 15210},
+            {y: '2016-10-16', a: 15208},
+            {y: '2016-10-24', a: 15314},
+            {y: '2016-11-07', a: 15423},
+            {y: '2016-11-10', a: 15448},
+            {y: '2016-11-11', a: 15456},
+            {y: '2016-11-12', a: 15472},
+            {y: '2016-11-13', a: 15491},
+            {y: '2016-11-15', a: 15522},
+            {y: '2016-11-16', a: 15520},
+            {y: '2016-11-17', a: 15533},
+            {y: '2016-11-19', a: 15533},
+            {y: '2016-11-20', a: 15563},
+            {y: '2016-11-23', a: 15563},
+            {y: '2016-11-24', a: 15584},
+            {y: '2016-11-29', a: 15634},
+            {y: '2016-11-30', a: 15639},
+            {y: '2016-12-04', a: 15660},
+            {y: '2016-12-05', a: 15677},
+            {y: '2016-12-30', a: 16152},
+            {y: '2016-12-31', a: 16162},
+            {y: '2017-01-01', a: 16171},
+            {y: '2017-01-02', a: 16172},
+            {y: '2017-01-03', a: 16184},
+            {y: '2017-01-04', a: 16192},
+            {y: '2017-01-05', a: 16205},
+            {y: '2017-01-06', a: 16212},
+            {y: '2017-01-07', a: 16238},
+            {y: '2017-01-08', a: 16241},
+            {y: '2017-01-09', a: 16249},
+            {y: '2017-01-10', a: 16267},
+            {y: '2017-01-11', a: 16268},
+            {y: '2017-01-12', a: 16269},
+            {y: '2017-01-13', a: 16304},
+            {y: '2017-01-14', a: 16290},
+            {y: '2017-01-15', a: 16295},
+            {y: '2017-01-16', a: 16297},
+            {y: '2017-01-17', a: 16331},
+            {y: '2017-01-18', a: 16339},
+            {y: '2017-01-19', a: 16346},
+            {y: '2017-01-20', a: 16350},
+            {y: '2017-01-21', a: 16357},
+            {y: '2017-01-22', a: 16399},
+            {y: '2017-01-23', a: 16396},
+            {y: '2017-01-24', a: 16404},
+            {y: '2017-01-25', a: 16407},
+            {y: '2017-01-26', a: 16426},
+            {y: '2017-01-27', a: 16441},
+            {y: '2017-01-28', a: 16447},
+            {y: '2017-01-29', a: 16471},
+            {y: '2017-01-30', a: 16475},
+            {y: '2017-01-31', a: 16487},
+            {y: '2017-02-01', a: 16508},
+            {y: '2017-02-02', a: 16521},
+            {y: '2017-02-03', a: 16535},
+            {y: '2017-02-04', a: 16536},
+            {y: '2017-02-05', a: 16546},
+            {y: '2017-02-06', a: 16557},
+            {y: '2017-02-07', a: 16557},
+            {y: '2017-02-08', a: 16559},
+            {y: '2017-02-09', a: 16601},
+            {y: '2017-02-10', a: 16605},
+            {y: '2017-02-11', a: 16609},
+            {y: '2017-02-12', a: 16610},
+            {y: '2017-02-13', a: 16626},
+            {y: '2017-02-14', a: 16639},
+            {y: '2017-02-15', a: 16652},
+            {y: '2017-02-16', a: 16661},
+            {y: '2017-02-17', a: 16677},
+            {y: '2017-02-18', a: 16678},
+            {y: '2017-02-19', a: 16662},
+            {y: '2017-02-20', a: 16668},
+            {y: '2017-02-21', a: 16703},
+            {y: '2017-02-22', a: 16708},
+            {y: '2017-02-23', a: 16709},
+            {y: '2017-02-24', a: 16720},
+            {y: '2017-02-25', a: 16731},
+            {y: '2017-02-26', a: 16736},
+            {y: '2017-02-27', a: 16747}
+            
+                    ];
+                            // Negate values
+                            rankData = rankData.map(function(x){
+                            x.a = - x.a;
+                                    return x;
+                            });
+                            Morris.Area({
+                            element: 'rank-graph',
+                                    data: rankData,
+                                    pointSize:'',
+                                    xkey: 'y',
+                                    ykeys: ['a'],
+                                    labels: ['Rank'],
+                                    ymax: - 1,
+                                    unNegate: true
+                            });
+            
+                    }
+
+                    document.getElementById('total-subscribers').style.display = "none";
+                            document.getElementById('rank-graph').style.display = "none";
+                    }
+
+            function tab1() {
+            activeGraph = 'subscriber-growth';
+                    document.getElementById('total-subscribers').style.display = "none";
+                    document.getElementById('rank-graph').style.display = "none";
+                    document.getElementById('subscriber-growth').style.display = "block";
+            }
+            function tab2() {
+            activeGraph = 'total-subscribers';
+                    document.getElementById('subscriber-growth').style.display = "none";
+                    document.getElementById('rank-graph').style.display = "none";
+                    document.getElementById('total-subscribers').style.display = "block";
+                    document.getElementById('total-subscribers').style.opacity = 1;
+            }
+            function tab3() {
+            activeGraph = 'rank-graph';
+                    document.getElementById('total-subscribers').style.display = "none";
+                    document.getElementById('subscriber-growth').style.display = "none";
+                    document.getElementById('rank-graph').style.display = "block";
+                    document.getElementById('rank-graph').style.opacity = 1;
+            }
+        </script>
+
+        
+        <script src="http://redditmetrics.com/static/js/redditmetrics.stats.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("[rel='tooltip']").tooltip();
+            });
+        </script>
+
+    </body>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43436510-12', 'redditmetrics.com');
+  ga('send', 'pageview');
+
+</script>  
+
+<script type="text/javascript">
+var sc_project=9869614; 
+var sc_invisible=1; 
+var sc_security="8b9b2aa2"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+
+<!-- Begin comScore Tag -->
+<script>
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "18686189" });
+  (function() {
+    var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+    el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/p?c1=2&c2=18686189&cv=2.0&cj=1" />
+</noscript>
+<!-- End comScore Tag -->
+
+<script type="text/javascript"><!--
+  e9 = new Object();
+  e9.snackbar = true;
+//--></script>
+<script type="text/javascript" src="http://tags.expo9.exponential.com/tags/MOIllusionscomNew/Snackbar/tags.js"></script>
+
+<!-- FM Tracking Pixel -->
+<script type='text/javascript' src='http://static.fmpub.net/site/Reddit-Metrics'></script>
+<!-- FM Tracking Pixel -->
+
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'redditmetrics1'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+    
+
+</html>

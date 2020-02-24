@@ -1,0 +1,92 @@
+// NOTA: ZEXK8 Es una variación de ZEXK6 volviendo a poner el K-RATIO ELEVADO A 10
+
+SetOption("UseCustomBacktestProc", True );
+ZEXK=-9999999999;
+  
+if( Status("action") == actionPortfolio ) 
+{ 
+	TRADE_RATIO_MIN=0.25;
+	TRADE_RATIO_MAX=5;
+	ZEXK=-9999999999;
+
+	dateFrom=DateTimeConvert(2,Status("rangefromdate"));
+	dateTo=DateTimeConvert(2,Status("rangetodate"),Status("rangetotime"));
+	daysintest=DateTimeDiff( dateTo, dateFrom )/86000 +1;
+	
+    NumTrades = 0; 
+
+    bo = GetBacktesterObject(); 
+    bo.Backtest(True);
+
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+   { 
+		Initialized=1;
+		StaticClose=StaticVarGet(trade.Symbol+"_close");
+		start_price=Lookup(StaticClose,dateFrom);
+		end_price=Lookup(StaticClose,dateTo,-1);			
+		TRADE_RATIO_MIN			= StaticVarGet(trade.Symbol+"_TRADE_RATIO_MIN")/2;
+		TRADE_RATIO_MAX			= StaticVarGet(trade.Symbol+"_TRADE_RATIO_MAX")/2;
+		TRADE_SPREAD 			= StaticVarGet(trade.Symbol+"_TRADE_SPREAD");
+		TRADE_OUTRANGE_PENALTY  = StaticVarGet(trade.Symbol+"_TRADE_OUTRANGE_PENALTY");
+		break;	
+   }        
+   
+   
+    
+    st = bo.GetPerformanceStats( 0 );
+	
+    NumTrades=st.GetValue("AllQty");
+	TradesDay=NumTrades/daysintest;
+	
+	sterr = sqrt(sqrt(sqrt(st.GetValue("StandardError"))));
+	//SDD=1;//abs(1*st.GetValue("MaxSystemDrawdownPercent")+3*st.GetValue("MaxTradeDrawdownPercent"))/4;
+	profit = st.GetValue("NetProfitPercent")/(daysintest/365);
+	profit2=7.5*IIf(profit<0,-1*sqrt(sqrt(sqrt(sqrt(sqrt(sqrt(sqrt(abs(profit)))))))),sqrt(sqrt(sqrt(sqrt(sqrt(sqrt(sqrt(profit))))))));
+	kr=3000*st.GetValue("KRatio");
+	KRA=IIf(kr<0,-1*(abs(kr)^2),kr^2); //antes era ^10 y la linea de arriba . Ver nota arriba del todo. Impar para preservar el signo.
+	BENx=st.GetValue("UlcerPerformanceIndex");
+	BEN=IIf(BENx<0,-1*sqrt(sqrt(abs(BENx))),sqrt(sqrt(BENx)));
+	
+	//ZEXK=profit/SDD^5; //*profit;
+	Out=0;
+	Tr=Nz(TradesDay*2,0.001);
+	Tr2=Nz(NumTrades/daysintest*2,0.001);
+	ZEXK2=KRA;
+	if (Tr<0.01 OR Tr2<0.01)
+	{
+		Tr=0.01;
+		ZEX2=-999999999;
+	}
+	if (Tr<TRADE_RATIO_MIN*2  OR Tr2<TRADE_RATIO_MIN*2)
+	{
+		Out=1;
+		ZEX2=-999999999 +ZEXK2;
+	}
+	if (Tr>TRADE_RATIO_MAX*2 OR Tr2>TRADE_RATIO_MAX*2)
+	{
+		Out=1;
+		ZEXK2=-999999999 +ZEXK2;
+	}
+	//ZEXK5=Nz(1000*ZEXK ,-999999999) ;
+	ZEXK7=(ZEXK2 + profit2 + Nz(BEN,0));
+	ZEXK81=ZEXK7/IIf(ZEXK7>0,sterr,1/sterr);
+
+	bo.AddCustomMetric( "OUT",Out);
+    bo.AddCustomMetric( "Net%Y",profit);
+    bo.AddCustomMetric( "profit2",profit2);
+    bo.AddCustomMetric( "KRA",KRA);
+    bo.AddCustomMetric( "NumTrades",NumTrades);
+    bo.AddCustomMetric( "BEN",BEN);
+    bo.AddCustomMetric( "sterr",sterr);
+    //bo.AddCustomMetric( "KRABEN",KRABEN);
+    
+    //bo.AddCustomMetric( "ZEXK2", ZEXK2); 
+    bo.AddCustomMetric( "ZEXK81", ZEXK81); 
+    
+    bo.AddCustomMetric( "MIN TrRatio",TRADE_RATIO_MIN*2);
+    bo.AddCustomMetric( "NOW TrRatio",TradesDay*2);
+    bo.AddCustomMetric( "MAX TrRatio",TRADE_RATIO_MAX*2);
+    
+    bo.AddCustomMetric( "Days",daysintest);
+    bo.AddCustomMetric(">>>",">>>");
+} 

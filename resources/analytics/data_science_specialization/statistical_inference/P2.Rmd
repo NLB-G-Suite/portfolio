@@ -1,0 +1,97 @@
+---
+title: "Untitled"
+output:
+  word_document: default
+  pdf_document: default
+  html_document:
+    keep_md: yes
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Effect of Vitamin C on Tooth growth in Guinea Pigs
+
+### David Pellon
+### June 2017
+
+## Overview:
+### The objective of this study is comparing the tooth growth in Guinea Pigs depending on different diets and supplements.
+
+## Load the ToothGrowth data and perform some basic exploratory data analyses:
+
+### Loading data
+
+```{r a1, echo=TRUE}
+library(datasets)
+data("ToothGrowth")
+```
+
+### Exploring data 
+
+```{r a2, echo=TRUE}
+head(ToothGrowth)
+names(ToothGrowth)
+summary(ToothGrowth)
+
+```
+We have 60 guinea pigs. Each group of them received different doses of Vitamin C using either orange juice or ascorbic acid.
+
+
+```{r a3, echo=TRUE}
+library(ggplot2)
+levels(ToothGrowth$supp)<-c("Orange Juice","Ascorbic Acid")
+ggplot(ToothGrowth,aes(x=factor(dose),y=len))+
+  facet_grid(.~supp)+
+  geom_boxplot(aes(fill=supp),show_guide=TRUE)+
+  labs(title="Tooth Length, Dosage, Type of Supplement")+xlab("Dose (mg)")+ylab("Length")
+  
+```
+
+Guinea Pigs which received the Vitamin using Orange Juice had greater length. The dose effect when using Ascorbic Acid had a more dramatic impact on tooth length than when using Orange Juice.
+
+
+## Use confidence intervals/hypothesis to compare:
+
+### With different doses, both supplements bring same tooth growth
+
+For 0.5
+
+```{r a4, echo=TRUE}
+sset<-subset(ToothGrowth,dose ==0.5)
+h05 <- t.test(len ~ supp, data=sset)
+h05$conf.int
+h05$p.value
+```
+Hypothesis with 0.5 mg, OJ Growth = AA Growth - FALSE
+Hypothesis with 0.5 mg, OJ Growth > AA Growth - TRUE
+
+For 1.0
+
+```{r a5, echo=TRUE}
+sset<-subset(ToothGrowth,dose ==1.0)
+h10 <- t.test(len ~ supp, data=sset)
+h10$conf.int
+h10$p.value
+```
+Hypothesis with 1.0 mg, OJ Growth = AA Growth - FALSE
+Hypothesis with 1.0 mg, OJ Growth > AA Growth - TRUE
+
+For 2.0
+
+```{r a6, echo=TRUE}
+sset<-subset(ToothGrowth,dose ==2.0)
+h20 <- t.test(len ~ supp, data=sset)
+h20$conf.int
+h20$p.value
+```
+Hypothesis with 2.0 mg, OJ Growth = AA Growth - NOT FALSE (Cannot be rejected)
+
+
+## Conclusions
+
+Orange Juice offers more tooth growth except for 2.0 dose that is not clear.
+We assume that the data received is valid. 
+
+

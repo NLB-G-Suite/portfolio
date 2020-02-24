@@ -1,0 +1,64 @@
+SetOption("UseCustomBacktestProc", True );
+ZEXK=-9999999999;
+  
+if( Status("action") == actionPortfolio ) 
+{ 
+	TRADE_RATIO_MIN=0.25;
+	TRADE_RATIO_MAX=5;
+	ZEXK=-9999999999;
+
+	dateFrom=DateTimeConvert(2,Status("rangefromdate"));
+	dateTo=DateTimeConvert(2,Status("rangetodate"),Status("rangetotime"));
+	daysintest=DateTimeDiff( dateTo, dateFrom )/86000 +1;
+	
+    NumTrades = 0; 
+
+    bo = GetBacktesterObject(); 
+    bo.Backtest(True);
+
+   for( trade = bo.GetFirstTrade(); trade; trade = bo.GetNextTrade() ) 
+   { 
+		Initialized=1;
+		StaticClose=StaticVarGet(trade.Symbol+"_close");
+		start_price=Lookup(StaticClose,dateFrom);
+		end_price=Lookup(StaticClose,dateTo,-1);			
+		TRADE_RATIO_MIN			= StaticVarGet(trade.Symbol+"_TRADE_RATIO_MIN")/2;
+		TRADE_RATIO_MAX			= StaticVarGet(trade.Symbol+"_TRADE_RATIO_MAX")/2;
+		TRADE_SPREAD 			= StaticVarGet(trade.Symbol+"_TRADE_SPREAD");
+		TRADE_OUTRANGE_PENALTY  = StaticVarGet(trade.Symbol+"_TRADE_OUTRANGE_PENALTY");
+		break;	
+   }        
+    
+    st = bo.GetPerformanceStats( 0 );
+
+    NumTrades=st.GetValue("AllQty");
+	TradesDay=NumTrades/daysintest;
+	
+	SDD=abs(st.GetValue("MaxTradeDrawdownPercent"));
+	profit = st.GetValue("NetProfitPercent");
+	KRA=(1+st.GetValue("KRatio"))^50;
+	BEN=st.GetValue("UlcerPerformanceIndex");
+	
+
+	ZEXK=KRA*sqrt(BEN)/SDD^1.75; //*profit;
+	Tr=Nz(TradesDay*2,0.01);
+	if (Tr<0.01)
+	{
+		Tr=0.01;
+		ZEXK=-999999999;
+	}
+	if (Tr<TRADE_RATIO_MIN*2)
+		ZEXK=-999999999 +ZEXK;
+	if (Tr>TRADE_RATIO_MAX*2)
+		ZEXK=-999999999 +ZEXK;
+	ZEXK3=Nz(1000*ZEXK,-999999999);
+	
+    bo.AddCustomMetric( "Net%Y",profit/(daysintest/365));
+    bo.AddCustomMetric( "ZEXK3", ZEXK3); 
+    bo.AddCustomMetric( "MIN TrRatio",TRADE_RATIO_MIN*2);
+    bo.AddCustomMetric( "NOW TrRatio",TradesDay*2);
+    bo.AddCustomMetric( "MAX TrRatio",TRADE_RATIO_MAX*2);
+    bo.AddCustomMetric( "KRA",KRA);
+    bo.AddCustomMetric( "Days",daysintest);
+    bo.AddCustomMetric(">>>",">>>");
+} 

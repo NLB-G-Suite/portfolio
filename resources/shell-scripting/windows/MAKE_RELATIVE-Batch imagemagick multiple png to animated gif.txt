@@ -1,0 +1,11 @@
+robocopy
+
+
+robocopy C:\Users\David\AppData\Roaming\ParticleEvolutioner "F:\Med\Imagenes\@HechasPorMi\Particle Evolutioner" /E /MOVE
+
+
+
+for /f %i in ('dir C:\Users\David\AppData\Roaming\ParticleEvolutioner /ad /b') do "C:\Program Files\ImageMagick-7.0.3-Q16\convert.exe" -delay 0 -loop 0 -alpha set -dispose previous C:\Users\David\AppData\Roaming\ParticleEvolutioner\%i\*_0*.png "F:\Med\Imagenes\@HechasPorMi\Particle Evolutioner\Animated_Gifs_Particles\%i.gif
+
+
+for /f "tokens=*" %i in ('dir "F:\Med\Imagenes\@HechasPorMi\Particle Evolutioner\Particles" /ad /b') do "C:\Program Files\ImageMagick-7.0.3-Q16\convert.exe" -delay 0 -loop 0 -alpha set -dispose previous "F:\Med\Imagenes\@HechasPorMi\Particle Evolutioner\Particles\%i\*_0*.png" "F:\Med\Imagenes\@HechasPorMi\Particle Evolutioner\Animated_Gifs_Particles\%i.gif"

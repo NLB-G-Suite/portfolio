@@ -1,0 +1,37 @@
+SetCustomBacktestProc("");
+if (Status("action") == actionPortfolio)
+{
+	dateFrom=DateTimeConvert(2,Status("rangefromdate"));
+	dateTo=DateTimeConvert(2,Status("rangetodate"),Status("rangetotime"));
+	daysintest=DateTimeDiff( dateTo, dateFrom )/86000 +1;
+	bo = GetBacktesterObject();
+	bo.backtest();
+	st = bo.getperformancestats(0);
+    NumTrades=st.GetValue("AllQty");
+	TradesDay=NumTrades/daysintest;	
+	geom = (st.getvalue("EndingCapital")/st.getvalue("InitialCapital"))^(1/(st.GetValue("StandardError")^(1/6.5)));
+	geomp = 100*(geom-1); //geom percentage
+	mtpy = 1000;//252/st.getvalue("AllAvgBarsHeld"); //maximum number of trades per year
+	meg= mtpy*ln(geom); //max exponential growth rate (annual)
+	//bo.addcustommetric("End", st.getvalue("EndingCapital"));	
+	//bo.addcustommetric("Ini", st.getvalue("InitialCapital"));	
+	if (st.GetValue("NetProfitPercent")<=-100) {meg=-99999999999+st.GetValue("NetProfitPercent");}
+	if (TradesDay<0.1) { meg=-99999999999+meg;}
+	
+	bo.addcustommetric("StdErr", st.GetValue("StandardError"));	
+	bo.AddCustomMetric("TrDay", TradesDay);
+	bo.AddCustomMetric("HDays", daysintest);	
+	//bo.AddCustomMetric("NetY", (st.getvalue("EndingCapital")-st.getvalue("InitialCapital"))/(TradesDay/365));
+	//bo.addcustommetric("Geo", geomp);	
+	bo.addcustommetric("M/day", meg/daysintest);	
+	bo.AddCustomMetric("<","<");	
+	bo.addcustommetric("m65", meg);	
+    bo.AddCustomMetric(">",">");	
+    //
+}
+
+
+//Ultimos cambios:
+//    Sobre la formula en sí: He puesto un sqrt más al standard error para quitarle importancia
+//                            He gambiado MEGAN1 que sea geomp en vez de meg
+//    Añadido trades/day y M/day

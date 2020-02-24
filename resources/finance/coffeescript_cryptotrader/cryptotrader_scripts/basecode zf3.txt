@@ -1,0 +1,56 @@
+function ZS( data, period, fl, std_period)
+{
+  return (data - (LinearReg(data, period) + fl*LinRegSlope(data, period))) / StDev(data,std_period);
+}
+function optim( pname, defaultval, minv, maxv, step, mode, pct )
+{
+	if (mode == 1)
+	{
+		OptimizerSetEngine("cmae");
+		result = Optimize( pname, defaultval, minv, maxv, step );
+	}
+	else if (mode == 0)
+	{	
+		OptimizerSetEngine("trib");
+		OptimizerSetOption("MaxEval", 5000 );
+		OptimizerSetOption("Runs", 3);
+		range = maxv-minv;
+		difference = (round(pct*range)/step)*step;
+		v1 = defaultval - difference;
+		v2 = defaultval + difference;	
+	
+		val1=IIf(v1<minv,minv,v1);
+		val2=IIf(v2>maxv,maxv,v2);
+	
+		_TRACE("Setting parameter "+pname+" limits between ("+val1+"<["+defaultval+"]>"+val2+").");
+		result = Optimize( pname, defaultval, val1, val2, step );
+	}
+	return result;
+}
+SetOption("InitialEquity", 10000 ); // set initial equity = 100K
+SetOption("FuturesMode", True ); 
+SetPositionSize( 100, spsPercentOfEquity ); 
+MarginDeposit = -20;//- Optimize("margin deposit", 50, 10, 100, 10 ); //optimize margin amount
+percent = 0.9;
+percent1 = 0.9;
+percent2 = 0.9;
+percent3 = 0.9;
+mode = 0;
+A1   = optim("A1"   ,-8 ,-16 ,0  ,0.1 ,mode, percent1);
+LRp1 = optim("LRp1" ,150,50  ,300,1   ,mode, percent);
+STDp1= optim("STDp1",200,50  ,400,1   ,mode, percent);
+B1   = optim("B1"   , 8 , 0  , 16, 0.1,mode, percent1);
+LRp2 = optim("LRp2" ,150,50  ,300,1   ,mode, percent);
+STDp2= optim("STDp2",200,50  ,400,1   ,mode, percent);
+C1   = optim("C1"   , 4 , 0  , 10, 0.1,mode, percent1);
+LRp3 = optim("LRp3" ,150,50  ,300,1   ,mode, percent);
+STDp3= optim("STDp3",150,50  ,400,1   ,mode, percent);
+ThL  = optim("ThL"  , 7 , 0  , 15, 0.1,mode, percent3);
+ThS  = optim("ThS"  , -7, -15, 0 , 0.1,mode, percent2);
+input = Close*(0.995 + 0.01*mtRandom( seed = Null )); 
+ZF3=A1*ZS(input, LRp1, 0, STDp1)+B1*ZS(input, LRp2, 0, STDp2)+C1*ZS(input, LRp3, 0, STDp3) ; 
+Buy		= ZF3 > ThL;
+Sell	= ZF3 < ThS;
+Short	= Sell;
+Cover	= Buy;
+Exclude = A1+B1+C1 < 0;

@@ -1,0 +1,670 @@
+###
+ZTExpdATR-1.0 - original logic (25/5/2015)
+###################################Input Parameters##############################################
+#TRADELOGIC - MAKE SURE THIS IS CORRECT FOR YOUR INPUT VALUES - test both settings
+#TYPE_A = true: SZ1>LZ1 and maxhigh: buy, SZ2<LZ2 and maxlow: sell
+#TYPE_A = false: SZ1>LZ2 and SZ2>LZ2 and maxhigh: buy, S2<L2 and maxlow: sell
+TYPE_A = true  
+EXTREMETRADE = false
+
+S1 =         3
+L1 =        53 
+S2 =         5 
+L2 =        46
+MAXHIGH =   14
+MINLOW =     6
+
+ExtLowBuy    =  9.403843879699707
+ExtHighSell  = 203.19290161132812
+ExtHighSell2 = 10.313879013061523
+ExtLowBuy2   = 1829.013427734375
+
+PHS  = 499
+PLB2 = 328
+PLB  = 137
+PHS2 = 171
+
+X1=8
+X2=62
+
+################################
+###      Ordering options    ###
+################################
+BACKTESTING = false             #Set to false before live trading!!
+SPLIT_AMOUNT =  8               #Trade sizes are randomized
+TIMEOUT =       33              #Trade timeouts are not randomized - do not use <30 seconds or CT fucks up
+DELAY = askParam 'Delay before placing orders (seconds)', 0 #If using as a backup bot, set to 1.5*SPLIT_AMOUNT*TIMEOUT
+################################
+###   Logging/Debug options  ###
+################################
+TICKLENGTH =    60              #Current period in minutes
+MESSAGES =      false #true            #Display conditions every tick
+QTRMESSAGES =   false            #Display stats 4x/day
+DEBUGGING =     false #true            #Display trade conditions every tick
+SHOWPLOTS =     true            #show plots
+##################################################################################################
+
+
+
+class ZLEMA
+
+    calculate: (ins) ->        
+        
+        #FUNCTIONS.EMA(DATA,PERIOD)
+        short_1   =   FUNCTIONS.DEMA(ins.close,S1)
+        short_1a  =   FUNCTIONS.DEMA(ins.close,(2*S1-1))
+        long_1    =   FUNCTIONS.DEMA(ins.close,L1)
+        long_1a   =   FUNCTIONS.DEMA(ins.close,(2*L1-1))
+        short_2   =   FUNCTIONS.DEMA(ins.close,S2)
+        short_2a  =   FUNCTIONS.DEMA(ins.close,(2*S2-1))
+        long_2    =   FUNCTIONS.DEMA(ins.close,L2)
+        long_2a   =   FUNCTIONS.DEMA(ins.close,(2*L2-1))
+
+        SZ1=2*short_1-short_1a
+        LZ1=2*long_1-long_1a
+        SZ2=2*short_2-short_2a
+        LZ2=2*long_2-long_2a
+        
+
+        #ZLEMA LOGIC
+        if TYPE_A
+            if SZ1>=LZ1
+                zlemacross_buy = true
+        if not TYPE_A
+            if SZ1>=LZ1 and SZ2>=LZ2
+                zlemacross_buy = true
+        if SZ2<LZ2
+            zlemacross_sell = true
+    
+        # TURTLE LOGIC
+        if MAXHIGH >=2
+            local_max=FUNCTIONS.MAX(ins.high,MAXHIGH)
+        if MINLOW >=2
+            local_min=FUNCTIONS.MIN(ins.low,MINLOW)
+        if ins.high[ins.high.length-1]>=local_max or MAXHIGH<2
+            turtlehigh = true
+        if ins.low[ins.low.length-1]<=local_min or MINLOW<2
+            turtlelow = true
+            
+        ZB=ZS=0
+        if zlemacross_buy and turtlehigh
+            ZB=1
+        if zlemacross_sell and turtlelow
+            ZS=1
+
+        # RETURN DATA
+        result =
+            SZ1: SZ1
+            LZ1: LZ1
+            SZ2: SZ2
+            LZ2: LZ2
+            ZB: ZB
+            ZS: ZS
+            local_max: local_max
+            local_min: local_min
+        return result
+
+
+class EXTREME
+
+    calculate: (ins) ->
+        
+    
+        EB=ES=0
+        
+    #    L2a  =   FUNCTIONS.EMA(ins.close[ins.close.length-2],X1)
+    #    L2b  =   FUNCTIONS.EMA(ins.close[ins.close.length-2],(2*X1-1))
+    #    
+    #    L3a  =   FUNCTIONS.EMA(ins.close[ins.close.length-3],X1)
+    #    L3b  =   FUNCTIONS.EMA(ins.close[ins.close.length-3],(2*X1-1))
+    #
+    #    S2a  =   FUNCTIONS.EMA(ins.close[ins.close.length-2],X2)
+    #    S2b  =   FUNCTIONS.EMA(ins.close[ins.close.length-2],(2*X2-1))
+    #    
+    #    S3a  =   FUNCTIONS.EMA(ins.close[ins.close.length-3],X2)
+    #    S3b  =   FUNCTIONS.EMA(ins.close[ins.close.length-3],(2*X2-1))
+
+        L2a  =   FUNCTIONS.EMA2(ins.close,X1)
+        L2b  =   FUNCTIONS.EMA2(ins.close,(2*X1-1))
+        
+        L3a  =   FUNCTIONS.EMA3(ins.close,X1)
+        L3b  =   FUNCTIONS.EMA3(ins.close,(2*X1-1))
+    
+        S2a  =   FUNCTIONS.EMA2(ins.close,X2)
+        S2b  =   FUNCTIONS.EMA2(ins.close,(2*X2-1))
+        
+        S3a  =   FUNCTIONS.EMA3(ins.close,X2)
+        S3b  =   FUNCTIONS.EMA3(ins.close,(2*X2-1))
+
+        
+        
+        zlema_Ml2=2*L2a-L2b
+        zlema_Ml3=2*L3a-L3b
+        
+        zlema_Ms2=2*S2a-S2b
+        zlema_Ms3=2*S3a-S3b
+
+
+
+
+        
+        
+        i_close = ins.close[ins.close.length-1]
+        i_close_1 = ins.close[ins.close.length-2]
+        i_close_2 = ins.close[ins.close.length-3]
+        
+        
+        
+        
+        
+        
+        if EXTREMETRADE
+            NATR_PHS = FUNCTIONS.NATR(ins.high,ins.low,ins.close,PHS)
+            NATR_PLB2 = FUNCTIONS.NATR(ins.high,ins.low,ins.close,PLB2)
+            NATR_PLB = FUNCTIONS.NATR(ins.high,ins.low,ins.close,PLB)
+            NATR_PHS2 = FUNCTIONS.NATR(ins.high,ins.low,ins.close,PHS2)
+#            debug "C: #{ins.close[ins.close.length-1]}  NATR1: #{NATR1.toFixed(8)}  NATR2: #{NATR2.toFixed(8)}  NATR3: #{NATR3.toFixed(8)}  NATR4: #{NATR4.toFixed(8)}"
+            
+            
+            
+            
+            if i_close/zlema_Ms2>=ExtHighSell*NATR_PHS
+                ES=1
+            if (i_close/zlema_Ms2>=ExtHighSell2*NATR_PHS2 and i_close_1/zlema_Ms3<=ExtLowBuy*NATR_PLB)
+                ES=2
+            if i_close/zlema_Ml2<=ExtLowBuy*NATR_PLB
+                EB=1
+            if (i_close/zlema_Ml2<=ExtLowBuy2*NATR_PLB2 and i_close_1/zlema_Ml3>=ExtHighSell*NATR_PHS)
+                EB=2
+        
+        #    if i_close/i_close_1>=ExtHighSell*NATR_PHS
+        #        ES=1
+        #    if (i_close/i_close_1>=ExtHighSell2*NATR_PHS2 and i_close_1/i_close_2<=ExtLowBuy*NATR_PLB)
+        #        ES=2
+        #    if i_close/i_close_1<=ExtLowBuy*NATR_PLB
+        #        EB=1
+        #    if (i_close/i_close_1<=ExtLowBuy2*NATR_PLB2 and i_close_1/i_close_2>=ExtHighSell*NATR_PHS)
+        #        EB=2
+
+            if MESSAGES then debug "i_close/i_close_1 " + i_close/i_close_1 + " >= ExtHighSell*NATR_PHS " + ExtHighSell*NATR_PHS
+
+        #RETURN DATA
+        result=
+            EB: EB
+            ES: ES
+        return result
+        
+
+class FUNCTIONS
+    
+    @ROUND_DOWN: (value, places) ->
+        offset = Math.pow(10, places)
+        Math.floor(value*offset)/offset
+    @ZLEMA: (data, period) ->
+        2*FUNCTIONS.EMA(data,period)-FUNCTIONS.EMA(data,(2*period-1))
+    @ZLDEMA: (data, period) ->   
+        2*FUNCTIONS.DEMA(data,period)-FUNCTIONS.DEMA(data,(2*period-1))        
+    @DIFFX: (a, b) ->
+        (a-b)/((a+b)/2)   
+    @SMA: (data, period) ->
+        results = talib.SMA
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)   
+    @DEMA: (data, period) ->
+        results = talib.DEMA
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)          
+    @EMA: (data, period) ->
+        results = talib.EMA
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)
+    @EMA2: (data, period) ->
+        results = talib.EMA
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 2
+            optInTimePeriod: period
+        _.last(results)
+    @EMA3: (data, period) ->
+        results = talib.EMA
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 3
+            optInTimePeriod: period
+        _.last(results)
+    @MAX: (data, period) ->
+        results = talib.MAX
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)
+    @MIN: (data, period) ->
+        results = talib.MIN
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)
+    @ATR: (high, low, close, period) ->
+        results = talib.ATR
+            high: high
+            low: low
+            close: close
+            startIdx: 0
+            endIdx: high.length - 1
+            optInTimePeriod: period
+        _.last(results)
+    @NATR: (high, low, close, period) ->
+        results=0
+        for i in [1..period]
+            results+=(Math.max(close[close.length-1-i],high[high.length-i])-Math.min(close[close.length-1-i],low[low.length-i]))
+        results/(period*close[close.length-1])
+
+class TRADE
+
+    @BUY: (ins, split, timeout, curr, assets, price) ->
+        if BACKTESTING then buy ins
+        assetLimit=assets+curr/price
+        minimum = 0.05*price
+        amount = FUNCTIONS.ROUND_DOWN(assetLimit/split, 4)
+        if MESSAGES then debug "Beginning to buy #{assetLimit.toFixed(2)} in #{split} orders" 
+        n=0
+        buying = true
+        while buying == true
+            if curr >= 1.1*amount*price
+                n++
+                if MESSAGES then debug "Iceberg order #{n}" 
+                tradeamount = FUNCTIONS.ROUND_DOWN(((0.9+0.2*Math.random())*amount),4)
+                buy(ins, tradeamount, null, timeout)
+                curr = portfolio.positions[ins.curr()].amount
+                if MESSAGES
+                    debug "currency " + curr.toFixed(2)
+                if curr < minimum
+                    if MESSAGES then debug "Last order"
+                    buy ins
+                    buying = false
+                    n=0
+                    if MESSAGES then debug "Finished Buying"
+
+            else
+                if MESSAGES then debug "Last Order"
+                buy ins
+                buying = false
+                n=0
+                if MESSAGES then debug "Finished Buying" 
+    
+    @SELL: (ins, split, timeout, curr, assets, price) ->
+        if BACKTESTING then sell ins
+        assetLimit=assets+curr/price
+        minimum = 0.05
+        amount = FUNCTIONS.ROUND_DOWN(assetLimit/split, 4)
+        if MESSAGES then debug "Beginning to sell #{assetLimit.toFixed(3)} in #{split} orders"
+        n=0
+        selling = true
+        while selling == true
+            if assets >= 1.1*amount
+                n++
+                if MESSAGES then debug "Iceberg order #{n}"
+                tradeamount = FUNCTIONS.ROUND_DOWN(((0.9+0.2*Math.random())*amount),4)
+                sell(ins, tradeamount, null, timeout)
+                assets = portfolio.positions[ins.asset()].amount
+                if MESSAGES then debug "assets " + assets.toFixed(2)
+                if assets  < minimum
+                    if MESSAGES then debug "Last order"
+                    sell ins
+                    selling = false
+                    n=0
+                    if MESSAGES then debug "Finished Selling"
+            else
+                if MESSAGES then debug "Last order"
+                sell ins
+                selling = false
+                n=0
+                if MESSAGES then debug "Finished Selling"
+                
+init: (context)->
+    
+    context.zlema = new ZLEMA()
+    context.extreme = new EXTREME()
+    # TRADING
+    if SPLIT_AMOUNT < 1
+        SPLIT_AMOUNT = 1
+    context.trade_split = SPLIT_AMOUNT
+    context.trade_timeout  = TIMEOUT
+    
+    # WELCOME
+    info  " Starting Bot "
+    info "We are trading Live with #{SPLIT_AMOUNT} Iceberg orders and #{TIMEOUT} second timeout for each order"
+
+
+
+handle: (context, data, storage)->
+
+    ins = data.instruments[0]
+    storage.lastBuyPrice ?= 0
+    storage.price = ins.close[ins.close.length - 1]
+    storage.curr = portfolio.positions[ins.curr()].amount
+    storage.assets = portfolio.positions[ins.asset()].amount
+    storage.ebuy1?=0
+    storage.ebuy2?=0
+    storage.esell1?=0
+    storage.esell2?=0
+    if MESSAGES then debug " EB1: " + storage.ebuy1 + " EB2: " + storage.ebuy2 + " ES1: " + storage.esell1 + " ES2: " + storage.esell2 + " Currency: " + storage.curr.toFixed(2)
+
+    # FOR FINALISE STATS
+    context.price = storage.price.toFixed(2)
+    context.balance_curr = storage.curr.toFixed(2)
+    context.balance_assets = storage.assets.toFixed(2)
+   
+
+    # CALLING INDICATORS
+    zlema = context.zlema.calculate(ins)
+    storage.SZ1 = zlema.SZ1
+    storage.LZ1 = zlema.LZ1
+    storage.SZ2 = zlema.SZ2
+    storage.LZ2 = zlema.LZ2
+    storage.ZB = zlema.ZB
+    storage.ZS = zlema.ZS
+    local_min = zlema.local_min
+    local_max = zlema.local_max
+    
+    extreme = context.extreme.calculate(ins)
+    storage.EB = extreme.EB
+    storage.ES = extreme.ES
+    
+    #TRADE LOGIC
+    ZB=storage.ZB
+    ZS=storage.ZS
+    EB=storage.EB
+    ES=storage.ES
+    if EB == 1 then storage.ebuy1++
+    if EB == 2 then storage.ebuy2++ and EB = 1
+    if ES == 1 then storage.esell1++
+    if ES == 2 then storage.esell2++ and ES = 1
+
+    PR=storage.previoussignal
+    PR?=0
+    signal=0
+    expected=0
+
+    ######################### PR -1
+
+    if PR==-1 and ZB==0 and ZS==0 and EB==0 and ES==0         
+        expected=1
+        signal=0
+    if PR==-1 and ZB==0 and ZS==0 and EB==0 and ES==1          
+        expected=1
+        signal=-1
+    #if PR==-1 and ZB==0 and ZS==0 and EB==1 and ES==0          
+    #    signal=0
+    if PR==-1 and ZB==0 and ZS==0 and EB==1 and ES==1          
+        expected=1
+        signal=1
+
+    if PR==-1 and ZB==0 and ZS==1 and EB==0 and ES==0          
+        expected=1
+        signal=-1
+    if PR==-1 and ZB==0 and ZS==1 and EB==0 and ES==1          
+        expected=1
+        signal=0
+    if PR==-1 and ZB==0 and ZS==1 and EB==1 and ES==0          
+        expected=1
+        signal=1
+    if PR==-1 and ZB==0 and ZS==1 and EB==1 and ES==1          
+        expected=1
+        signal=-1
+
+    if PR==-1 and ZB==1 and ZS==0 and EB==0 and ES==0          
+        expected=1
+        signal=1
+    if PR==-1 and ZB==1 and ZS==0 and EB==0 and ES==1          
+        expected=1
+        signal=1
+    #if PR==-1 and ZB==1 and ZS==0 and EB==1 and ES==0          
+    #    signal=0
+    if PR==-1 and ZB==1 and ZS==0 and EB==1 and ES==1          
+        expected=1
+        signal=1
+        
+    if PR==-1 and ZB==1 and ZS==1 and EB==0 and ES==0          
+        expected=1
+        signal=1
+    if PR==-1 and ZB==1 and ZS==1 and EB==0 and ES==1          
+        expected=1
+        signal=1
+    #if PR==-1 and ZB==1 and ZS==1 and EB==1 and ES==0      
+    #    signal=0
+    #if PR==-1 and ZB==1 and ZS==1 and EB==1 and ES==1          
+    #    signal=0
+
+    ######################### PR 0
+
+    if PR==0 and ZB==0 and ZS==0 and EB==0 and ES==0         
+        expected=1
+        signal=0
+    if PR==0 and ZB==0 and ZS==0 and EB==0 and ES==1          
+        expected=1
+        signal=-1
+    if PR==0 and ZB==0 and ZS==0 and EB==1 and ES==0          
+        expected=1
+        signal=1
+    if PR==0 and ZB==0 and ZS==0 and EB==1 and ES==1          
+        expected=1
+        signal=1
+
+    if PR==0 and ZB==0 and ZS==1 and EB==0 and ES==0          
+        expected=1
+        signal=-1
+    if PR==0 and ZB==0 and ZS==1 and EB==0 and ES==1          
+        expected=1
+        signal=-1
+    if PR==0 and ZB==0 and ZS==1 and EB==1 and ES==0          
+        expected=1
+        signal=1
+    if PR==0 and ZB==0 and ZS==1 and EB==1 and ES==1          
+        expected=1
+        signal=1
+
+    if PR==0 and ZB==1 and ZS==0 and EB==0 and ES==0          
+        expected=1
+        signal=1
+    if PR==0 and ZB==1 and ZS==0 and EB==0 and ES==1          
+        expected=1
+        signal=0
+    if PR==0 and ZB==1 and ZS==0 and EB==1 and ES==0          
+        expected=1
+        signal=1
+    if PR==0 and ZB==1 and ZS==0 and EB==1 and ES==1          
+        expected=1
+        signal=1
+        
+    if PR==0 and ZB==1 and ZS==1 and EB==0 and ES==0          
+        expected=1
+        signal=1
+    if PR==0 and ZB==1 and ZS==1 and EB==0 and ES==1          
+        expected=1
+        signal=1
+    #if PR==0 and ZB==1 and ZS==1 and EB==1 and ES==0      
+    #    signal=0
+    #if PR==0 and ZB==1 and ZS==1 and EB==1 and ES==1          
+    #    signal=0
+
+    ######################### PR 1
+
+    if PR==1 and ZB==0 and ZS==0 and EB==0 and ES==0         
+        expected=1
+        signal=0
+    if PR==1 and ZB==0 and ZS==0 and EB==0 and ES==1          
+        expected=1
+        signal=-1
+    if PR==1 and ZB==0 and ZS==0 and EB==1 and ES==0          
+        expected=1
+        signal=1
+    if PR==1 and ZB==0 and ZS==0 and EB==1 and ES==1          
+        expected=1
+        signal=1
+
+    if PR==1 and ZB==0 and ZS==1 and EB==0 and ES==0          
+        expected=1
+        signal=-1
+    if PR==1 and ZB==0 and ZS==1 and EB==0 and ES==1          
+        expected=1
+        signal=-1
+    if PR==1 and ZB==0 and ZS==1 and EB==1 and ES==0          
+        expected=1
+        signal=1
+    if PR==1 and ZB==0 and ZS==1 and EB==1 and ES==1          
+        expected=1
+        signal=1
+
+    if PR==1 and ZB==1 and ZS==0 and EB==0 and ES==0          
+        expected=1
+        signal=1
+    if PR==1 and ZB==1 and ZS==0 and EB==0 and ES==1          
+        expected=1
+        signal=1
+    if PR==1 and ZB==1 and ZS==0 and EB==1 and ES==0          
+        expected=1
+        signal=1
+    if PR==1 and ZB==1 and ZS==0 and EB==1 and ES==1          
+        expected=1
+        signal=1
+        
+    if PR==1 and ZB==1 and ZS==1 and EB==0 and ES==0          
+        expected=1
+        signal=1
+    if PR==1 and ZB==1 and ZS==1 and EB==0 and ES==1          
+        expected=1
+        signal=1
+    #if PR==1 and ZB==1 and ZS==1 and EB==1 and ES==0      
+    #    signal=0
+    if PR==1 and ZB==1 and ZS==1 and EB==1 and ES==1          
+        expected=1
+        signal=1
+    if MESSAGES then debug "SIGNAL: #{signal} |PR: #{PR} ZB: #{ZB} ZS: #{ZS} EB: #{EB} ES: #{ES}"	
+    if expected==0 and PR>-2
+        debug "UNEXPECTED -> SIGNAL: #{signal} |#{PR}#{ZB}#{ZS}#{EB}#{ES} PLEASE UPDATE COMBINATIONS"
+
+    #TRADING
+
+    price=storage.price
+    curr=storage.curr
+    assets=storage.assets
+    storage.numTrades?=0
+    
+    if curr/price > 0.01 && signal==1
+        storage.lastBuyPrice = price
+        storage.numTrades++
+        if EB==0
+            plotMark
+                BUY: ins.price                
+        if EB==1
+            plotMark
+                Extremebuy: ins.price
+        if DELAY!=0
+            now = ((Date.now() % 60000) / 1000).toFixed(1)
+            debug "time: #{now}s Waiting for #{DELAY} sec before placing orders"
+            buy(ins,0.01,price/2,DELAY)
+            now = ((Date.now() % 60000) / 1000).toFixed(1)
+            debug "time: #{now}s"
+        TRADE.BUY(ins, context.trade_split, context.trade_timeout, curr, assets, price)
+        
+    if assets > 0.01 && signal==-1
+        storage.lastSellPrice = price
+        storage.numTrades++
+        if ES==0
+            plotMark
+                SELL: ins.price
+        if ES==1
+            plotMark
+                Extremesell: ins.price
+        if DELAY!=0
+            now = ((Date.now() % 60000) / 1000).toFixed(1)
+            debug "time: #{now}s Waiting for #{DELAY} sec before placing orders"
+            sell(ins,0.01,price*2,DELAY) 
+            now = ((Date.now() % 60000) / 1000).toFixed(1)
+            debug "time: #{now}s"
+        TRADE.SELL(ins, context.trade_split, context.trade_timeout, curr, assets, price)
+
+
+    # PLOTTING
+    if SHOWPLOTS
+        plot
+            Short1: storage.SZ1
+            Long1: storage.LZ1
+            Short2: storage.SZ2
+            Long2: storage.LZ2
+        setPlotOptions
+            Short1:
+                color: 'green'
+            Long1:
+                color: 'red'
+            Short2:
+                color: 'blue'
+            Long2:
+                color: 'orange'
+            BUY:
+                color: 'green'
+            SELL:
+                color: 'red'
+            Extremebuy:
+                color: 'cyan'
+            Extremesell:
+                color: 'black'
+    #DEBUGGING
+    if DEBUGGING
+        if MINLOW < 2 then local_min_log = 0 else local_min_log = local_min
+        if MAXHIGH < 2 then local_max_log = 0 else local_max_log = local_max
+        debug "|C:#{ins.close[ins.close.length-1].toFixed(2)}|H:#{ins.high[ins.high.length-1].toFixed(2)}|L:#{ins.low[ins.low.length-1].toFixed(2)}|SP1:#{storage.SZ1.toFixed(2)}|LP1:#{storage.LZ1.toFixed(2)}|SP2:#{storage.SZ2.toFixed(2)}|LP2:#{storage.LZ2.toFixed(2)}|Hst:#{local_max_log}|Lst:#{local_min_log}"
+
+    # LOGGING
+    storage.tick?=0
+    storage.numTrades?=0
+    storage.tick++
+    price = storage.price
+    curr = storage.curr
+    assets = storage.assets
+    storage.startprice?=price
+    storage.startFiat?=curr+assets*price
+    storage.startBTC?=assets+curr/price
+    context.tick=storage.tick
+    context.numTrades=storage.numTrades
+    context.currencyLimit=(curr+assets*price).toFixed(2)
+    context.assetLimit=(assets+curr/price).toFixed(2)
+    context.BHgain=((price/storage.startprice-1)*storage.startFiat).toFixed(2)
+    context.percentBHgain=((price/storage.startprice-1)*100).toFixed(2)
+    context.fiatGain=(context.currencyLimit-storage.startFiat).toFixed(2)
+    context.percentFiatGain=((context.currencyLimit/storage.startFiat-1)*100).toFixed(2)
+    context.BTCgain=(context.assetLimit-storage.startBTC).toFixed(2)
+    context.percentBTCgain=((context.assetLimit/storage.startBTC-1)*100).toFixed(2)
+
+    if MESSAGES
+        debug  " ****************************************************************************************** "  
+        debug  " Day          #{(context.tick*TICKLENGTH/1440).toFixed(2)}  | Total Trades:         #{context.numTrades}   | Account value in Fiat:    #{context.currencyLimit} " 
+        debug  " B&H % gain:  #{context.percentBHgain}% | Total B&H profit:     #{context.BHgain} | Account value in BTC:     #{context.assetLimit} " 
+        debug  " Fiat % gain: #{context.percentFiatGain}% | Total Fiat profit:    #{context.fiatGain} | Fiat holdings:            #{context.balance_curr}"        
+        debug  " BTC % gain:  #{context.percentBTCgain}% | Total BTC profit:     #{context.BTCgain} | Asset holdings:           #{context.balance_assets}"  
+        debug  " ****************************************************************************************** "     
+    
+    storage.previoussignal=signal
+
+finalize: (contex, data)-> 
+
+    # DISPLAY FINALIZE STATS
+	info  " ****************************************************************************************** "  
+	info  " Day          #{(context.tick*TICKLENGTH/1440).toFixed(2)}  | Total Trades:         #{context.numTrades}   | Account value in Fiat:    #{context.currencyLimit} " 
+	info  " B&H % gain:  #{context.percentBHgain}% | Total B&H profit:     #{context.BHgain} | Account value in BTC:     #{context.assetLimit} " 
+	info  " Fiat % gain: #{context.percentFiatGain}% | Total Fiat profit:    #{context.fiatGain} | Fiat holdings:            #{context.balance_curr}"        
+	info  " BTC % gain:  #{context.percentBTCgain}% | Total BTC profit:     #{context.BTCgain} | Asset holdings:           #{context.balance_assets}"  
+	info  " ****************************************************************************************** "     
+	

@@ -1,0 +1,17 @@
+BIG EXCHANGES TICK TO OHLCV
+======================================
+http://api.bitcoincharts.com/v1/csv/
+======================================
+Bitfinex
+Bitstamp
+OkCoin
+BtcChina
+Kraken
+Btce
+Coinbase
+LocalBitcoins
+MtGox
+Ripple
+ANX
+
+

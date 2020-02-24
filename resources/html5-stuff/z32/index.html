@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+ 
+ <meta name="HandheldFriendly" content="True">
+ <meta name="MobileOptimized" content="320">
+
+ <title>Subscriber Growth in /r/Bitcoin</title>
+ <meta name="description" content="test">
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="jquery.csv.min.js"></script>
+ <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<script type="text/javascript"> // load the visualisation API
+  google.load('visualization', '1', { packages: ['corechart', 'controls'] });
+</script>
+
+<script type="text/javascript">
+
+var array = ["bitcoin", "btc", "bitcoinmarkets", "ethereum" ,"ethtrader", "ethereumclassic", "cryptocurrencies", "cryptomarkets", "factom", "lisk", "maidsafe", "storj", "dashpay", "nxt" , "namecoin" , "trezor" , "ripple" , "monero" , "litecoin"];
+
+function drawVisualization(csvname) {
+   $.get("./outfile_total-subscribers_"+csvname+".csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+      var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+
+      // this new DataTable object holds all the data
+      var data = new google.visualization.arrayToDataTable(arrayData);
+      // CAPACITY - En-route ATFM delay - YY - CHART
+      var mydata = new google.visualization.ChartWrapper({
+         chartType: 'LineChart',
+         containerId: csvname,
+         dataTable: data,
+         options:{
+            width: 900, height: 320,
+            title: 'Total Subscribers to reddit.com/r/'+ csvname, 
+			legend: { position: 'bottom' },			
+            titleTextStyle : {color: 'grey', fontSize: 11},
+         }
+      });
+      mydata.draw();
+   });
+}
+google.setOnLoadCallback(drawVisualization(array[0]))
+google.setOnLoadCallback(drawVisualization(array[1]))
+google.setOnLoadCallback(drawVisualization(array[2]))
+google.setOnLoadCallback(drawVisualization(array[3]))
+google.setOnLoadCallback(drawVisualization(array[4]))
+google.setOnLoadCallback(drawVisualization(array[5]))
+google.setOnLoadCallback(drawVisualization(array[6]))
+google.setOnLoadCallback(drawVisualization(array[7]))
+google.setOnLoadCallback(drawVisualization(array[8]))
+google.setOnLoadCallback(drawVisualization(array[9]))
+
+google.setOnLoadCallback(drawVisualization(array[10]))
+google.setOnLoadCallback(drawVisualization(array[11]))
+google.setOnLoadCallback(drawVisualization(array[12]))
+google.setOnLoadCallback(drawVisualization(array[13]))
+google.setOnLoadCallback(drawVisualization(array[14]))
+google.setOnLoadCallback(drawVisualization(array[15]))
+//google.setOnLoadCallback(drawVisualization(array[16]))
+google.setOnLoadCallback(drawVisualization(array[17]))
+
+</script>
+
+<body >
+<h2 >Total Number of Subscribers of Crypto subreddits</hs>
+<br>
+<hr>
+<br>
+<div id="bitcoin"></div>
+<div id="btc"></div>
+<div id="bitcoinmarkets"></div>
+<div id="ethereum"></div>
+<div id="ethereumclassic"></div>
+<div id="ethtrader"></div>
+<div id="cryptomarkets"></div>
+<div id="factom"></div>
+<div id="litecoin"></div>
+<div id="monero"></div>
+
+<div id="ripple"></div>
+<div id="namecoin"></div>
+<div id="nxt"></div>
+<div id="dashpay"></div>
+<div id="storj"></div>
+<div id="maidsafe"></div>
+<div id="trezor"></div>
+<div id="lisk"></div>
+
+</body>
+
+
+
+
+
+
+

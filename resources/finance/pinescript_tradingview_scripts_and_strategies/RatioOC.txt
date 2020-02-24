@@ -1,0 +1,53 @@
+//@version=2
+study("DivCO-C", overlay=false)
+
+adj=4
+
+//p1=2      *adj
+//p2=4      *adj
+p3=8      *adj
+p4=16     *adj
+p5=32     *adj
+p6=64     *adj
+p7=128    *adj
+p8=256    *adj
+p9=512    *adj
+
+
+dx(a,b)=>(a-b)/((a+b)/2)
+lr(a,b)=>linreg(a,b,0)
+
+//b1=lr(lr(lr(dx(close,open),p1),p1),p1)
+//b2=lr(lr(lr(dx(close,open),p2),p2),p2)
+b3=lr(lr(lr(dx(close,open),p3),p3),p3)
+b4=lr(lr(lr(dx(close,open),p4),p4),p4)
+b5=lr(lr(lr(dx(close,open),p5),p5),p5)
+b6=lr(lr(lr(dx(close,open),p6),p6),p6)
+b7=lr(lr(lr(dx(close,open),p7),p7),p7)
+b8=lr(lr(lr(dx(close,open),p8),p8),p8)
+b9=lr(lr(lr(dx(close,open),p9),p9),p9)
+
+
+//r=dx(a,b)
+
+
+//plot(b1,color=b1>b1[1]?green:red,style=line,linewidth=1)
+//plot(b2,color=b2>b2[1]?green:red,style=line,linewidth=1)
+plot(b3,color=b3>b3[1]?green:red,style=line,linewidth=1)
+plot(b4,color=b4>b4[1]?green:red,style=line,linewidth=1)
+plot(b5,color=b5>b5[1]?green:red,style=line,linewidth=2)
+plot(b6,color=b6>b6[1]?green:red,style=line,linewidth=2)
+plot(b7,color=b7>b7[1]?green:red,style=line,linewidth=3)
+plot(b8,color=b8>b8[1]?green:red,style=line,linewidth=3)
+plot(b9,color=b9>b9[1]?green:red,style=line,linewidth=4)
+
+//
+//signal=b1>b1[1] and b2>b2[1] and b3>b3[1] and b4>b4[1] and b5>b5[1]?1:b1<b1[1] and b2<b2[1] and b3<b3[1] and b4<b4[1] and b5<b5[1]?-1:signal[1]
+//
+//bgcolor(signal==1 and signal[1]==-1?green:na,transp=50)
+//bgcolor(signal==-1 and signal[1]==1?red:na,transp=50)
+//
+
+
+
+

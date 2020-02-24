@@ -1,0 +1,325 @@
+########################## 
+##########################        
+####  ZSRBBForce      ####
+##########################
+##########################
+
+
+
+Smth        =   2
+Smth2       =   2
+
+p1          =  204
+p2          =  438
+p3          =  10
+
+d1          =   12.349
+d2          =   6.939
+d3          =   7.25
+
+ThB1        = -9.255
+ThS1        =  8.113
+
+
+
+
+class FUNCTIONS
+    @DX: (a,b) ->
+        (a-b)/((a+b)/2)
+    @LR: (data,period) ->
+        results = talib.LINEARREG
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1
+            optInTimePeriod: period
+        _.last(results)
+    @ST: (data,period) ->
+        results = talib.STDDEV
+            inReal: data
+            startIdx: 0
+            endIdx: data.length - 1 
+            optInTimePeriod: period
+            optInNbDev:1
+        _.last(results)
+    @ZS: (data, p) ->
+        results=(data[data.length-1]-FUNCTIONS.LR(data,p))/FUNCTIONS.ST(data,p)
+        _.last(results)
+        ##############################################
+        ## Full Stats Module v1.8 by @tweakaholic   ##
+        ## BTC: 1HiWMszn2afDJv4jidR7DuiQvHVzwtsBTa  ##
+        ##        Tips greatly appreciated!         ##      
+        ##    (This took quite a while to write)    ##
+        ##    Thank you, good luck to your bots!    ##
+        ##############################################
+class STATS
+    @tradestats: (context, data, storage) ->
+        STATS.calc(context,data, storage)
+        STATS.concise(context, storage)
+    @fullstats: (context, data, storage)->
+        STATS.calc(context,data, storage)
+        STATS.display(context, storage)
+    @calc: (context,data, storage) ->
+        ins = data.instruments[0]
+        price = ins.price
+        curr = portfolio.positions[ins.curr()].amount
+        assets = portfolio.positions[ins.asset()].amount
+        ##Leave these alone
+        if storage.calctick<=1
+            storage.max_sp=storage.max_sl=storage.max_lp=storage.max_ll=0
+            storage.long_profit=storage.long_loss=storage.short_profit=storage.short_loss=0
+            storage.trades=storage.long_win=storage.long_lose=storage.short_win=storage.short_lose=0
+            storage.holding_assets=storage.holding_curr=true
+
+        if storage.calctick<=1
+            storage.ltp=storage.lsp=storage.lbp=ins.price
+        if assets/(curr+0.01)>0.9
+            holding_assets=true
+        if curr/(assets+0.01)>0.9
+            holding_curr=true
+        buy = holding_assets and not storage.holding_assets
+        sell = holding_curr and not storage.holding_curr
+        storage.holding_assets  =   holding_assets
+        storage.holding_curr    =   holding_curr
+        
+        if buy
+            storage.trades++
+            storage.lbp=storage.ltp=price
+            diff=storage.lsp-storage.lbp            #profitable buy: last sell price - buy price > 0
+            pdiff=100*diff/storage.lsp              #percent fiat profit(shorting)=(lsp-lbp)/lsp
+            storage.lt_profit=(pdiff).toFixed(1)    #percent asset profit(selling+rebuying)=(lsp-lbp)/lbp
+            storage.last_trade="Buy"
+            if diff>0
+                storage.short_win++
+                storage.short_profit+=diff
+                if pdiff>storage.max_sp
+                    storage.max_sp=pdiff
+            if diff<0
+                storage.short_lose++
+                storage.short_loss+=diff
+                if pdiff<storage.max_sl
+                    storage.max_sl=pdiff
+        
+        if sell
+            storage.trades++
+            storage.lsp=storage.ltp=price
+            diff=storage.lsp-storage.lbp            #profitable sell: last sell price - last buy price > 0
+            pdiff=100*diff/storage.lbp              #percent fiat profit(long)=(lsp-lbp)/lbp
+            storage.lt_profit=(pdiff).toFixed(1)    #last trade profit
+            storage.last_trade="Sell"
+            if diff>0
+                storage.long_win++
+                storage.long_profit+=diff
+                if pdiff>storage.max_lp
+                    storage.max_lp=pdiff
+            if diff<0
+                storage.long_lose++
+                storage.long_loss+=diff
+                if pdiff<storage.max_ll
+                    storage.max_ll=pdiff
+        storage.last_trade          ?=  "None"
+        storage.lt_profit           ?=  0
+        storage.winners           =   if storage.trades<2 then 0 else "#{storage.long_win}/#{storage.long_win+storage.long_lose} = #{(100*storage.long_win/(storage.long_win+storage.long_lose+10e-6)).toFixed(1)}%"
+        storage.s_winners           =   if storage.trades<2 then 0 else "#{storage.short_win}/#{storage.short_win+storage.short_lose} = #{(100*storage.short_win/(storage.short_win+storage.short_lose+10e-6)).toFixed(1)}%"
+        storage.totagain          =   if storage.trades<2 then 0 else (storage.long_profit+storage.short_profit+storage.long_loss+storage.short_loss)
+        storage.totalong_gain     =   if storage.trades<2 then 0 else storage.long_profit+storage.long_loss
+        storage.totashort_gain    =   if storage.trades<2 then 0 else storage.short_profit+storage.short_loss
+        lpr                         =   if storage.trades<2 then 0 else (storage.long_profit/(-storage.long_loss+10e-6)).toFixed(2)
+        spr                         =   if storage.trades<2 then 0 else (storage.short_profit/(-storage.short_loss+10e-6)).toFixed(2)
+        storage.long_profit_ratio   =   if lpr>100 then 100 else if lpr<0.01 then 0 else lpr
+        storage.short_profit_ratio  =   if spr>100 then 100 else if spr<0.01 then 0 else spr
+        
+        #Record number of times bot has been automatically restarted
+        storage.restarts?=-1
+        if context.restart
+            storage.restarts++
+            context.restart=false
+
+        storage.price           =   price
+        storage.curr            =   (curr).toFixed(2)
+        storage.assets          =   (assets).toFixed(2)
+        storage.startprice      ?=  (price).toFixed(2)
+        storage.start_curr      ?=  (curr+assets*price).toFixed(2)
+        storage.start_assets    ?=  (assets+curr/price).toFixed(2)
+        storage.curr_lim        =   (curr+assets*price).toFixed(2)                                      #Currency limit: account value in currency
+        storage.asset_lim       =   (assets+curr/price).toFixed(2)                                      #Asset limit: account value in assets
+        storage.bh_gain         =   ((price/storage.startprice-1)*storage.start_curr).toFixed(2)        #Buy and hold gain
+        storage.p_bh_gain       =   ((price/storage.startprice-1)*100).toFixed(2)                       #percent buy and hold gain
+        storage.curr_gain       =   (storage.curr_lim-storage.start_curr).toFixed(2)
+        storage.p_curr_gain     =   ((storage.curr_lim/storage.start_curr-1)*100).toFixed(2)
+        storage.asset_gain      =   (storage.asset_lim-storage.start_assets).toFixed(2)
+        storage.p_asset_gain    =   ((storage.asset_lim/storage.start_assets-1)*100).toFixed(2)
+        storage.days            =   (storage.calctick*context.ticklength/1440)
+        storage.freq            =   if storage.days<=1 then storage.trades else (storage.trades/storage.days).toFixed(1)
+        
+    @concise: (context, storage) ->
+        if storage.last_trade=="Buy"
+            info  " ****************************************#{context.botname}****************************************** "  
+            info  " |Day #{(storage.days).toFixed(1)}..... Trades: #{(storage.trades).toFixed(0)}...Trade Freq: #{storage.freq}.....Holdings: #{storage.curr} #{ context.tradecurrency}, #{storage.assets} #{ context.tradeasset}" 
+            info  " |Last Trade: #{storage.last_trade} ...Last Trade Profit: #{(storage.lt_profit)}%... Last Trade Price: #{storage.ltp}... Current Price: #{storage.price}"
+            info  " *************************************************************************************************** "
+        if storage.last_trade=="Sell"
+            warn  " ****************************************#{context.botname}****************************************** "  
+            warn  " |Day #{(storage.days).toFixed(1)}..... Trades: #{(storage.trades).toFixed(0)}...Trade Freq: #{storage.freq}.....Holdings: #{storage.curr} #{ context.tradecurrency}, #{storage.assets} #{ context.tradeasset}" 
+            warn  " |Last Trade: #{storage.last_trade} ...Last Trade Profit: #{(storage.lt_profit)}%... Last Trade Price: #{storage.ltp}... Current Price: #{storage.price}"
+            warn  " *************************************************************************************************** "
+
+    @display: (context, storage) ->
+        debug  " ****************************************#{context.botname}****************************************** "  
+        debug  " |Day #{(storage.days).toFixed(1)}..Trades: #{(storage.trades).toFixed(0)}..Restarts: #{(storage.restarts)}..Trade Freq: #{storage.freq}..Holdings: #{storage.curr} #{ context.tradecurrency}, #{storage.assets} #{ context.tradeasset}" 
+        debug  " |Last Trade: #{storage.last_trade} ...Last Trade Profit: #{(storage.lt_profit)}%... Last Trade Price: #{storage.ltp}... Current Price: #{storage.price}"
+        debug  " |Longs -  Winners: #{storage.winners}... Profit/Loss: #{storage.long_profit_ratio}... Max Win: #{(storage.max_lp).toFixed(1)}%... Max Loss: #{(storage.max_ll).toFixed(1)}%"
+        debug  " |Shorts - Winners: #{storage.s_winners}.. Profit/Loss: #{storage.short_profit_ratio}... Max Win: #{(storage.max_sp).toFixed(1)}%... Max Loss: #{(storage.max_sl).toFixed(1)}%"
+        debug  " |Equity Current/Initial: .. #{storage.curr_lim}/#{storage.start_curr} #{ context.tradecurrency}..... Equity Current/Initial:..  #{storage.asset_lim}/#{storage.start_assets} #{ context.tradeasset}" 
+        debug  " |Actual % Gain: ..... #{storage.p_curr_gain}% #{ context.tradecurrency}, #{storage.p_asset_gain }% #{ context.tradeasset} ..... Actual Profit:... #{storage.curr_gain} #{ context.tradecurrency}, #{storage.asset_gain } #{ context.tradeasset}"        
+        debug  " |Buy & Hold % Gain: ............. #{storage.p_bh_gain  }% #{ context.tradecurrency}..... Buy & Hold Profit  : .........#{storage.bh_gain  } #{ context.tradecurrency}"
+        debug  " *************************************************************************************************** "     
+init: (context)->
+    
+    context.botname         = "ZSRBBForce"
+    context.tradecurrency   = "CNY"
+    context.tradeasset      = "BTC" 
+    context.ticklength      = 5                        #tick length in minutes
+    context.statsinterval   = 2                        #desired ticks between displaying full stats
+    context.restart         = true
+    context.dxRBB1=[]
+    context.dxRBB2=[]
+    context.dxRBB3=[]
+    context.Force=[]
+
+    
+handle: (context, data, storage)->
+    storage.calctick?=0
+    STATS.calc(context,data,storage)
+    if storage.calctick%context.statsinterval==0 then STATS.display(context, storage)
+    storage.calctick++
+    
+    ins = data.instruments[0]
+    close = ins.close[ins.close.length-1]
+    storage.tick?=0
+    storage.tick++
+
+    CS= ins.close
+    #debug("Close: #{CS[CS.length-1]}")
+    signal=0    
+
+    bbp1 = talib.BBANDS
+        inReal: CS
+        startIdx: 0
+        endIdx: CS.length - 1 
+        optInTimePeriod: p1
+        optInNbDevUp: 2
+        optInNbDevDn: 2
+        optInMAType: 0
+    Tp1 = bbp1.outRealUpperBand
+    Bp1 = bbp1.outRealLowerBand
+
+    bbp2 = talib.BBANDS
+        inReal: CS
+        startIdx: 0
+        endIdx: CS.length - 1 
+        optInTimePeriod: p2
+        optInNbDevUp: 2
+        optInNbDevDn: 2
+        optInMAType: 0
+    Tp2 = bbp2.outRealUpperBand
+    Bp2 = bbp2.outRealLowerBand
+
+    bbp3 = talib.BBANDS
+        inReal: CS
+        startIdx: 0
+        endIdx: CS.length - 1 
+        optInTimePeriod: p3
+        optInNbDevUp: 2
+        optInNbDevDn: 2
+        optInMAType: 0
+    Tp3 = bbp3.outRealUpperBand
+    Bp3 = bbp3.outRealLowerBand
+
+    
+    
+ #   for n in [0 .. 499]
+ #       if n<p1
+ #           dxRBB1.push 0
+ #       else
+ #           vdx1=(FUNCTIONS.DX(Tp1[n-p1]/CS[n], CS[n]/Bp1[n-p1]))
+ #           dxRBB1.push vdx1
+#
+ #   for n in [p2 .. 499]        
+ #       if n<p2
+ #           dxRBB2.push 0
+ #       else
+ #           vdx2=(FUNCTIONS.DX(Tp2[n-p2]/CS[n], CS[n]/Bp2[n-p2]))
+ #           dxRBB2.push vdx2
+ #   for n in [p3 .. 499]        
+ #       if n<p3
+ #           dxRBB3.push 0
+ #       else
+ #           vdx3=(FUNCTIONS.DX(Tp3[n-p3]/CS[n], CS[n]/Bp3[n-p3]))
+ #           dxRBB3.push vdx3
+        
+    #debug("last Bt: #{_.last(Tp1)} | last Bb: #{_.last(Bp1)}")    
+    
+    vdx1=FUNCTIONS.DX(_.last(Tp1)/_.last(CS), _.last(CS)/_.last(Bp1))
+    context.dxRBB1.push vdx1
+    vdx2=FUNCTIONS.DX(_.last(Tp2)/_.last(CS), _.last(CS)/_.last(Bp2))
+    context.dxRBB2.push vdx2
+    vdx3=FUNCTIONS.DX(_.last(Tp3)/_.last(CS), _.last(CS)/_.last(Bp3))
+    context.dxRBB3.push vdx3
+    
+    
+    #debug("Tp1: #{_.last(Tp1)} | Tp2: #{_.last(Bp1)}")
+    #debug("dxRBB1=dx(#{_.last(Tp1)}/#{_.last(CS)} , >>#{_.last(CS)}<</#{_.last(Bp1)})=#{ _.last(dxRBB1)} | linreg(dxRBB1,p1)=#{FUNCTIONS.LR(dxRBB1,p1)} |std #{FUNCTIONS.ST(dxRBB1,p1)}")
+    
+    zs1=(_.last(context.dxRBB1)-FUNCTIONS.LR(context.dxRBB1,p1))/FUNCTIONS.ST(context.dxRBB1,p1)
+    zs2=(_.last(context.dxRBB2)-FUNCTIONS.LR(context.dxRBB2,p2))/FUNCTIONS.ST(context.dxRBB2,p2)
+    zs3=(_.last(context.dxRBB3)-FUNCTIONS.LR(context.dxRBB3,p3))/FUNCTIONS.ST(context.dxRBB3,p3)
+
+    context.Force.push d1*zs1 + d2*zs2 + d3*zs3
+    
+    F=FUNCTIONS.LR(context.Force, Smth2)
+    
+    #debug("dxRBB1: #{_.last(context.dxRBB1)} | dxRBB2: #{_.last(context.dxRBB2)} | dxRBB3: #{_.last(context.dxRBB3)}")
+    #debug("p1: #{p1} | dxRBB1.length-1: #{context.dxRBB1.length-1}")
+    #debug("[1] (_.last(dxRBB1): #{_.last(context.dxRBB1)} - LR: #{FUNCTIONS.LR(context.dxRBB1,p1)})/ STD: #{FUNCTIONS.ST(context.dxRBB1,p1)}")
+    #debug("zs1: #{zs1} | zs2: #{zs2} | zs3: #{zs3} | F: #{F}")
+    
+    c1= F < ThB1
+    c2= F > ThS1
+
+    plot
+        ThB: ThB1 * 5 + CS[CS.length-1]
+        ThS: ThS1 * 5 + CS[CS.length-1]
+        F  : F *8 + CS[CS.length-1]    
+
+
+    BUY =  c1
+    SELL=  c2
+    if BUY
+        signal=1
+    if SELL
+        signal=-1
+    
+    #Ordering
+    price = ins.close[ins.close.length - 1]
+    curr = portfolio.positions[ins.curr()].amount
+    assets = portfolio.positions[ins.asset()].amount
+    
+    if signal==1 and curr>0.01*price
+        buy ins
+        storage.lastsignal=signal
+        STATS.tradestats(context,data, storage)
+        plotMark
+            BUY: ins.price
+    if signal==-1 and assets>0.01
+        sell ins
+        storage.lastsignal=signal
+        STATS.tradestats(context,data, storage)
+        plotMark
+            SELL: ins.price
+
+
+        
+            
+            
+            
+          
