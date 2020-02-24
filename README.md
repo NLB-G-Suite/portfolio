@@ -1,13 +1,21 @@
 
 ***
 
-Hello and welcome,
+Hi and welcome !,
 
-Here I have an **ongoing development portfolio project** where I keep adding demos of my past work, sometimes as pictures, videos, occasional reproducible items to try or the code itself.
+This is an **ongoing development work portfolio project** with examples of my past work: coding repositories, videos, reproducible items. At your service for any collaboration, question, comment, etc. 
 
 Thanks,
 
-At your service: [aceri@rbx.life](aceri@rbx.life)
+
+
+     ,.
+ __.'_
+|__|__|
+|     |      
+|-___-|
+'.___.' DP
+[aceri@rbx.life](aceri@rbx.life)
 
 ***
 
