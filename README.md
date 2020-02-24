@@ -18,6 +18,24 @@ Thanks,
 [aceri@rbx.life](aceri@rbx.life)
 ```
 
+```
+ ----- 
+                   
+ David Pellon     
+ aceri@rbx.life   
+                   
+ 
+ ------ 
+    \   
+     \
+        (.)_(.)
+     _ (   _   ) _
+    / \/`-----'\/ \
+  __\ ( (     ) ) /__
+  )   /\ \._./ /\   (
+   )_/ /|\   /|\ \_(  [aceri]
+   ```
+
 ***
 
 
