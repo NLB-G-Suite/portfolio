@@ -1,7 +1,6 @@
 ```
 
 ```
-
 ***
 
 Hi and welcome !,
@@ -10,7 +9,7 @@ This is an **ongoing work portfolio project** with examples of my past work: cod
 
 Thanks,
 
-
+***
 ```
  -------------- 
  David Pellon     
