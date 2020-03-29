@@ -7,6 +7,7 @@ David Pellon
 ___
 ### Forecasts based on 5000 Montecarlo runs on Confirmed, Deceased and % Deceased/Confirmed 
 ___
+___
 #### Forecast on Confirmed Cases for 1 day :
 ![Confirmed 1 day](https://i.imgur.com/uKCV5tu.png)
 #### Forecast on Confirmed Cases for 7 days :
@@ -14,12 +15,14 @@ ___
 #### Forecast on Confirmed Cases for 14 days :
 ![Confirmed 14 days](https://i.imgur.com/VoYLF7C.png)
 ___
+___
 #### Forecast on Deceased Cases for 1 day :
 ![Deceased 1 day](https://i.imgur.com/4xSBdLl.png)
 #### Forecast on Deceased Cases for 7 days :
 ![Deceased 7 days](https://i.imgur.com/e8npMhL.png)
 #### Forecast on Deceased Cases for 14 days :
 ![Deceased 14 days](https://i.imgur.com/qJ2KtWj.png)
+___
 ___
 #### Forecast on % Rate of Deceased respect Confirmed Cases for 1 day :
 ![% Deceased/Confirmed 1 day](https://i.imgur.com/w7Z4Afl.png)
