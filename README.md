@@ -31,7 +31,7 @@
     + Analytics
         + R Publications :
             + Coronavirus (COVID-19) :
-                + COVID-19 Diary ->   
+                + [COVID-19 Diary](https://github.com/aceri/portfolio/blob/master/resources/analytics/covid_diary/README.md)
             + 'Battleship' Game Placement & Attack Strategy Analysis
             + Wikimedia Pageviews Exploration
         + Johns Hopkins Data Science Specialization
