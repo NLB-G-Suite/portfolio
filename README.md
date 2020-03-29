@@ -27,6 +27,57 @@
                                                                                               '.___.' DP
 ```
 ***
++ **Data Analytics**:
+        + Analytics
+            + R Publications :
+                + Coronavirus (COVID-19) :
+                    + COVID-19 Diary ->   
+                + 'Battleship' Game Placement & Attack Strategy Analysis
+                + Wikimedia Pageviews Exploration
+            + Johns Hopkins Data Science Specialization
+                + [[UCI HAR Dataset](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/UCI-HAR-Dataset)]    
+                + [[Hospital Ranking](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/ProgrammingAssignment3)]
+                + [[Statistical Inference](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/statistical-inference)]
+                + [[Reproducible Research: Mobile Gyroscope Research on User Position](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/reproducible-research/RepData-PeerAssessment1)]
+                + [[Reproducible Research: NOAA Storm Database Exploration](https://rpubs.com/dpellon/278964)]   
+                + [[Regression Models: Study of Fuel Consumption between Automatic or Manual Transmission](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/regression-models)]
+                + [[R Programming: Study on Lexical Scoping](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/r-programming/lexical-scoping)]
+                + [[Getting and Cleaning Data](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/getting-and-cleaning-data)]
+                + [[Exploratory Data Analysis: Household Power Consumption](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project1)] 
+                + [[Exploratory Data Analysis: Baltimore Motor Emissions](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project2)]
+            + Advanced NoSQL for DataScience [Exercises]
+            + Time Series
+                + Seasonality study - [[Demo Video](https://youtu.be/suUbz6fKUDo)]
+                + Bitcoin Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](https://rpubs.com/dpellon/569728)]
+                + Ethereum Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](http://rpubs.com/dpellon/568665)]
+                + Litecoin Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](http://rpubs.com/dpellon/568660)]
+            + Correlation Matrix [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/correlmatrix)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/alt-correl-1d.jpg?raw=true)]
+            + Autocorrelation / Autosimilarity [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/tsautocorrel-all-comparison-1h-USD.jpg?raw=true)]
+            + Probability ranges [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/probabilityranges)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/probability-ranges-ETH-1h.jpg?raw=true)]
+            + Sentiment Analysis
+                + Twitter
+                    + Elections [[R Scripts and Examples](https://github.com/aceri/portfolio/tree/master/resources/data-science/sentiment_analysis_with_R)]
+            + Historical Word Frequency in Reddit [[PYTHON](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/get-reddit-metrics/)]
+            + Natural Language Processing - Text Classification / Sentiment Analysis / Dialog Act Classification [PHP](https://github.com/aceri/portfolio/tree/master/resources/data-science/natural_language_processing_with_PHP)
+            + Scraping
+                + Reddit Metrics [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/get-reddit-metrics)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/get-reddit-metrics/output/total-subscribers-crypto-subreddits-linear.jpg)]
+            + Machine Learning
+                + Projects
+                    + OCR 
+                    + Malware Spam classification. 
+                    + Face detection. 
+                + Andrew Ng's Machine Learning Standford courses:
+                    + Linear Regression [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/2-assignment-linear-regression)]
+                    + Logistic Regression [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/3-logistic-reggression)]
+                    + Multiclass classification and Neural Networks [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/4-multiclass-classification-and-neural-networks)]
+                    + Neural Network Learning [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/5-neural-network-learning)]
+                    + Regularized Linear Regression and Bias Variance [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/6-regularized-linear-regression-and-bias-variance)]
+                    + Support Vector Machines [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/7-support-vector-machines)]
+                    + K-Means Clustering and PCA [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/8-kmeans-clustering-and-PCA)]
+        + Analyst
+            + Elections vote segmentation & Analysis of public databases. [GOOGLE BIGQUERY]
+            + Voting forecasts based on correlation from "Centro Investigaciones Sociologicas" public polls on spanish society before election in Andalucia and their relation with the Andalucian Elections and trying to forecast National level elections based on the National public poll equivalent. [GOOGLE BIGQUERY]
+                    
 
 + **Android / HTML5 / Windows Phone**
     + **Educational**
@@ -126,8 +177,11 @@
     + Financial custom optim ratios [[AFL SCRIPT FOLDER](https://github.com/aceri/portfolio/tree/master/resources/financial-custom-optimization-ratio)]
 + **Server Stack / Back Ops**
     + Virtualized Test reproduction snapshot system in Tech Support in Sybase Europe B.V for server versioning and bug reproduction.
-+ **Data Stack & Analytics**:
-    + Database - 13 Gb of Database related stuff in multiple projects/customers/roles. To be done.
++ **Data Stack**:
+    + Database - A decade of Database related stuff in multiple projects/customers/roles. To be done.
+        + Blockchain programming:
+            + Hyperledger
+            + Ethereum
         + Automated Performance & Optimization report creator for relational database management servers farms.
             + Query optimization.
             + Name normalization
@@ -142,58 +196,6 @@
             + Backup
             + Migration
             + Monitorization
-        + Analytics
-            + R Publications :
-                + Coronavirus (COVID-19) :
-                    +   
-                + 'Battleship' Game Placement & Attack Strategy Analysis
-                + Wikimedia Pageviews Exploration
-            + Johns Hopkins Data Science Specialization
-                + [[UCI HAR Dataset](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/UCI-HAR-Dataset)]    
-                + [[Hospital Ranking](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/ProgrammingAssignment3)]
-                + [[Statistical Inference](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/statistical-inference)]
-                + [[Reproducible Research: Mobile Gyroscope Research on User Position](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/reproducible-research/RepData-PeerAssessment1)]
-                + [[Reproducible Research: NOAA Storm Database Exploration](https://rpubs.com/dpellon/278964)]   
-                + [[Regression Models: Study of Fuel Consumption between Automatic or Manual Transmission](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/regression-models)]
-                + [[R Programming: Study on Lexical Scoping](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/r-programming/lexical-scoping)]
-                + [[Getting and Cleaning Data](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/getting-and-cleaning-data)]
-                + [[Exploratory Data Analysis: Household Power Consumption](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project1)] 
-                + [[Exploratory Data Analysis: Baltimore Motor Emissions](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project2)]
-            + Advanced NoSQL for DataScience [Exercises]
-            + Time Series
-                + Seasonality study - [[Demo Video](https://youtu.be/suUbz6fKUDo)]
-                + Bitcoin Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](https://rpubs.com/dpellon/569728)]
-                + Ethereum Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](http://rpubs.com/dpellon/568665)]
-                + Litecoin Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](http://rpubs.com/dpellon/568660)]
-            + Correlation Matrix [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/correlmatrix)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/alt-correl-1d.jpg?raw=true)]
-            + Autocorrelation / Autosimilarity [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/tsautocorrel-all-comparison-1h-USD.jpg?raw=true)]
-            + Probability ranges [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/probabilityranges)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/probability-ranges-ETH-1h.jpg?raw=true)]
-            + Sentiment Analysis
-                + Twitter
-                    + Elections [[R Scripts and Examples](https://github.com/aceri/portfolio/tree/master/resources/data-science/sentiment_analysis_with_R)]
-            + Historical Word Frequency in Reddit [[PYTHON](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/get-reddit-metrics/)]
-            + Natural Language Processing - Text Classification / Sentiment Analysis / Dialog Act Classification [PHP](https://github.com/aceri/portfolio/tree/master/resources/data-science/natural_language_processing_with_PHP)
-            + Scraping
-                + Reddit Metrics [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/get-reddit-metrics)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/get-reddit-metrics/output/total-subscribers-crypto-subreddits-linear.jpg)]
-            + Machine Learning
-                + Projects
-                    + OCR 
-                    + Malware Spam classification. 
-                    + Face detection. 
-                + Andrew Ng's Machine Learning Standford courses:
-                    + Linear Regression [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/2-assignment-linear-regression)]
-                    + Logistic Regression [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/3-logistic-reggression)]
-                    + Multiclass classification and Neural Networks [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/4-multiclass-classification-and-neural-networks)]
-                    + Neural Network Learning [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/5-neural-network-learning)]
-                    + Regularized Linear Regression and Bias Variance [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/6-regularized-linear-regression-and-bias-variance)]
-                    + Support Vector Machines [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/7-support-vector-machines)]
-                    + K-Means Clustering and PCA [[OCTAVE / MATLAB](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/8-kmeans-clustering-and-PCA)]
-        + Blockchain programming:
-            + Hyperledger
-            + Ethereum
-        + Analyst
-            + Elections vote segmentation & Analysis of public databases. [GOOGLE BIGQUERY]
-            + Voting forecasts based on correlation from "Centro Investigaciones Sociologicas" public polls on spanish society before election in Andalucia and their relation with the Andalucian Elections and trying to forecast National level elections based on the National public poll equivalent. [GOOGLE BIGQUERY]
 + **Other stuff**
     + VPN auto IP changer for anonimization [BASH]
 
