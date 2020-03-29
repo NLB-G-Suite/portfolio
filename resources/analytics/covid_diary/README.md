@@ -33,3 +33,6 @@ ___
 ![% Deceased/Confirmed 14 days](https://i.imgur.com/U9vnUKk.png)
 
 ___
+
+### Comparison on Growth Percent Rates
+![Comparison on Growth Percent Rates](https://i.imgur.com/5pedWDf.png)
