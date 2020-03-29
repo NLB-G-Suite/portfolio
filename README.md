@@ -143,6 +143,11 @@
             + Migration
             + Monitorization
         + Analytics
+            + R Publications :
+                + Coronavirus (COVID-19) :
+                    +   
+                + 'Battleship' Game Placement & Attack Strategy Analysis
+                + Wikimedia Pageviews Exploration
             + Johns Hopkins Data Science Specialization
                 + [[UCI HAR Dataset](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/UCI-HAR-Dataset)]    
                 + [[Hospital Ranking](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/ProgrammingAssignment3)]
