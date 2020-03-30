@@ -1,7 +1,7 @@
 # COVID-19 Diary
 
 David Pellon
-
+___
 ***Mar 30,2020***
 
 COVID-19 (nCov - New Coronavirus) is highly sensitive to temperature differences. 
@@ -15,7 +15,7 @@ ___
 
 ***Mar 29, 2020***
 ## Various Stats on COVID-19 challenges & developments:
-___
+
 ### Forecasts based on 5000 Montecarlo runs on Confirmed, Deceased and % Deceased/Confirmed 
 ___
 #### Forecast on Confirmed Cases for 1 day :
