@@ -2,6 +2,16 @@
 
 David Pellon
 
+***Mar 30,2020***
+
+COVID-19 (nCov - New Coronavirus) is highly sensitive to temperature differences. 
+High temperatures and vapor reduce the transmissibility and environmental stability of the virus.
+Doing something as cheap and easy as taking some water vapor every day can help reduce/stop it's spread.
+
+Be careful and don't do this if you are not an adult.
+
+[![Combat COVID-19 with High Temperatures & Humidity](https://img.youtube.com/vi/b2nYLQ9l9I0/0.jpg)](https://www.youtube.com/watch?v=b2nYLQ9l9I0 "Combat COVID-19 with High Temperatures & Humidity")
+
 ***Mar 29, 2020***
 ## Various Stats on COVID-19 challenges & developments:
 ___
