@@ -1,6 +1,56 @@
 # COVID-19 Diary
 
 David Pellon
+
+___
+***Mar 31,2020***
+
+Global Rapid Response team at the US Centers for Disease Control and Prevention : 
+
+
+During Complex humanitarian emergency, certain services like healthcare, education, or social welfare programs maybe the first to stop functioning. As the emergency progresses, increasing in security and poor access to food may lead to more human misery in the form on malnutrition, disease outbreaks, and violence.
+
+Society as a whole usually collapses as the affected populations are forced to spend their time and energy searching for basic human needs of food, water, and other necessities.
+
+As infrastructure collapses during a Complex humanitarian emergency, the follow may occur. ***POLITICALLY DRIVEN RESOURCE WARS*** (Podríamos estar aquí con departamentos y ministerios peleandose por recursos ??) 
+Widespread human rights abuse and civil unrest. 
+
+
+...
+
+The host country government has the primary responsibility for directing and coordinating the response, but it is important to remember that they to may be affected by the emergency. And systems and staff may not be fully operational in the acute post emergency period. 
+They are many other responders that are often present in humanitarian emergencies. These includes small civilian groups and individuals, remote responders such as crisis mappers and military groups. Civilian military coordination is especially important in large natural disasters, where the militaries typically have logistical capacities that often exceed those of their civilian counterparts. With so many organizations present, coordination is a frequent and ongoing challenge.
+
+IASC classifies emergencies based on five criteria, including scale or the size of the affected area, number of persons or countries affected. 
+
+TODOS !!!
+
+Urgency is also considered. And this can be represented by the size of the population displaced, the intensity of armed conflict or crude mortality rates. 
+
+Complexity including how many layers exist in the response, are there multiple countries effected or multiple actors that need to be coordinated. 
+
+Capacity, is there a low national response capacity, is it a weak or fragile state. And do the needs outweigh the capacity of the country in regional offices to respond. 
+
+***PARECE QUE ESTAMOS EN EL EQUIVALENTE A UN NIVEL 3 DE EMERGENCIA DE IASC***
+
+In this classification, level three is the most severe emergency according to the IASC. This means that the emergency requires a system wide mobilization to ensure an effective response.
+
+In 2005, after identifying coordination gaps in the Indonesian tsunami response, IASC developed a cluster lead approach for humanitarian emergencies. 
+
+This approach was developed to address identified gaps in response, enhance quality of humanitarian action, ensure greater predictability and accountability. And strengthen partnerships between NGOs, international organizations, IFRC, and UN agencies. 
+
+The goals of the cluster approach were to strengthen overall humanitarian system preparedness and capacity at the global level, and strengthen response in all sectors of the country level.
+
++ Coordination of local authorities, since they have the primary responsibility for directing the response. 
+
++ Conducting a needs assessment, periodically done to understand what resources are required, whether they be human, material, logistical or financial. 
+
++ Monitoring periodically done to understand if the activities or resources available are sufficient, and whether they are making a positive impact. 
+
++ Perhaps the most significant is that the cluster leads are the provider of last resort.
+___
+
+
 ___
 ***Mar 30,2020***
 
