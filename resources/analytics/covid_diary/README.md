@@ -5,15 +5,24 @@ David Pellon
 ___
 ***Apr 1,2020***
 
+#### Top Countries - CONFIRMED CASES - 7 days Future Projection
+
 ![Top Countries - CONFIRMED CASES - 7 days Future Projection](https://i.imgur.com/ABTRYVY.png)
+
 Italy, Spain, Germany, Switzerland and Iran seem to be reducing the number of cases.
-
 Not so much, UK, France and the US.
-![Top Countries - DECEASED CASES - 7 days Future Projection](https://i.imgur.com/olY8bsA.png)
-Italy and Spain seem to be reducing the rate of deceased. Especially Iran. Not so much Germany, UK and US that show increased rate.
-![Top Countries - % DECEASED / CONFIRMED - 7 days Future Projection](https://i.imgur.com/IO8nz83.png)
-Surprising how Germany keeps it's % Deceased so low. Maybe it is an organizational issue and many deaths are due confusion affecting other patients and the health system ?
 
+#### Top Countries - DECEASED CASES - 7 days Future Projection
+
+![Top Countries - DECEASED CASES - 7 days Future Projection](https://i.imgur.com/olY8bsA.png)
+
+Italy and Spain seem to be reducing the rate of deceased. Especially Iran. Not so much Germany, UK and US that show increased rate.
+
+#### Top Countries - % DECEASED / CONFIRMED - 7 days Future Projection
+
+![Top Countries - % DECEASED / CONFIRMED - 7 days Future Projection](https://i.imgur.com/IO8nz83.png)
+
+Surprising how Germany keeps it's % Deceased so low. Maybe it is an organizational issue and many deaths are due confusion affecting other patients and the health system ?
 Spain seems is correcting towards the lower percentiles lately while others are in a very high percentile of deaths versus confirmed cases.
 
 ___
