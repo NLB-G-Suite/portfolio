@@ -25,6 +25,11 @@ Italy and Spain seem to be reducing the rate of deceased. Especially Iran. Not s
 Surprising how Germany keeps it's % Deceased so low. Maybe it is an organizational issue and many deaths are due confusion affecting other patients and the health system ?
 Spain seems is correcting towards the lower percentiles lately while others are in a very high percentile of deaths versus confirmed cases.
 
+#### Chinese detail
+
+![Chinese detail](https://i.imgur.com/BTTkNfB.png)
+Chinese numbers seem "strange"
+
 ___
 ***Mar 31,2020***
 
