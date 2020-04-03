@@ -19,7 +19,7 @@ ___
 
 ![MODIS Satellite Day Temperature Celsius](https://i.imgur.com/9ce8NFw.png)
 
-###DETAIL VIEW
+### DETAIL VIEW
 
 #### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
 
@@ -44,7 +44,7 @@ ___
 
 
 
-###COMPARISON VIEW
+### COUNTRY COMPARISON VIEW
 
 #### Top Countries - CONFIRMED CASES - 7 days Future Projection
 
