@@ -7,25 +7,50 @@ ___
 
 ### Aggregating MODIS Satellite data to COVID-19's
 
-#### MODIS Satellite - COVID-19 Cases Aggregated by Latitude (by ranges)
+Used Moderate Resolution Imaging Spectroradiometer remotely sensed data products such as vegetation property dynamics, albedo, land cover, dayly and night temperature, day clear cover, evaporation, etc.
+Data is observed by Satellite. Missing data is interpolated and scaled. The Latitude and Longitud measurements used are of 2 Km squares where any COVID-19 reported incident has appeared.
+
+
+#### COVID-19 Cases Aggregated by Latitude (by ranges)
 
 ![MODIS Satellite](https://i.imgur.com/gXu4XpL.png)
 
-#### MODIS Satellite - COVID-19 Cases Aggregated by Longitude (by ranges)
+#### COVID-19 Cases Aggregated by Longitude (by ranges)
 
 ![MODIS Satellite](https://i.imgur.com/U5UHlbm.png)
 
-#### MODIS Satellite - Daily Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
+#### Daily Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
 
 ![MODIS Satellite Day Temperature Celsius](https://i.imgur.com/9ce8NFw.png)
 
-#### MODIS Satellite - Nightly Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
+#### Nightly Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
 
 ![MODIS Satellite Night Temperature Celsius](https://i.imgur.com/bLNb9W3.png)
 
-#### MODIS Satellite - Clear Sky Coverage Aggregated by Lat, Long & Date (by ranges - scaled as Integer 0-255)
+#### Clear Sky Coverage Aggregated by Lat, Long & Date (by ranges - scaled as Integer 0-255)
 
 ![MODIS Clear Sky Coverage](https://i.imgur.com/7O7sLHu.png)
+
+#### Average Gross Primary Productivity Aggregated by Lat, Long & Date (by ranges - terrain typology)
+
+![MODIS avg_gross_primary_productivity](https://i.imgur.com/jNhubym.png)
+
+#### Average Total Evapotranspiration Aggregated by Lat, Long & Date (by ranges)
+
+![MODIS avg_total_evapotranspiration](https://i.imgur.com/FpIQvu0.png)
+
+#### Average Total Potential Evapotranspiration Aggregated by Lat, Long & Date (by ranges)
+
+![MODIS avg_total_potential_evapotranspiration](https://i.imgur.com/Frco9EO.png)
+
+#### Average Latent Heat Flux Aggregated by Lat, Long & Date (by ranges)
+
+![MODIS_avg_latent_heat_flux](https://i.imgur.com/VX9KcZj.png)
+
+#### Average Latent Potential Heat Flux Aggregated by Lat, Long & Date (by ranges)
+
+![MODIS_avg_latent_potential_heat_flux](https://i.imgur.com/MbPqNmW.png)
+
 
 ### COUNTRY DETAILED VIEW
 
