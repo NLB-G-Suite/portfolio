@@ -14,7 +14,7 @@ Data is observed by Satellite. Missing data is interpolated and scaled. The Lati
 #### COVID-19 Cases Aggregated by Latitude (by ranges)
 
 ![MODIS Satellite](https://i.imgur.com/gXu4XpL.png)
-'''
+```
    Lat           Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
  1 (-Inf,-41.5]               69              2                   2.9 
  2 (-41.5,-28.9]           10504             68                   0.65
@@ -26,7 +26,7 @@ Data is observed by Satellite. Missing data is interpolated and scaled. The Lati
  8 (34,46.6]              535685          32371                   6.04
  9 (46.6,59.1]            192981           6396                   3.31
 10 (59.1,71.7]             15443            326                   2.11
-'''
+```
 
 #### COVID-19 Cases Aggregated by Longitude (by ranges)
 
