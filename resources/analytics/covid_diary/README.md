@@ -23,8 +23,9 @@ ___
 
 ![MODIS Satellite Night Temperature Celsius](https://i.imgur.com/bLNb9W3.png)
 
+#### MODIS Satellite - Clear Sky Coverage Aggregated by Lat, Long & Date (by ranges - scaled as Integer 0-255)
 
-
+![MODIS Clear Sky Coverage](https://i.imgur.com/7O7sLHu.png)
 
 ### COUNTRY DETAILED VIEW
 
