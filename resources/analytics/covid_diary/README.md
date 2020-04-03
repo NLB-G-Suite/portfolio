@@ -5,7 +5,17 @@ David Pellon
 ___
 ***Apr 2,2020***
 
-### MODIS Satellite Temperature (Cº) for every case aggregated on Lat, Long & Date (by ranges)
+### Aggregating MODIS Satellite data to COVID-19's
+
+#### MODIS Satellite - COVID-19 Cases Aggregated by Latitude (by ranges)
+
+![MODIS Satellite](https://i.imgur.com/gXu4XpL.png)
+
+#### MODIS Satellite - COVID-19 Cases Aggregated by Longitude (by ranges)
+
+![MODIS Satellite](https://i.imgur.com/U5UHlbm.png)
+
+#### MODIS Satellite - Daily Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
 
 ![MODIS Satellite Day Temperature Celsius](https://i.imgur.com/9ce8NFw.png)
 
