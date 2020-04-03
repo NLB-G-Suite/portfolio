@@ -3,6 +3,60 @@
 David Pellon
 
 ___
+***Apr 2,2020***
+
+### MODIS Satellite Temperature for every case aggregated on Lat, Long & Date (by ranges)
+  avg_Day_Temp_Celsius Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+1 [-273.15, 8.25)               241643           5220                   2.16
+2 [   8.25,18.65)               253359          10568                   4.17
+3 [  18.65,23.15)               134846          13731                  10.2 
+4 [  23.15,26.75)                81458           3406                   4.18
+5 [  26.75,29.61)               139939          10015                   7.16
+6 [  29.61,32.51)                63447           3478                   5.48
+7 [  32.51,38.03)                 8755            236                   2.7 
+8 [  38.03,47.97]                 9158            155                   1.69
+
+
+###DETAIL VIEW
+
+#### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+
+![GLOBAL detail](https://i.imgur.com/SFHCoMb.png)
+
+#### U.S.A (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![USA Detail](https://i.imgur.com/k6YWj8u.png)
+
+#### Spain (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Spain Detail](https://i.imgur.com/45sNQz4.png)
+
+#### Italy (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Italy Detail](https://i.imgur.com/nXT3el4.png)
+
+#### Germany (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Germany Detail](https://i.imgur.com/rMJFtCd.png)
+
+#### France (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![France Detail](https://i.imgur.com/gccf7Ha.png)
+
+
+
+
+
+###COMPARISON VIEW
+
+#### Top Countries - CONFIRMED CASES - 7 days Future Projection
+
+![Top Countries - CONFIRMED CASES - 7 days Future Projection](https://i.imgur.com/bh9w6z3.png)
+
+#### Top Countries - DECEASED CASES - 7 days Future Projection
+
+![Top Countries - DECEASED CASES - 7 days Future Projection](https://i.imgur.com/NDW0V21.png)
+
+#### Top Countries - % DECEASED / CONFIRMED CASES - 7 days Future Projection
+
+![![Top Countries - % DECEASED / CONFIRMED - 7 days Future Projection](https://i.imgur.com/FtkqYb1.png)]
+
+___
 ***Apr 1,2020***
 
 #### Top Countries - CONFIRMED CASES - 7 days Future Projection
