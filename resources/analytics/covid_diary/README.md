@@ -13,7 +13,6 @@ Data is observed by Satellite. Missing data is interpolated and scaled. The Lati
 
 #### COVID-19 Cases Aggregated by Latitude (by ranges)
 
-![MODIS Satellite](https://i.imgur.com/gXu4XpL.png)
 ```
    Lat           Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
  1 (-Inf,-41.5]               69              2                   2.9 
@@ -29,40 +28,141 @@ Data is observed by Satellite. Missing data is interpolated and scaled. The Lati
 ```
 
 #### COVID-19 Cases Aggregated by Longitude (by ranges)
-
-![MODIS Satellite](https://i.imgur.com/U5UHlbm.png)
+```
+   Long          Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+ 1 (-Inf,-135]                 5              0                   0   
+ 2 (-135,-100]              3190             65                   2.04
+ 3 (-100,-65.4]           232368           5109                   2.2 
+ 4 (-65.4,-30.6]            9387            299                   3.19
+ 5 (-30.6,4.14]           221563          17032                   7.69
+ 6 (4.14,38.9]            292985          17161                   5.86
+ 7 (38.9,73.7]             57463           3173                   5.52
+ 8 (73.7,108]               9999            125                   1.25
+ 9 (108,143]              100794           3826                   3.8 
+10 (143,178]                4851             19                   0.39
+```
 
 #### Daily Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
-
-![MODIS Satellite Day Temperature Celsius](https://i.imgur.com/9ce8NFw.png)
+```
+  avg_Day_Temp_Celsius Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+1 [-273.15, 8.25)               241643           5220                   2.16
+2 [   8.25,18.65)               253359          10568                   4.17
+3 [  18.65,23.15)               134846          13731                  10.2 
+4 [  23.15,26.75)                81458           3406                   4.18
+5 [  26.75,29.61)               139939          10015                   7.16
+6 [  29.61,32.51)                63447           3478                   5.48
+7 [  32.51,38.03)                 8755            236                   2.7 
+8 [  38.03,47.97]                 9158            155                   1.69
+```
 
 #### Nightly Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
-
-![MODIS Satellite Night Temperature Celsius](https://i.imgur.com/bLNb9W3.png)
+```
+  avg_Night_Temp_Celsius Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+1 [-273.15,-1.63)                  22238            212                   0.95
+2 [  -1.63, 4.39)                 292756           9139                   3.12
+3 [   4.39, 9.37)                 469874          32606                   6.94
+4 [   9.37,13.75)                  93604           3584                   3.83
+5 [  13.75,19.01)                  20811            355                   1.71
+6 [  19.01,21.39)                   9948            181                   1.82
+7 [  21.39,23.29)                  10205            257                   2.52
+8 [  23.29,28.15]                  13169            475                   3.61
+```
 
 #### Clear Sky Coverage Aggregated by Lat, Long & Date (by ranges - scaled as Integer 0-255)
-
-![MODIS Clear Sky Coverage](https://i.imgur.com/7O7sLHu.png)
+```
+   avg_Day_Clear_Sky_Coverage Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+ 1 [  0,   19)                         145507          12048                   8.28
+ 2 [ 19,   47)                          25402           1476                   5.81
+ 3 [ 47,   86)                          28481           1219                   4.28
+ 4 [ 86,  122)                          11147             84                   0.75
+ 5 [122,  156)                         315764           6115                   1.94
+ 6 [156,  177)                           7601             37                   0.49
+ 7 [177,  199)                          75989           3344                   4.4 
+ 8 [199,  221)                          13422            141                   1.05
+ 9 [221,  243)                         235404          20563                   8.74
+10 [243,14818]                          73888           1782                   2.41
+```
 
 #### Average Gross Primary Productivity Aggregated by Lat, Long & Date (by ranges - terrain typology)
-
-![MODIS avg_gross_primary_productivity](https://i.imgur.com/jNhubym.png)
+```
+   avg_Gross_Primary_Productivity Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+ 1 [  0,   18)                              57962           1302                   2.25
+ 2 [ 18,   32)                             106201           3812                   3.59
+ 3 [ 32,   54)                              27701            825                   2.98
+ 4 [ 54,   74)                              66801           4691                   7.02
+ 5 [ 74,   98)                             115498           2485                   2.15
+ 6 [ 98,  144)                             476273          30278                   6.36
+ 7 [144,  187)                              64689           5532                   8.55
+ 8 [187,  271)                               8234            233                   2.83
+ 9 [271,  380)                               9875            234                   2.37
+10 [380,32767]                              79923           3591                   4.49
+```
 
 #### Average Total Evapotranspiration Aggregated by Lat, Long & Date (by ranges)
-
-![MODIS avg_total_evapotranspiration](https://i.imgur.com/FpIQvu0.png)
+```
+  avg_Total_Evapotranspiration Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+1 [  1,   30)                             1082             22                   2.03
+2 [ 30,   48)                             5644             62                   1.1 
+3 [ 48,   64)                            13716            122                   0.89
+4 [ 64,   83)                            80800           3511                   4.35
+5 [ 83,  106)                             1818             17                   0.94
+6 [106,  155)                             1564              7                   0.45
+7 [155,32766]                             8959            255                   2.85
+```
 
 #### Average Total Potential Evapotranspiration Aggregated by Lat, Long & Date (by ranges)
-
-![MODIS avg_total_potential_evapotranspiration](https://i.imgur.com/Frco9EO.png)
+```
+   avg_Total_Potential_Evapotranspiration Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+ 1 [ 20,   53)                                       2844             23                   0.81
+ 2 [ 53,   98)                                       1480             21                   1.42
+ 3 [ 98,  127)                                        705             21                   2.98
+ 4 [127,  156)                                       1667              7                   0.42
+ 5 [156,  194)                                      85609           3546                   4.14
+ 6 [194,  232)                                       3868             34                   0.88
+ 7 [232,  268)                                       5033             72                   1.43
+ 8 [268,  318)                                       1462              8                   0.55
+ 9 [318,  377)                                       1829              6                   0.33
+10 [377,  515)                                        288              3                   1.04
+11 [515,32766]                                       8798            255                   2.9 
+```
 
 #### Average Latent Heat Flux Aggregated by Lat, Long & Date (by ranges)
+```
+   avg_Average_Latent_Heat_Flux Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+ 1 [  1,   74)                              180              2                   1.11
+ 2 [ 74,  112)                             2256             23                   1.02
+ 3 [112,  137)                             2558             19                   0.74
+ 4 [137,  157)                             1780             42                   2.36
+ 5 [157,  181)                             4111             40                   0.97
+ 6 [181,  199)                             9560             80                   0.84
+ 7 [199,  216)                             9574            469                   4.9 
+ 8 [216,  247)                            71202           3042                   4.27
+ 9 [247,  288)                              559              4                   0.72
+10 [288,  353)                             1307             13                   0.99
+11 [353,  582)                             1567              7                   0.45
+12 [582,32766]                             8929            255                   2.86
+```
 
-![MODIS_avg_latent_heat_flux](https://i.imgur.com/VX9KcZj.png)
 
 #### Average Latent Potential Heat Flux Aggregated by Lat, Long & Date (by ranges)
+```
+   avg_Average_Potential_Latent_Heat_Flux Total_Confirmed Total_Deceased Pct_Deceased_Confirmed
+ 1 [  62,  154)                                      2736             22                   0.8 
+ 2 [ 154,  240)                                       326              2                   0.61
+ 3 [ 240,  346)                                      1739             39                   2.24
+ 4 [ 346,  394)                                       228              2                   0.88
+ 5 [ 394,  453)                                      1620              6                   0.37
+ 6 [ 453,  506)                                     10408            485                   4.66
+ 7 [ 506,  603)                                     75261           3063                   4.07
+ 8 [ 603,  703)                                      3512             30                   0.85
+ 9 [ 703,  792)                                      4600             69                   1.5 
+10 [ 792,  884)                                      1978             13                   0.66
+11 [ 884, 1006)                                      1445              3                   0.21
+12 [1006, 1178)                                       651              4                   0.61
+13 [1178, 1607)                                       326              3                   0.92
+14 [1607,32766]                                      8753            255                   2.91
+```
 
-![MODIS_avg_latent_potential_heat_flux](https://i.imgur.com/MbPqNmW.png)
 
 
 ### COUNTRY DETAILED VIEW
