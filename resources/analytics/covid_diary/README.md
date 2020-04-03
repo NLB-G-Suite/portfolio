@@ -19,7 +19,14 @@ ___
 
 ![MODIS Satellite Day Temperature Celsius](https://i.imgur.com/9ce8NFw.png)
 
-### DETAIL VIEW
+#### MODIS Satellite - Nightly Temperature (Cº) Aggregated by Lat, Long & Date (by ranges)
+
+![MODIS Satellite Night Temperature Celsius](https://i.imgur.com/bLNb9W3.png)
+
+
+
+
+### COUNTRY DETAILED VIEW
 
 #### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
 
