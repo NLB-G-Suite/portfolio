@@ -5,6 +5,13 @@ David Pellon
 ___
 ***Apr 5,2020***
 
+### COVID-19 Evolution Plotcharts
+
+![COVID-19 Evolution Plotcharts](https://i.imgur.com/Ce9vZ4e.png)
+
+___
+***Apr 5,2020***
+
 ### World COVID-19 Cases by Latitude & Longitude
 
 ![World Cases by Latitude & Longitude](https://i.imgur.com/M0XyQO0.png)
