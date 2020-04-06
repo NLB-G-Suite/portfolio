@@ -9,6 +9,15 @@ ___
 
 ![COVID-19 Evolution Plotcharts](https://i.imgur.com/Ce9vZ4e.png)
 
+### DETAILED VIEWS
+
+#### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+
+![GLOBAL detail](https://i.imgur.com/nL183mY.png)
+
+
+
+
 ___
 ***Apr 5,2020***
 
@@ -179,7 +188,7 @@ Data is observed by Satellite. Missing data is interpolated and scaled. The Lati
 
 
 
-### COUNTRY DETAILED VIEW
+### DETAILED VIEWS
 
 #### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
 
@@ -204,7 +213,7 @@ Data is observed by Satellite. Missing data is interpolated and scaled. The Lati
 
 
 
-### COUNTRY COMPARISON VIEW
+### COMPARISON VIEWS
 
 #### Top Countries - CONFIRMED CASES - 7 days Future Projection
 
