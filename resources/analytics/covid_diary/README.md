@@ -11,9 +11,14 @@ ___
 
 ### DETAILED VIEWS
 
-#### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+#### TODAY's - GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
 
 ![GLOBAL detail](https://i.imgur.com/nL183mY.png)
+
+#### APRIL 2nd - GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+
+![GLOBAL detail](https://i.imgur.com/SFHCoMb.png)
+
 
 
 
