@@ -9,7 +9,15 @@ ___
 
 ![COVID-19 Evolution Plotcharts](https://i.imgur.com/NqagCf0.png)
 
+### DETAILED VIEWS
 
+#### TODAY's - GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![GLOBAL detail](https://i.imgur.com/Fjqnmx5.png)
+
+
+#### APRIL 2nd - GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+
+![GLOBAL detail](https://i.imgur.com/SFHCoMb.png)
 
 
 ___
