@@ -3,6 +3,101 @@
 David Pellon
 
 ___
+***Apr 8,2020***
+
+### TOP 10 Highest Growth Increases by Country in Confirmed COVID-19 Cases
+
+```
+                            Country Confirmed
+1                       South Sudan      0.59
+2                     Guinea-Bissau      0.49
+3                            Malawi      0.38
+4                        Bangladesh      0.18
+5               Antigua and Barbuda      0.13
+6                             Ghana      0.10
+7                             Gabon      0.08
+8                            Kosovo      0.08
+9                            Russia      0.06
+10 Saint Vincent and the Grenadines      0.06
+```
+
+### TOP 10 Highest Growth Decreases by Country in Confirmed COVID-19 Cases
+```
+        Country Confirmed
+1  Sierra Leone     -0.28
+2        Panama     -0.26
+3        Turkey     -0.22
+4        Uganda     -0.21
+5     Venezuela     -0.21
+6      Djibouti     -0.20
+7          Iran     -0.19
+8         Niger     -0.19
+9   Switzerland     -0.19
+10     Cameroon     -0.18
+```
+
+### TOP 10 Highest Growth Increases by Country in Deceased COVID-19 Cases
+```
+      Country Deceased
+1      Kosovo     2.65
+2      Latvia     0.97
+3    Zimbabwe     0.92
+4     Georgia     0.47
+5    Barbados     0.43
+6       Qatar     0.43
+7  Bangladesh     0.31
+8     Bahrain     0.20
+9     Finland     0.20
+10     Guyana     0.19
+```
+
+### TOP 10 Highest Growth Decreases by Country in Deceased COVID-19 Cases
+```
+            Country Deceased
+1            Turkey    -0.12
+2           Ecuador    -0.11
+3          Honduras    -0.11
+4              Iran    -0.11
+5            Panama    -0.11
+6             Italy    -0.10
+7              Mali    -0.10
+8            Serbia    -0.10
+9  Congo (Kinshasa)    -0.09
+10           Greece    -0.09
+```
+
+### TOP 10 Highest Growth Increases by Country in the Rate of Deceased vs Confirmed COVID-19 Cases
+```
+     Country Rate_Deceased_Confirmed
+1     Kosovo                    2.35
+2     Latvia                    0.94
+3   Zimbabwe                    0.89
+4    Georgia                    0.42
+5   Barbados                    0.35
+6      Qatar                    0.32
+7     Guyana                    0.29
+8  Argentina                    0.16
+9    Bahrain                    0.16
+10 Australia                    0.15
+```
+
+### TOP 10 Highest Growth Decreases by Country in the Rate of Deceased vs Confirmed COVID-19 Cases
+```
+            Country Rate_Deceased_Confirmed
+1             Ghana                   -0.22
+2           Belarus                   -0.20
+3              Mali                   -0.19
+4          Ethiopia                   -0.15
+5  Congo (Kinshasa)                   -0.13
+6       El Salvador                   -0.13
+7             Gabon                   -0.12
+8              Togo                   -0.12
+9            Kuwait                   -0.10
+10             Oman                   -0.10
+```
+
+
+___
 ***Apr 7,2020***
 
 ### COVID-19 Evolution Plotcharts
