@@ -3,6 +3,33 @@
 David Pellon
 
 ___
+***Apr 9,2020***
+
+### Some reading resources.
+
+##### Bellos. The burden of acute respiratory infections in crisis-affected populations
+
+URL: http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829474/pdf/1752-1505-4-3.pdf
+
+##### Connolly. Communicable diseases in complex emergencies
+
+URL: http://www.who.int/malaria/publications/atoz/lancet2004ce_1.pdf
+
+##### MSF Book
+
+URL: http://refbooks.msf.org/msf_docs/en/refugee_health/rh.pdf
+
+##### Communicable disease control in emergencies: a field manual
+
+URL: http://www.unhcr.org/456c3ce92.pdf
+
+##### The vital steps in developing a world-class warehouse
+
+URL: http://www.ipclogistic.co.id/berita/the_vital_steps_in_developing_a_world-class_warehouse_1043.html
+
+
+
+___
 ***Apr 8,2020***
 
 ### TOP 10 Highest Growth Increases by Country in Confirmed COVID-19 Cases
