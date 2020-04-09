@@ -66,7 +66,7 @@ ___
 10           Greece    -0.09
 ```
 
-### TOP 10 Highest Growth Increases by Country in the Rate of Deceased vs Confirmed COVID-19 Cases
+### TOP 10 Highest Growth Increases by Country in Rate of Deceased vs Confirmed COVID-19 Cases
 ```
      Country Rate_Deceased_Confirmed
 1     Kosovo                    2.35
@@ -81,7 +81,7 @@ ___
 10 Australia                    0.15
 ```
 
-### TOP 10 Highest Growth Decreases by Country in the Rate of Deceased vs Confirmed COVID-19 Cases
+### TOP 10 Highest Growth Decreases by Country in Rate of Deceased vs Confirmed COVID-19 Cases
 ```
             Country Rate_Deceased_Confirmed
 1             Ghana                   -0.22
