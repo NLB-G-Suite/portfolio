@@ -9,6 +9,65 @@ ___
 
 ![COVID-19 Evolution Plotcharts](https://i.imgur.com/Ri3FjK7.png)
 
+Tedros Adhanom Ghebreyesus es un político etíope. Actualmente desempeña el cargo de presidente de la Organización Mundial de la Salud. Previamente fue ministro de Salud y ministro de Relaciones Exteriores de su país durante los gobiernos de Meles Zenawi y Hailemariam Desalegne.
+
+China es  y ha sido el mayor inversor en Etiopía por años
+http://www.xinhuanet.com/english/2020-01/29/c_138741928.htm
+
+Aquí le tenemos defendiendo la lucha contra el virus de China
+https://www.ft.com/content/57c6a1d6-49a7-11ea-aeb3-955839e06441
+
+Top WHO Official Won Election With China’s Help. Now He’s Running Interference for China on Coronavirus.
+https://www.dailysignal.com/2020/03/23/top-who-official-won-election-with-chinas-help-now-hes-running-interference-for-china-on-coronavirus/
+
+
+En una situación de crecimiento de progresión de la enfermedad (y morbilidad) exponencial, el retraso en informar al resto de la población es MUY GRAVE y puede haber afectado a millones de personas en todo el mundo.
+
+Especialmente cuando dada su condición de entidad supranacional especialista en la materia esta organización demanda de toda otra entidad un respeto a su "auctoritas" o respeto a su principio de autoridad que lo hace aún mucho más grave si cabe. "Pero como vamos a dudar de lo que diga la OMS ???" Conspiranoia !!!
+
+El posible daño de China por este motivo puede haber sido muy sería desde muchos puntos de vista:
+
+1.- El escape del virus, ya sea por laboratorio o por mercados de comida.  Debe ser investigado.
+2.- La falta de libertad de prensa y opinión en el país hace que los propios filtros de aquellos cercanos a cualquier problema que pudiera ocurrir en el país sean silenciados o acallados. Esto es una vulnerabilidad enorme para cualquier trato pues no habremos de esperar respuestas prudentes o éticas no solo para su propio pueblo sino a nivel internacional y sí ejemplos como los que siguen a continuación.
+3.- Omisión de proporcionar información debida al resto de paises en un tema que atañe a todo el planeta y haciendo que la respuesta global haya sido más lenta. No es la primera vez que ocurre. Episodios anteriores recibieron el mismo trato a nivel informativo y de transparencia.
+4.-  Posible utilización MUY peligrosa de oficiales del más alto nivel como los de la OMS (u otras entidades supranacionales) para retrasar las consecuencias de un error haciendo que la situación sea mucho más problemática y mortal para millones de personas a nivel global.
+5.- Venta de equipamiento falso, ineadecuado, no estandar a lo ancho del mundo, reduciendo los mecanismos que la propia OMS recomienda como FUNDAMENTALES para el trato de cualquier epidemia o emergencia internacional.  A saber: 
+        a) Uso ineficaz de fondos para la epidemia que quedan bloqueados y que podrían haberse usado para otros objetivos. 
+        b) Retrasos en el tiempo para atender la pandemia mientras esperan los pedidos
+        c) Estudios de adecuabilidad y verificación de tests, vacunas, pruebas, equipamiento
+        d) Problemas de inventariado, logistica, transporte, distribución, errores varios
+
+Hace pocos dias hablaba Kissinger sobre como el Covid-19 supone un punto y aparte en las relaciones internacionales y como es necesario un enfoque global ante un problema que no se puede solucionar de forma unilateral.
+
+Lo cierto es que si esta es la estructura, gestión y forma de trabajo de entidades supranacionales, tal vez deberían considerarse metodologías que permitan abordar estos problemas.
+
+Pareciera como si según nos elevamos más en lo alto en la escala de gobernanza, hubiera cada vez menos aire, y menos regulación y control y de forma inversamente proporcional si que aumenta en mucho la gravedad de los errores que tan altas escalas pudieran incurrir. No es lo mismo un error o una situación dolosa de un médico en un ambulatorio que una conducta erronea o dolosa a nivel de una organización supranacional.
+
+Quizás sea una cuestión de optimización, aprendizaje y corrección de errores y la posibilidad o no de que este ciclo ocurra mejorando la entidad y sus procesos. Muchas de estas dinámicas nacen de la capacidad de las entidades de ser capaces de ver sus propios errores y corregirlos. Esto ocurre a nivel humano, a nivel de ADN, de convoluciones neuronales o de multiples procesos de programación de software o administración de empresas.
+
+Cuando tratamos con situaciones optimizables que atañen a millones de individuos y estás están siendo testeadas miles o millones de veces diariamente, la optimización se realiza de forma rápida. Por ejemplo, las normas de tráfico. Es dificil encontrar una problemática que no encuentre un equivalente a nivel regulatorio.
+
+A nivel de gobierno nacional y mucho más a nivel supranacional nos encontramos con que esto no ocurre con igual agilidad y diligencia ? Cuantas organizaciones supranacionales tenemos? Cada cuanto tiempo oimos sobre sus problematicas o vemos modificadas sus estructuras ? El número de sujetos de test así como el número de generaciones de optimización son infinitamente menores y sin embargo su responsabilidad y alcance es infinitamente grande pues sus decisiones afectan a millones.  Es como si en el Everest hubiera menos y menos aire regulatorio dando lugar a situaciones de vulnerabilidad que dejan a muchas de estas instituciones como presas fáciles para empoderados o dinámicas incorrectas por error o por corrupción.
+
+Si a esto añadimos falta de transparencia, el problema se complica muchisimo más pues a la falta de elementos de test y circunstancias de organización generacional se añade que el sistema es incapaz de ver, de testear. El sistema no aprende y cae víctima fácil de corruptelas y errores de vicio.
+
+La TRANSPARENCIA absoluta de los estados debería ser una caracteristica básica para que un país pueda hacerse cargo de una entidad supranacional. Debería ser mayor la transparencia y las dinámicas de control cuanto más arriba se encuentren en responsabilidad y no a la inversa.
+
+Decía un profesor de historia de religión que parece que una vez elaborada la doctrina de una religión (o filosofía) nos empeñamos en realizar estudios fractales combinatorios de cada uno de sus mantras creando realidades y alguna que otra herejia. Combinando cada elemento erroneo y correcto y probando cada posibibilidad dentro del ámbito superior.
+
+Parece que a nivel político se hace lo mismo y pudieramos caer en los mismos errores de control y supervisión de entidades nacionales pero a nivel supranacional
+
+Una escala de fibonacci de capacidades combinatorias.
+
+1 
+11 2
+111 12 21
+1111 112 121 211 22
+
+Estaremos comprobando en el ambito supranacional los dos últimos tipos de gobierno conocidos? Una mezcla entre lo nacional y lo feudal quizás ??
+
+En fin, cualquiera sabe
+
 ___
 ***Apr 9,2020***
 
