@@ -59,10 +59,14 @@ Parece que a nivel político se hace lo mismo y pudieramos caer en los mismos er
 
 Una escala de fibonacci de capacidades combinatorias.
 
-1 
-11 2
-111 12 21
-1111 112 121 211 22
+```
+n - combinatoria                      - An
+1 - 1                                 - 1
+2 - 11 2                              - 2
+3 - 111 12 21                         - 3
+4 - 1111 112 121 211 22               - 5 
+5 - 11111 1112 1121 1211 122 212 221  - 8
+```
 
 Estaremos comprobando en el ambito supranacional los dos últimos tipos de gobierno conocidos? Una mezcla entre lo nacional y lo feudal quizás ??
 
