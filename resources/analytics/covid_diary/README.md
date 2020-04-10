@@ -3,6 +3,13 @@
 David Pellon
 
 ___
+***Apr 10,2020***
+
+### COVID-19 Evolution Plotcharts
+
+![COVID-19 Evolution Plotcharts](https://i.imgur.com/Ri3FjK7.png)
+
+___
 ***Apr 9,2020***
 
 ### Some reading resources.
