@@ -4,8 +4,10 @@ David Pellon
 
 ___
 ***Apr 14,2020***
-Updated Montecarlo Model to make it react faster to recent changes
+
 ### DETAILED VIEWS
+
+Updated Montecarlo Model to make it react faster to recent changes
 
 #### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
 ![GLOBAL detail](https://i.imgur.com/lxFxYw5.png)
