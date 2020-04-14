@@ -3,6 +3,35 @@
 David Pellon
 
 ___
+***Apr 14,2020***
+Updated Montecarlo Model to make it react faster to recent changes
+### DETAILED VIEWS
+
+#### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![GLOBAL detail](https://i.imgur.com/lxFxYw5.png)
+
+#### U.S.A (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![USA Detail](https://i.imgur.com/4ycS5RB.png)
+
+#### Spain (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Spain Detail](https://i.imgur.com/1oPI7NM.png)
+
+#### Italy (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Italy Detail](https://i.imgur.com/BoxCX6w.png)
+
+#### France (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![France Detail](https://i.imgur.com/W02kkxI.png)
+
+#### Germany (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Germany Detail](https://i.imgur.com/Qi4hFs4.png)
+
+#### United Kingdom (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![UK Detail](https://i.imgur.com/Tk9dyk3.png)
+
+#### China (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![China Detail](https://i.imgur.com/At6XOwR.png)
+
+___
 ***Apr 12,2020***
 
 ### COVID-19 Evolution Plotcharts
