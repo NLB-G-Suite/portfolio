@@ -5,7 +5,7 @@ David Pellon
 ___
 ***Apr 18,2020***
 #### Comparing Chinese Confirmed Case Evolution with Rest of Countries
-![Chinese Evolution Comparison](https://i.imgur.com/5WSaxKB.png)
+![Chinese Evolution Comparison](https://i.imgur.com/9mNiWgr.png)
 
 ___
 ***Apr 17,2020***
