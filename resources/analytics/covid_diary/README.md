@@ -3,6 +3,11 @@
 David Pellon
 
 ___
+***Apr 18,2020***
+#### Comparing Chinese Confirmed Case Evolution with Rest of Countries
+![Chinese Evolution Comparison](https://i.imgur.com/5WSaxKB.png)
+
+___
 ***Apr 17,2020***
 
 #### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
