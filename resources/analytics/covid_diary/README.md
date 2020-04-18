@@ -7,6 +7,9 @@ David Pellon
 ___
 ***Apr 18,2020***
 
+#### Cluster Dendrogram of Country COVID-19 Spread Similarities above 5000 Confirmed Cases
+![Correlation Map Above 5000](https://i.imgur.com/6I42tkb.png)
+
 #### Correlation of all Countries Confirmed Case Evolution between each other (above 5000 Cases)
 ![Correlation Map Above 5000](https://i.imgur.com/lcxrinI.png)
 
