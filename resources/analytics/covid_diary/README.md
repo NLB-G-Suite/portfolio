@@ -7,9 +7,9 @@ David Pellon
 ___
 ***Apr 18,2020***
 #### Comparing Chinese Confirmed Case Evolution with Rest of Countries
-![Chinese Evolution Comparison](https://i.imgur.com/9mNiWgr.png)
+![Chinese Evolution Comparison](https://i.imgur.com/cydkBMJ.png)
 
-#### Correlation of all Countries Confirmed Case Evolution between each other (above 2500 Cases) - God preserve your sight !!
+#### Correlation of all Countries Confirmed Case Evolution between each other (above 2500 Cases) - God save your sight !!
 ![Correlation Map Above 2500](https://i.imgur.com/ykriSwZ.jpg)
 
 
