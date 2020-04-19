@@ -7,32 +7,31 @@ David Pellon
 ___
 ***Apr 18,2020***
 
-### CONFIRMED CASES
+### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries
+(when they reach Chinese initial numbers)
+#### Confirmed Cases
+![Correlation Map Above 5000](https://i.imgur.com/7cFeLs3.png)
+#### Deceased Cases
+![Correlation Map Above 5000](https://i.imgur.com/zWN50Ts.png)
 
-#### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries above 5000 Confirmed Cases
-![Correlation Map Above 5000](https://i.imgur.com/6I42tkb.png)
-
-#### Correlation of all Countries Confirmed Case Evolution between each other (above 5000 Cases)
+### Correlation of all Countries Case Evolution between each other (Detail)
+#### Confirmed Cases
 ![Correlation Map Above 5000](https://i.imgur.com/lcxrinI.png)
-
-#### Correlation of all Countries Confirmed Case Evolution between each other (above 2500 Cases) - God save your sight !!
-![Correlation Map Above 2500](https://i.imgur.com/ykriSwZ.jpg)
-
-#### Comparing Chinese Confirmed Case Evolution with Rest of Countries
-![Chinese Evolution Comparison](https://i.imgur.com/Cojm4WG.png)
-
-### DECEASED CASES
-
-#### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries above 2500 Deceased Cases
-![Correlation Map Above 5000]()
-
-#### Correlation of all Countries Deceased Case Evolution between each other (above 300 Cases)
+#### Deceased Cases
 ![Correlation Map Above 5000](https://i.imgur.com/c3gfqQf.png)
 
-#### Correlation of all Countries Deceased Case Evolution between each other (All Cases) - God save your sight !!
+### Correlation of all Countries Case Evolution between each other (Extra Detail) - God save your sight !!
+(when they reach Chinese initial numbers)
+#### Confirmed Cases
+![Correlation Map Above 2500](https://i.imgur.com/ykriSwZ.jpg)
+#### Deceased Cases
 ![Correlation Map Above 2500](https://i.imgur.com/zA5MZgK.jpg)
 
-#### Comparing Chinese Deceased Case Evolution with Rest of Countries
+#### Comparing Chinese Case Evolution with Rest of Countries 
+(when they reach Chinese initial numbers)
+#### Confirmed Cases
+![Chinese Evolution Comparison](https://i.imgur.com/Cojm4WG.png)
+#### Deceased Cases
 ![Chinese Evolution Comparison](https://i.imgur.com/03yyrNp.png)
 
 
