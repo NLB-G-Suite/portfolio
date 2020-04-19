@@ -5,14 +5,20 @@ David Pellon
 ***Apr 19,2020***
 
 ### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries
-(when they reach Chinese initial numbers). Notice that this time is per million inhabitants.
+(when they reach Chinese initial numbers). Note how this time is per million inhabitants.
 #### Confirmed Cases / Per Million inhabitants
 ![Correlation Map Above 5000](https://i.imgur.com/qBHDviq.png)
 #### Deceased Cases / Per Million inhabitants
 ![Correlation Map Above 5000](https://i.imgur.com/ipY6kQN.png)
 
 
-https://i.imgur.com/RDKuoi6.png
+#### Comparing Chinese Case Evolution with Rest of Countries 
+(when they reach Chinese initial numbers). Note how this time is per million inhabitants.
+#### Confirmed Cases / Per Million inhabitants
+![Chinese Evolution Comparison](https://i.imgur.com/lrlVTaa.png)
+#### Deceased Cases / Per Million inhabitants
+![Chinese Evolution Comparison](https://i.imgur.com/vliAGY2.png)
+
 ___
 ***Apr 18,2020***
 
