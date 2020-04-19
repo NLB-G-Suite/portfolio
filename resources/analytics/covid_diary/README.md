@@ -7,6 +7,8 @@ David Pellon
 ___
 ***Apr 18,2020***
 
+### CONFIRMED CASES
+
 #### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries above 5000 Confirmed Cases
 ![Correlation Map Above 5000](https://i.imgur.com/6I42tkb.png)
 
@@ -17,7 +19,22 @@ ___
 ![Correlation Map Above 2500](https://i.imgur.com/ykriSwZ.jpg)
 
 #### Comparing Chinese Confirmed Case Evolution with Rest of Countries
-![Chinese Evolution Comparison](https://i.imgur.com/cydkBMJ.png)
+![Chinese Evolution Comparison](https://i.imgur.com/Cojm4WG.png)
+
+### DECEASED CASES
+
+#### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries above 2500 Deceased Cases
+![Correlation Map Above 5000]()
+
+#### Correlation of all Countries Deceased Case Evolution between each other (above 300 Cases)
+![Correlation Map Above 5000](https://i.imgur.com/c3gfqQf.png)
+
+#### Correlation of all Countries Deceased Case Evolution between each other (above 1000 Cases) - God save your sight !!
+![Correlation Map Above 2500]()
+
+#### Comparing Chinese Deceased Case Evolution with Rest of Countries
+![Chinese Evolution Comparison](https://i.imgur.com/03yyrNp.png)
+
 
 ___
 ***Apr 17,2020***
