@@ -4,6 +4,19 @@ David Pellon
 
 ***Apr 25, 2020***
 
+### Clustering Countries based on their Case Evolution
+
+#### Clustering Countries based on their Decased vs Confirmed Case Evolution
+
+![dendo_1](https://i.imgur.com/0DBFi92.png)
+
+#### Clustering Countries based on their Confirmed Case Evolution in the past 7 days.
+(Towards which country with similar evolution is each one moving to ? )
+![dendo_2](https://i.imgur.com/fPzfDV0.png)
+
+
+### 1, 7, 14 Days Projection for Top Countries
+
 #### U.S.A (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
 ![USA Detail](https://i.imgur.com/4N7AcBm.png)
 
