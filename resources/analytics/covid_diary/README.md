@@ -2,6 +2,127 @@
 
 David Pellon
 
+***Apr 19,2020***
+
+### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries
+(when they reach Chinese initial numbers). Note how this time is per million inhabitants.
+#### Confirmed Cases / Per Million inhabitants
+![Correlation Map Above 5000](https://i.imgur.com/qBHDviq.png)
+#### Deceased Cases / Per Million inhabitants
+![Correlation Map Above 5000](https://i.imgur.com/ipY6kQN.png)
+
+
+#### Comparing Chinese Case Evolution with Rest of Countries 
+(when they reach Chinese initial numbers). Note how this time is per million inhabitants.
+#### Confirmed Cases / Per Million inhabitants
+![Chinese Evolution Comparison](https://i.imgur.com/lrlVTaa.png)
+#### Deceased Cases / Per Million inhabitants
+![Chinese Evolution Comparison](https://i.imgur.com/vliAGY2.png)
+
+___
+***Apr 18,2020***
+
+### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries
+(when they reach Chinese initial numbers)
+#### Confirmed Cases
+![Correlation Map Above 5000](https://i.imgur.com/7cFeLs3.png)
+#### Deceased Cases
+![Correlation Map Above 5000](https://i.imgur.com/zWN50Ts.png)
+
+### Correlation of all Countries Case Evolution between each other (Detail)
+#### Confirmed Cases
+![Correlation Map Above 5000](https://i.imgur.com/lcxrinI.png)
+#### Deceased Cases
+![Correlation Map Above 5000](https://i.imgur.com/c3gfqQf.png)
+
+### Correlation of all Countries Case Evolution between each other (Extra Detail) - God save your sight !!
+(when they reach Chinese initial numbers)
+#### Confirmed Cases
+![Correlation Map Above 2500](https://i.imgur.com/ykriSwZ.jpg)
+#### Deceased Cases
+![Correlation Map Above 2500](https://i.imgur.com/zA5MZgK.jpg)
+
+#### Comparing Chinese Case Evolution with Rest of Countries 
+(when they reach Chinese initial numbers)
+#### Confirmed Cases
+![Chinese Evolution Comparison](https://i.imgur.com/Cojm4WG.png)
+#### Deceased Cases
+![Chinese Evolution Comparison](https://i.imgur.com/03yyrNp.png)
+
+
+___
+***Apr 17,2020***
+
+#### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![GLOBAL detail](https://i.imgur.com/nkBFJ6S.png)
+
+#### U.S.A (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![USA Detail](https://i.imgur.com/5gG2xPx.png)
+
+#### Spain (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Spain Detail](https://i.imgur.com/7KYVFRG.png)
+
+#### Italy (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Italy Detail](https://i.imgur.com/TXPhJVy.png)
+
+#### France (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![France Detail]()
+
+#### Germany (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Germany Detail](https://i.imgur.com/Kbq6Vr2.png)
+
+#### United Kingdom (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![UK Detail]()
+
+#### China (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![China Detail](https://i.imgur.com/p0H5rDO.png)
+
+
+
+___
+***Apr 14,2020***
+
+### DETAILED VIEWS
+
+Updated Montecarlo Model to make it react faster to recent changes
+
+#### GLOBAL (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![GLOBAL detail](https://i.imgur.com/lxFxYw5.png)
+
+#### U.S.A (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![USA Detail](https://i.imgur.com/4ycS5RB.png)
+
+#### Spain (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Spain Detail](https://i.imgur.com/1oPI7NM.png)
+
+#### Italy (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Italy Detail](https://i.imgur.com/BoxCX6w.png)
+
+#### France (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![France Detail](https://i.imgur.com/W02kkxI.png)
+
+#### Germany (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Germany Detail](https://i.imgur.com/Qi4hFs4.png)
+
+#### United Kingdom (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![UK Detail](https://i.imgur.com/Tk9dyk3.png)
+
+#### China (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![China Detail](https://i.imgur.com/At6XOwR.png)
+
+___
+***Apr 12,2020***
+
+### COVID-19 Evolution Plotcharts
+
+![COVID-19 Evolution Plotcharts](https://i.imgur.com/HRMRy80.png)
+
+___
+***Apr 10,2020***
+
+### COVID-19 Evolution Plotcharts
+
+![COVID-19 Evolution Plotcharts](https://i.imgur.com/Ri3FjK7.png)
 ___
 ***Apr 9,2020***
 
