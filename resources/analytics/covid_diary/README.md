@@ -4,6 +4,11 @@ David Pellon
 
 ***Apr 25, 2020***
 
+### Rate of Deceased vs Confirmed COVID-19 Cases on 24 Apr 2020
+
+![map_1](https://i.imgur.com/TUBmwrA.png)
+
+
 ### Clustering Countries based on their Case Evolution
 
 #### Clustering Countries based on their Decased vs Confirmed Case Evolution
