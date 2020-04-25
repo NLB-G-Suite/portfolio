@@ -2,6 +2,32 @@
 
 David Pellon
 
+***Apr 25, 2020***
+
+#### U.S.A (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![USA Detail](https://i.imgur.com/4N7AcBm.png)
+
+#### Spain (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Spain Detail](https://i.imgur.com/pGBcGWf.png)
+
+#### Italy (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Italy Detail](https://i.imgur.com/ARR9Nx4.png)
+
+#### France (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![France Detail](https://i.imgur.com/Jb2Mmzq.png)
+
+#### Germany (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Germany Detail](https://i.imgur.com/nPOH700.png)
+
+#### United Kingdom (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![UK Detail](https://i.imgur.com/dUHmOx6.png)
+
+#### China (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+(Chinese keep "updating" their data)
+![China Detail](https://i.imgur.com/8mWyvFb.png)
+
+
+
 ***Apr 19,2020***
 
 ### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries
