@@ -2,6 +2,22 @@
 
 David Pellon
 
+***Apr 26, 2020***
+
+### Bagging Method
+
+#### Forecast Global Confirmed Cases
+
+![bag_1](https://i.imgur.com/7Q8bZ8W.png)
+
+#### Forecast Global Deceased Cases
+![bag_2](https://i.imgur.com/qz49t9m.png)
+
+
+#### Forecast Global Rate of Deceased / Confirmed Cases
+![bag_3](https://i.imgur.com/2SxPbBE.png)
+
+
 ***Apr 25, 2020***
 
 ### Rate of Deceased vs Confirmed COVID-19 Cases on 24 Apr 2020
