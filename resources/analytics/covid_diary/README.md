@@ -2,6 +2,66 @@
 
 David Pellon
 
+***Apr 26, 2020***
+
+### Bagging Method
+
+#### Forecast Global Confirmed Cases
+
+![bag_1](https://i.imgur.com/7Q8bZ8W.png)
+
+#### Forecast Global Deceased Cases
+![bag_2](https://i.imgur.com/qz49t9m.png)
+
+
+#### Forecast Global Rate of Deceased / Confirmed Cases
+![bag_3](https://i.imgur.com/2SxPbBE.png)
+
+
+***Apr 25, 2020***
+
+### Rate of Deceased vs Confirmed COVID-19 Cases on 24 Apr 2020
+
+![map_1](https://i.imgur.com/TUBmwrA.png)
+
+
+### Clustering Countries based on their Case Evolution
+
+#### Clustering Countries based on their Decased vs Confirmed Case Evolution
+
+![dendo_1](https://i.imgur.com/0DBFi92.png)
+
+#### Clustering Countries based on their Confirmed Case Evolution in the past 7 days.
+(Towards which country with similar evolution is each one moving to ? )
+![dendo_2](https://i.imgur.com/fPzfDV0.png)
+
+
+### 1, 7, 14 Days Projection for Top Countries
+
+#### U.S.A (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![USA Detail](https://i.imgur.com/4N7AcBm.png)
+
+#### Spain (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Spain Detail](https://i.imgur.com/pGBcGWf.png)
+
+#### Italy (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Italy Detail](https://i.imgur.com/ARR9Nx4.png)
+
+#### France (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![France Detail](https://i.imgur.com/Jb2Mmzq.png)
+
+#### Germany (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![Germany Detail](https://i.imgur.com/nPOH700.png)
+
+#### United Kingdom (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+![UK Detail](https://i.imgur.com/dUHmOx6.png)
+
+#### China (Detailed View) - Confirmed, Deceased, % Deceased / Confirmed - 1, 7, 14 days Proyection
+(Chinese keep "updating" their data)
+![China Detail](https://i.imgur.com/8mWyvFb.png)
+
+
+
 ***Apr 19,2020***
 
 ### Cluster Dendrogram COVID-19 Infection Spread Similarities between Countries
