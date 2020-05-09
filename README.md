@@ -23,8 +23,8 @@
                                                                                                __.'_
                                                                                               |__|__|
                                                                                               |     |      
-                                                                                              |O___O|
-                                                                                              '.___.' DP
+                                                                                              |O   O|
+                                                                                              '.___.'   
 ```
 ***
 + **Data Analytics**:
@@ -177,24 +177,12 @@
 + **Server Stack / Back Ops**
     + Virtualized Test reproduction snapshot system in Tech Support in Sybase Europe B.V for server versioning and bug reproduction.
 + **Data Stack**:
-    + Database - A decade of Database related stuff in multiple projects/customers/roles. To be done.
-        + Blockchain programming:
-            + Hyperledger
-            + Ethereum
+    + Blockchain programming:
+        + Hyperledger
+        + Ethereum
+    + Database - Database related stuff in multiple projects/customers/roles. 
+        + Stuff for 12 years as Senior DBA
         + Automated Performance & Optimization report creator for relational database management servers farms.
-            + Query optimization.
-            + Name normalization
-            + Configuration parameters
-            + Disk optimization
-            + In memory recommendations.
-            + Farm wide reporting for customer.
-            + Scripting
-            + Monitorization
-            + Performance
-            + Reporting 
-            + Backup
-            + Migration
-            + Monitorization
 + **Other stuff**
     + VPN auto IP changer for anonimization [BASH]
 
