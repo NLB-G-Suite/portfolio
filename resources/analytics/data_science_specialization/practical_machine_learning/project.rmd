@@ -1,0 +1,260 @@
+---
+title: "Human Activity Recognition using Wearable Sensors"
+author: "David Pellon"
+date: "7/5/2020"
+output: html_document
+---
+
+### Introduction
+
+This study tries to build a machine learning system to predict human activity using data from wearable technology sensors from HAR dataset.
+
+     http://groupware.les.inf.puc-rio.br/har.
+
+Files: 
+
+     https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv
+     https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
+
+
+### Data Processing
+
+
+I have included some libraries below and created some functions to help me process the data easier.
+
+
+#### Download the files:
+
+```{r b1, include=TRUE,fig.width=28,fig.height=20}
+knitr::opts_chunk$set(echo = FALSE)
+
+require(sqldf)
+require(mice)
+require(VIM)
+require(caret)
+require(randomForest)
+
+
+
+check_NA <- function(df)
+{
+    t1 <- data.frame(num_NA=colSums(is.na(df))[colSums(is.na(df))>0])
+    names(t1) <- c("num_NAs")
+    return(t1)
+}
+
+csv1 <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv")
+csv2 <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv")
+
+saveRDS(csv1,"csv1.rds")
+saveRDS(csv2,"csv2.rds")
+
+```
+
+#### Basic Data Exploration 
+
+Details in the two original csv files (t1 and t2)
+
+
+```{r b2334, echo=TRUE,fig.width=28,fig.height=20}
+
+writeLines(paste(
+    "csv1 (first file)  - data set dimension : ",toString(dim(csv1)),
+    "\ncsv2 (second file) - data set dimension : ",toString(dim(csv2)),sep=""))
+
+```
+
+
+
+#### Exploring the data and removing not needed columns
+
+Columns 1 to 7 do not seem to be useful here so I will remove them:
+
+   + A row number
+   + Timestamps
+   + Windows
+
+```{r b13335, echo=TRUE,fig.width=28,fig.height=20}
+
+head(csv1)[1:7]
+csv1     <- csv1[,8:(dim(csv1)[2])]
+csv2     <- csv2[,8:(dim(csv2)[2])]
+
+```
+
+
+Are both data files equal ?
+
+
+```{r b4, echo=TRUE,fig.width=28,fig.height=20}
+
+writeLines(paste("Columns on csv1 not included on csv2 : ",
+    toString(names(csv1)[!(names(csv1) %in% names(csv2))]),
+    "\nColumns on csv2 not included on csv1 : ",
+    toString(names(csv2)[!(names(csv2) %in% names(csv1))]),sep=""))
+
+alldata <- rbind(csv1[,1:(dim(csv1)[2]-1)],csv2[,1:(dim(csv2)[2]-1)])
+alldata  <- alldata[,8:(dim(alldata)[2])]
+
+
+```
+
+
+Let's plot the missing values for csv1
+
+```{r b13335, echo=TRUE,fig.width=28,fig.height=20}
+
+plot_histogram_pattern_missing_data <- function(df, df_name,num_slices=1,slice_num=1,plot=T)
+{
+    require(sqldf)
+    k <- slice_num-1
+    num_ini_cols=dim(df)[2]
+    data <- df[,(num_ini_cols*k/num_slices):(num_ini_cols*(1+k)/num_slices)]
+    if (plot == T) aggr(data,plot=T,ylab=c("Histogram of missing data","Pattern of missing rows")) else
+    {
+        aggr_plot <- aggr(data, numbers=TRUE, sortVars=TRUE, plot=FALSE, gap=3)$missings
+        t1 <- sqldf(paste("select '",df_name,"' as Data_Set,count(Count) as Number_of_Columns,Count as Number_of_Missing_Rows from aggr_plot group by Count",sep=""))
+        tab <- cbind(t1,nrow(df),round(t1$Number_of_Missing_Rows/nrow(df)*100,2),round(t1$Number_of_Columns/dim(df)[2]*100,2))
+        names(tab)<-c("DataSet","Num_Cols","Num_Missing_Rows","Total_Rows_in_DataSet","%_Missing_Rows_in_DataSet","%_Cols_by_Range_with_Missing_Rows")
+        return(tab)
+    }
+}
+
+plot_histogram_pattern_missing_data(csv1,"csv1",num_slices=1,plot=T)    
+
+```
+Now the  missing values for csv2
+
+```{r b1df3335, echo=TRUE,fig.width=28,fig.height=20}
+plot_histogram_pattern_missing_data(csv2,"csv2",num_slices=1,plot=T)   
+```
+
+There are some columns on the csv2 file that have every single row missing (100%) 
+
+Let's display it below in a table to confirm it:
+
+```{r b1df3335, echo=TRUE,fig.width=28,fig.height=20}
+
+
+a1 <- plot_histogram_pattern_missing_data(csv1,   "csv1      ",num_slices=1,plot=F)
+a2 <- plot_histogram_pattern_missing_data(csv2   ,"csv2      ",num_slices=1,plot=F)
+rbind(a1,a2)
+```
+
+Seems that is the case.
+We won't be able to impute any data or obtain anything from them. We will remove them.
+
+```{r b143535, echo=TRUE,fig.width=28,fig.height=20}
+
+csv2NA <- rownames(check_NA(csv2))
+csv2 <- csv2[,!(names(csv2) %in% csv2NA)]
+csv1 <- csv1[,!(names(csv1) %in% csv2NA)]
+alldata <- alldata[,!(names(alldata) %in% csv2NA)]
+
+```
+
+Seems everything is clear now:
+
+```{r b13535, echo=TRUE,fig.width=28,fig.height=20}
+
+a1 <- plot_histogram_pattern_missing_data(csv1,   "csv1      ",num_slices=1,plot=F)
+a2 <- plot_histogram_pattern_missing_data(csv2   ,"csv2      ",num_slices=1,plot=F)
+rbind(a1,a2)
+
+```
+
+
+
+
+Still we could have very highly correlated columns. Using them might not be needed.
+I will try to find very highly correlated columns above 0.95 and remove them.
+
+
+
+##### Partitioning the Data
+
+
+```{r b2b}
+
+inTrain <- createDataPartition(y=csv1$classe,p=0.7,list=F)
+
+training <- csv1[ inTrain,]
+testing  <- csv1[-inTrain,] 
+
+```
+
+
+
+### Creating 4 different Training Models & Predictions
+
+Let's start with 4 different methods for 4 different models and then decide.
+
+We will use the following methods :
+
++ Random Forest
++ Gradient Boosting Machine
++ LDA (Latent Dirichlet Allocation)
++ TreeBag (A type of bagging)
+
+
+```{r b9, echo=TRUE,fig.width=28,fig.height=20}
+
+mod01 <- randomForest(classe~.,data=training)
+mod02 <- train(classe ~., data=training,method = "gbm"       ,verbose=F)
+mod03 <- train(classe ~., data=training,method = "lda"       ,verbose=F)
+mod04 <- train(classe ~., data=training,method = "treebag"   ,verbose=F)
+
+pred01 <- predict(mod01,testing)
+pred02 <- predict(mod02,testing)
+pred03 <- predict(mod03,testing)
+pred04 <- predict(mod04,testing)
+
+
+```
+
+### Prediction Results and Out of Sample
+
+Let's compare their results and display Accuracy and Out of Sample Error:
+
+
+```{r b10, echo=TRUE,fig.width=28,fig.height=20}
+
+cm1 <- confusionMatrix(pred01, testing$classe)$overall['Accuracy']
+cm2 <- confusionMatrix(pred02, testing$classe)$overall['Accuracy']
+cm3 <- confusionMatrix(pred03, testing$classe)$overall['Accuracy']
+cm4 <- confusionMatrix(pred04, testing$classe)$overall['Accuracy']
+
+OutOfSample<-as.data.frame(cbind(c("rf","gbm","lda","treebag"),c(round(cm1,4),round(cm2,4),round(cm3,4),round(cm4,4)),rbind(round(1-cm1,4)*100,round(1-cm2,4)*100,round(1-cm3,4)*100,round(1-cm4,4)*100)))
+names(OutOfSample)<-c("Model Method","Accuracy","Out_of_Sample_Error")
+rownames(OutOfSample)<-NULL
+
+
+OutOfSample
+
+
+```
+
+### Using Random Forest for final Prediction
+
+Based on the results in the table above, the random forest model is very accurate.
+We could create a model based on those four but the random forest is already very good.
+The Treebag does it very well as well but as Random Forest internally performs Cross Validation to Estimate error rate and it's performance is the best already it gives more confidence.
+
+I will use that one to predict the values on csv2 file (the exercise) with new data.
+
+```{r b11, echo=TRUE,fig.width=28,fig.height=20} 
+
+predict(mod01,csv2)
+
+
+
+```
+
+
+
+
+
+
+
+
+
