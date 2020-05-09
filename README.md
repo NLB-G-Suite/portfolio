@@ -35,17 +35,16 @@
             + 'Battleship' Game Placement & Attack Strategy Analysis
             + Wikimedia Pageviews Exploration
         + Johns Hopkins Data Science Specialization
-            + [[UCI HAR Dataset](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/UCI-HAR-Dataset)]    
-            + [[Hospital Ranking](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/ProgrammingAssignment3)]
-            + [[Statistical Inference](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/statistical-inference)]
-            + [[Reproducible Research: Mobile Gyroscope Research on User Position](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/reproducible-research/RepData-PeerAssessment1)]
-            + [[Reproducible Research: NOAA Storm Database Exploration](https://rpubs.com/dpellon/278964)]   
-            + [[Regression Models: Study of Fuel Consumption between Automatic or Manual Transmission](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/regression-models)]
-            + [[R Programming: Study on Lexical Scoping](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/r-programming/lexical-scoping)]
-            + [[Getting and Cleaning Data](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/getting-and-cleaning-data)]
-            + [[Exploratory Data Analysis: Household Power Consumption](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project1)] 
-            + [[Exploratory Data Analysis: Baltimore Motor Emissions](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project2)]
-            + Advanced NoSQL for DataScience [Exercises]
+            + [[Course 02 - Hospital Ranking](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/ProgrammingAssignment3)]
+            + [[Course 02 - R Programming: Study on Lexical Scoping](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/r-programming/lexical-scoping)]
+            + [[Course 03 - Getting and Cleaning Data](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/getting-and-cleaning-data)]
+            + [[Course 04 - Exploratory Data Analysis: Household Power Consumption](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project1)] 
+            + [[Sourse 04 - Exploratory Data Analysis: Baltimore Motor Emissions](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project2)]
+            + [[Course 05 - Reproducible Research: NOAA Storm Database Exploration](https://rpubs.com/dpellon/278964)]               
+            + [[Course 05 - Reproducible Research: Mobile Gyroscope Research on User Position](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/reproducible-research/RepData-PeerAssessment1)]            
+            + [[Course 06 - Statistical Inference](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/statistical-inference)]
+            + [[Course 07 - Regression Models: Study of Fuel Consumption between Automatic or Manual Transmission](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/regression-models)]
+            + [[Course 09 - Practical Machine Learning: Human Activity Recognition Using Wearable Sensors](https://rpubs.com/dpellon/611857)]    
         + Time Series
             + Seasonality study - [[Demo Video](https://youtu.be/suUbz6fKUDo)]
             + Bitcoin Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](https://rpubs.com/dpellon/569728)]
@@ -77,8 +76,8 @@
         + Election
             + Elections vote segmentation & Analysis of public databases. [GOOGLE BIGQUERY]
             + Voting forecasts based on correlation from "Centro Investigaciones Sociologicas" public polls on spanish society before election in Andalucia and their relation with the Andalucian Elections and trying to forecast National level elections based on the National public poll equivalent. [GOOGLE BIGQUERY]
-                    
-
+        + Other
+            + Advanced NoSQL for DataScience [Exercises]                    
 + **Android / HTML5 / Windows Phone**
     + **Educational**
         + **Programming Manuals**
