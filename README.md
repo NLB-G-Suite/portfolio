@@ -47,9 +47,6 @@
             + [[Course 09 - Practical Machine Learning: Human Activity Recognition Using Wearable Sensors](https://rpubs.com/dpellon/611857)]    
         + Time Series
             + Seasonality study - [[Demo Video](https://youtu.be/suUbz6fKUDo)]
-            + Bitcoin Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](https://rpubs.com/dpellon/569728)]
-            + Ethereum Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](http://rpubs.com/dpellon/568665)]
-            + Litecoin Dollar Pair Forecast and Seasonality Study - [[RPubs Publication](http://rpubs.com/dpellon/568660)]
         + Correlation Matrix [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/correlmatrix)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/alt-correl-1d.jpg?raw=true)]
             + Autocorrelation / Autosimilarity [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/tsautocorrel-all-comparison-1h-USD.jpg?raw=true)]
             + Probability ranges [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/probabilityranges)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/probability-ranges-ETH-1h.jpg?raw=true)]
