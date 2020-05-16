@@ -48,7 +48,7 @@
             + [[Course 09 - Practical Machine Learning: Human Activity Recognition Using Wearable Sensors](https://rpubs.com/dpellon/611857)]    
         + Time Series
             + Seasonality study - [[Demo Video](https://youtu.be/suUbz6fKUDo)]
-            + Financial Visualizer [ShinyApp](https://dpellon.shinyapps.io/Yahoo_Finance_Visualizer/)
+            + [Financial Visualizer (ShinyApp)](https://dpellon.shinyapps.io/Yahoo_Finance_Visualizer/)
         + Correlation Matrix [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/correlmatrix)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/alt-correl-1d.jpg?raw=true)]
             + Autocorrelation / Autosimilarity [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/tsautocorrel-all-comparison-1h-USD.jpg?raw=true)]
             + Probability ranges [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/probabilityranges)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/probability-ranges-ETH-1h.jpg?raw=true)]
