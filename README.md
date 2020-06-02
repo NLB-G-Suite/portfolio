@@ -33,6 +33,7 @@
             + Coronavirus (COVID-19) :
                 + [COVID-19 Diary](https://github.com/aceri/portfolio/blob/master/resources/analytics/covid_diary/README.md)
                 + [Country Forecast on COVID-19 Cases (Shiny App)](https://www.shinyapps.io/admin/#/application/2304904)
+            + [Yahoo Finance Forecast Shiny App](https://dpellon.shinyapps.io/Stock_Visualizer_Forecast/)
             + 'Battleship' Game Placement & Attack Strategy Analysis
             + Wikimedia Pageviews Exploration
         + Johns Hopkins Data Science Specialization
