@@ -30,7 +30,7 @@
 + **Data Analytics**:
     + Analytics
         + R Publications :
-            + [Swift Key: Next Word Prediction (Shiny App)](https://dpellon.shinyapps.io/Capstone/)
+            + [SwiftKey: Next Word Prediction (Shiny App)](https://dpellon.shinyapps.io/Capstone/)
             + [Yahoo Finance Forecast Shiny App](https://dpellon.shinyapps.io/Stock_Visualizer_Forecast/)            
             + Coronavirus (COVID-19) :
                 + [COVID-19 Diary](https://github.com/aceri/portfolio/blob/master/resources/analytics/covid_diary/README.md)
