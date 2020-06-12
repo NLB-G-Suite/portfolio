@@ -32,7 +32,7 @@
         + R Publications :
             + [OCR Optimizer Tool (Shiny App)](https://dpellon.shinyapps.io/OCR_Optimizer_Tool/)
             + [SwiftKey: Next Word Prediction (Shiny App)](https://dpellon.shinyapps.io/Capstone/)
-            + [Yahoo Finance Forecast Shiny App](https://dpellon.shinyapps.io/Stock_Visualizer_Forecast/)            
+            + [Yahoo Finance Forecast (Shiny App)](https://dpellon.shinyapps.io/Stock_Visualizer_Forecast/)            
             + Coronavirus (COVID-19) :
                 + [COVID-19 Diary](https://github.com/aceri/portfolio/blob/master/resources/analytics/covid_diary/README.md)
                 + [Country Forecast on COVID-19 Cases (Shiny App)](https://www.shinyapps.io/admin/#/application/2304904)
