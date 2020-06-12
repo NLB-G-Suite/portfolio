@@ -40,15 +40,17 @@
             + Wikimedia Pageviews Exploration
         + Johns Hopkins Data Science Specialization
             + [[Course 02 - Hospital Ranking](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/ProgrammingAssignment3)]
-            + [[Course 02 - R Programming: Study on Lexical Scoping](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/r-programming/lexical-scoping)]
-            + [[Course 03 - Getting and Cleaning Data](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/getting-and-cleaning-data)]
-            + [[Course 04 - Exploratory Data Analysis: Household Power Consumption](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project1)] 
-            + [[Sourse 04 - Exploratory Data Analysis: Baltimore Motor Emissions](https://github.com/aceri/portfolio/tree/master/resources/data-science/data_science_specialization/_exploratory_data_analysis/course_project2)]
+            + [[Course 02 - R Programming: Study on Lexical Scoping](https://github.com/aceri/data-science-specialization/tree/master/r-programming/w3project)]
+            + [[Course 03 - Getting and Cleaning Data](https://github.com/aceri/data-science-specialization/tree/master/getting-and-cleaning-data)]
+            + [[Course 04 - Exploratory Data Analysis: Household Power Consumption](https://github.com/aceri/data-science-specialization/tree/master/exploratory-data-analysis/course_project1)] 
+            + [[Sourse 04 - Exploratory Data Analysis: Baltimore Motor Emissions](https://github.com/aceri/data-science-specialization/tree/master/exploratory-data-analysis/course_project2)]
             + [[Course 05 - Reproducible Research: NOAA Storm Database Exploration](https://rpubs.com/dpellon/278964)]               
             + [[Course 05 - Reproducible Research: Mobile Gyroscope Research on User Position](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/reproducible-research/RepData-PeerAssessment1)]            
-            + [[Course 06 - Statistical Inference](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/statistical-inference)]
-            + [[Course 07 - Regression Models: Study of Fuel Consumption between Automatic or Manual Transmission](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/regression-models)]
-            + [[Course 09 - Practical Machine Learning: Human Activity Recognition Using Wearable Sensors](https://rpubs.com/dpellon/611857)]    
+            + [[Course 06 - Statistical Inference](https://github.com/aceri/data-science-specialization/tree/master/statistical_inference)]
+            + [[Course 07 - Regression Models: Study of Fuel Consumption between Automatic or Manual Transmission](https://aceri.github.io/data-science-specialization/regression-models/motor_trend.pdf)]
+            + [[Course 08 - Practical Machine Learning: Human Activity Recognition Using Wearable Sensors](https://rpubs.com/dpellon/611857)]   
+            + [(Course 09 - Creating Data Products)](https://github.com/aceri/data-science-specialization/tree/master/developing-data-products)
+            + [(Course 10 - Capstone: Predicting Next Word)](https://github.com/aceri/data-science-specialization/blob/master/data-science-capstone/README.md)
         + Time Series
             + Seasonality study - [[Demo Video](https://youtu.be/suUbz6fKUDo)]
             + [Financial Visualizer (ShinyApp)](https://dpellon.shinyapps.io/Yahoo_Finance_Visualizer/)
