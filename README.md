@@ -8,6 +8,8 @@
 
           This is an **ongoing work portfolio** with examples of past projects: 
                   coding repositories, videos, reproducible items... 
+                  I have a lot of stuff from 1985 to today. Not everything is easy 
+                  to  reproduce or prepare. I will be keep adding things.
           At your service for any collaboration, question, comment, etc. 
 
           Thanks,
