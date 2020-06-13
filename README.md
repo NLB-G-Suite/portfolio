@@ -54,31 +54,31 @@
             + [(Course 09 - Creating Data Products)](https://github.com/aceri/data-science-specialization/tree/master/developing-data-products)
             + [(Course 10 - Capstone: Predicting Next Word)](https://github.com/aceri/data-science-specialization/blob/master/data-science-capstone/README.md)
         + Time Series
-            + Seasonality study - [[Demo Video](https://youtu.be/suUbz6fKUDo)]
+            + Seasonality study - [[Example Video](https://youtu.be/suUbz6fKUDo)]
             + [Financial Visualizer (ShinyApp)](https://dpellon.shinyapps.io/Yahoo_Finance_Visualizer/)
-        + Correlation Matrix [[PYTHON](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/correlmatrix)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/alt-correl-1d.jpg?raw=true)]
-            + Autocorrelation / Autosimilarity [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/tsautocorrel-all-comparison-1h-USD.jpg?raw=true)]
-            + Probability ranges [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/probabilityranges)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/probability-ranges-ETH-1h.jpg?raw=true)]
+        + Correlation Matrix [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python_cryptostats/correlmatrix] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/alt-correl-1d.jpg?raw=true)]
+            + Autocorrelation / Autosimilarity [[Example](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/tsautocorrel-all-comparison-1h-USD.jpg?raw=true)]
+            + Probability ranges [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python_cryptostats/probabilityranges)] [[Example](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/probability-ranges-ETH-1h.jpg?raw=true)]
         + Sentiment Analysis
             + Twitter
-                + Elections [[R Scripts and Examples](https://github.com/aceri/portfolio/tree/master/resources/data-science/sentiment_analysis_with_R)]
-        + Historical Word Frequency in Reddit [[Python](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/get-reddit-metrics/)]
-            + Natural Language Processing - Text Classification / Sentiment Analysis / Dialog Act Classification [PHP](https://github.com/aceri/portfolio/tree/master/resources/data-science/natural_language_processing_with_PHP)
+                + Elections [[R Scripts and Examples](https://github.com/aceri/portfolio/tree/master/resources/analytics/sentiment_analysis_with_R)]
+        + Historical Word Frequency in Reddit [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python_cryptostats/get_reddit_metrics)]
+            + Natural Language Processing - Text Classification / Sentiment Analysis / Dialog Act Classification [PHP](https://github.com/aceri/portfolio/tree/master/resources/analytics/natural_language_processing_with_PHP)
             + Scraping
-        + Reddit Metrics [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python-cryptostats/get-reddit-metrics)] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/get-reddit-metrics/output/total-subscribers-crypto-subreddits-linear.jpg)]
+        + Reddit Metrics [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python_cryptostats/get_reddit_metrics)] [[Example](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/get-reddit-metrics/output/total-subscribers-crypto-subreddits-linear.jpg)]
         + Machine Learning
             + Projects
                 + OCR 
                 + Malware Spam classification. 
                 + Face detection. 
             + Andrew Ng's Machine Learning Standford courses:
-                + Linear Regression [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/2-assignment-linear-regression)]
-                + Logistic Regression [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/3-logistic-reggression)]
-                + Multiclass classification and Neural Networks [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/4-multiclass-classification-and-neural-networks)]
-                + Neural Network Learning [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/5-neural-network-learning)]
-                + Regularized Linear Regression and Bias Variance [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/6-regularized-linear-regression-and-bias-variance)]
-                + Support Vector Machines [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/7-support-vector-machines)]
-                + K-Means Clustering and PCA [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/machine-learning/8-kmeans-clustering-and-PCA)]
+                + Linear Regression [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/analytics/machine-learning/2_assignment_linear_regression)]
+                + Logistic Regression [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/analytics/machine-learning/3_logistic_reggression)]
+                + Multiclass classification and Neural Networks [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/analytics/machine-learning/4_multiclass_classification_and_neural_networks)]
+                + Neural Network Learning [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/analytics/machine-learning/5_neural_network_learning)]
+                + Regularized Linear Regression and Bias Variance [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/analytics/machine-learning/6_regularized_linear_regression_and_bias_variance)]
+                + Support Vector Machines [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/analytics/machine-learning/7_support_vector_machines)]
+                + K-Means Clustering and PCA [[Octave / Matlab](https://github.com/aceri/portfolio/tree/master/resources/analytics/machine-learning/8_kmeans_clustering_and_PCA)]
         + Election
             + Elections vote segmentation & Analysis of public databases. [Google BigQuery]
             + Voting forecasts based on correlation from "Centro Investigaciones Sociologicas" public polls on spanish society before election in Andalucia and their relation with the Andalucian Elections and trying to forecast National level elections based on the National public poll equivalent. [Google BigQuery]
