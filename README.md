@@ -8,9 +8,10 @@
 
           This is an **ongoing work portfolio** with examples of past projects: 
                   coding repositories, videos, reproducible items... 
-                  Most are things done in my spare time. Not everything is easy 
-                  to  reproduce or prepare. I will be keep adding things.
-          At your service for any collaboration, question, comment, etc. 
+          Most are things done in my spare time. 
+          Not everything is easy to reproduce or prepare. 
+          I will keep adding things. At your service for any collaboration, question, comment, etc. 
+          Check other repositories aswell
 
           Thanks,
        
