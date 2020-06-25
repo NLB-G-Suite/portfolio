@@ -8,7 +8,7 @@
 
           This is an **ongoing work portfolio** with examples of past projects: 
                   coding repositories, videos, reproducible items... 
-                  I have a lot of stuff from 1985 to today. Not everything is easy 
+                  Most are things done in my spare time. Not everything is easy 
                   to  reproduce or prepare. I will be keep adding things.
           At your service for any collaboration, question, comment, etc. 
 
@@ -40,19 +40,7 @@
                 + [Country Forecast on COVID-19 Cases (Shiny App)](https://dpellon.shinyapps.io/Country_Forecast_Covid-19/)
             + 'Battleship' Game Placement & Attack Strategy Analysis
             + Wikimedia Pageviews Exploration
-        + Johns Hopkins Data Science Specialization
-            + [[Course 02 - Hospital Ranking](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/ProgrammingAssignment3)]
-            + [[Course 02 - R Programming: Study on Lexical Scoping](https://github.com/aceri/data-science-specialization/tree/master/r-programming/w3project)]
-            + [[Course 03 - Getting and Cleaning Data](https://github.com/aceri/data-science-specialization/tree/master/getting-and-cleaning-data)]
-            + [[Course 04 - Exploratory Data Analysis: Household Power Consumption](https://github.com/aceri/data-science-specialization/tree/master/exploratory-data-analysis/course_project1)] 
-            + [[Sourse 04 - Exploratory Data Analysis: Baltimore Motor Emissions](https://github.com/aceri/data-science-specialization/tree/master/exploratory-data-analysis/course_project2)]
-            + [[Course 05 - Reproducible Research: NOAA Storm Database Exploration](https://rpubs.com/dpellon/278964)]               
-            + [[Course 05 - Reproducible Research: Mobile Gyroscope Research on User Position](https://github.com/aceri/portfolio/tree/master/resources/data-science/data-science-specialization/reproducible-research/RepData-PeerAssessment1)]            
-            + [[Course 06 - Statistical Inference](https://github.com/aceri/data-science-specialization/tree/master/statistical_inference)]
-            + [[Course 07 - Regression Models: Study of Fuel Consumption between Automatic or Manual Transmission](https://aceri.github.io/data-science-specialization/regression-models/motor_trend.pdf)]
-            + [[Course 08 - Practical Machine Learning: Human Activity Recognition Using Wearable Sensors](https://rpubs.com/dpellon/611857)]   
-            + [(Course 09 - Creating Data Products)](https://github.com/aceri/data-science-specialization/tree/master/developing-data-products)
-            + [(Course 10 - Capstone: Predicting Next Word)](https://github.com/aceri/data-science-specialization/blob/master/data-science-capstone/README.md)
+        + [Johns Hopkins Data Science Specialization](https://github.com/aceri/data-science-specialization)
         + Time Series
             + Seasonality study - [[Example Video](https://youtu.be/suUbz6fKUDo)]
             + [Financial Visualizer (ShinyApp)](https://dpellon.shinyapps.io/Yahoo_Finance_Visualizer/)
@@ -123,14 +111,12 @@
         + Batch sound cleaning, normalization, fade in, fade out, etc. [python]
     + **Entertainment/Games**
         + Find the 5 differences -> [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/5dif/)]
-        + Bitcoin Asteroid Miner -> [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/bas/)] (**NOTE:** This required bitcoin transactions in a servlet (seems the bitcoin explorer i used is not available anymore) in the server and would create big asteroids according to the Bitcoin amount being transferred through the network at that time. You can hit the two first rows of keys 6-to-0 and some others and you will have some ships spawning. 
         + AirHockey - [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/hkg/)] Check CPU vs CPU and see them playing. 
         + The Pop game - [[Demo Video](https://youtu.be/be4roH0WyQc)]
         + Brick Breaker - HTML5 port you can try. Until I can recompile fixing it, you can zoom out your browser with CTRL+MOUSE WHEEL to see the full screen [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/bb1/)] - [[Demo Video](https://youtu.be/Q43iPhfWkOE)]
         + Game of Life - [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/gol/)] The old game of life over an old monochrome monitor!.
 + **Web / App Server**
     + Really old webs:
-        + Seoepyc - 198x ?? old web. 
         + Sociedad iberoamericana prevención oral 199x old web.
         + ClasicosLiterarios.com - Archive.org
         + MathVocabulary or MathsVocabulary (archive.org?)
@@ -153,15 +139,10 @@
         + Screensaver Red neuron/star - [[Demo Video](https://youtu.be/kexYAbS3mds)]
         + Screensaver Fall - [[Demo Video](https://youtu.be/uT12H4EN2Mk)]
         + Screensaver Golden Squares - [[Demo Video](https://youtu.be/defjmPZEr9g)]
-        + Bitcoin Screensavers: [[TRY THEM](https://github.com/aceri/portfolio/tree/master/resources/media-graphics/screensavers)]
-            + Screensaver Bitcoin 1 - [[Demo Video](https://youtu.be/XQfoqQ4ys4Q)]
-            + Screensaver Bitcoin 2 - [[Demo Video](https://youtu.be/Z74JtSQLUTg)]
-            + Screensaver PACMAN Bitcoin - [[Demo Video](https://youtu.be/N7nyZLH9R5Q)]
     + Image Automation
         + Automatic button shape & texture generator - [[python] [Demo Video](https://youtu.be/A7lGSW53O3Y)]
     + Font Automation
     + Graphic Filters
-        + Texture & Particle Code Tool - [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/b21/)] Web looks worse. Small tool to code particles easier.
         + QR Code layer decomposing to avoid HTML5 app stealing and having the donation QR in my apps changed by others. [VC++]        
 + **Cryptography** 
     + Ciphers:
@@ -171,15 +152,6 @@
         + Modern Ciphers II: 3DES, AES implementation
     + Derive private key from passphrase of a long bitcoin brainwallet where i forgot a part. 
         + Bruteforce passphrase cracking of A+B+("was this?" or "maybe that?")+D+... chunks -> Private key treasure [python]          + **Financial (Algorithmic System Trading)**:
-    + Basic Trading Bot (now called recommender?) API Connector to Bitmex [python]
-    + Basic Trading Bot (now called recommender?) API Connector to Poloniex [python]
-    + Basic Trading Bot (now called recommender?) API Connector to Bittrex [python]
-    + Basic Trading Bot (now called recommender?) API Connector to Bitfinex [python]
-    + Cryptotrader Multiexchange platform - [[Coffeescript folder](https://github.com/aceri/portfolio/tree/master/resources/finance/coffeescript_cryptotrader)]
-    + Tradewave Multiexchange platform - [[python scripts]()]
-    + Tradingview (pinescript) - Indicators and Strategies - [[Pinescript folder](https://github.com/aceri/portfolio/resources/pinescript/)]
-    + Trading models [AmiBroker AFL script folder] Have to order these, 300+ models
-    + Financial custom optim ratios [[Amibroker AFL script folder](https://github.com/aceri/portfolio/tree/master/resources/financial-custom-optimization-ratio)]
 + **Server Stack / Back Ops**
     + Virtualized Test reproduction snapshot system in Tech Support in Sybase Europe B.V for server versioning and bug reproduction.
 + **Data Stack**:
@@ -187,7 +159,7 @@
         + Hyperledger [Course Exercises]
         + Ethereum [Ethereum Certification Project]
     + Database - Database related stuff in multiple projects/customers/roles. 
-        + Stuff for 12 years as Senior DBA
+        + Stuff + 10 years as Senior DBA
         + Automated Performance & Optimization report creator for relational database management servers farms.
 + **Other stuff**
     + VPN auto IP changer for anonimization [bash]
