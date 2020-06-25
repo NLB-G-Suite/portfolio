@@ -9,11 +9,13 @@
           This is an **ongoing work portfolio** with examples of past projects: 
                   coding repositories, videos, reproducible items... 
           Most are things done in my spare time. 
-          Not everything is easy to reproduce or prepare. 
-          I will keep adding things. At your service for any collaboration, question, comment, etc. 
-          Check other repositories aswell
-
+          Not everything is easy to reproduce or prepare as they maybe on different environments, platforms, etc.
+          I will keep adding things. You can check the other code repositories too.
+          At your service for any collaboration, question, comment, etc. 
+          
           Thanks,
+          
+          [NOTE: Some directory restructuring going on so some links might not work]
        
 
                                                                                            -------------- 
@@ -41,10 +43,18 @@
                 + [Country Forecast on COVID-19 Cases (Shiny App)](https://dpellon.shinyapps.io/Country_Forecast_Covid-19/)
             + 'Battleship' Game Placement & Attack Strategy Analysis
             + Wikimedia Pageviews Exploration
+            + [Lexical Scoping](https://github.com/aceri/data-science-specialization/tree/master/r-programming/w3project)
+            + [Tidy Data from the Human Activity Recognition Using Smartphones Dataset](https://github.com/aceri/data-science-specialization/tree/master/getting-and-cleaning-data)
+            + [Exploratory Analysis of Electric Power Consumption Data](https://github.com/aceri/data-science-specialization/tree/master/exploratory-data-analysis/course_project1)
+            + [Exploratory Analysis of Environmental Protection Agency Data on Air Standards](https://github.com/aceri/data-science-specialization/tree/master/exploratory-data-analysis/course_project2)
+            + [Study of Storm and Severe Weather Events](https://github.com/aceri/data-science-specialization/tree/master/reproducible_research/StormData)
+            + [Exponential Distribution and Central Limite Theorem and Inference Data Analysis](https://github.com/aceri/data-science-specialization/tree/master/statistical_inference)
+            + [Motor Trend - Miles Per GAllon & Transmission Analysis](https://aceri.github.io/data-science-specialization/regression-models/motor_trend.pdf)
+            + [Human Activity Recognition Using Wearable Sensors](https://aceri.github.io/practical-machine-learning/w4project/RPubs%20-%20Human%20Activity%20Recognition%20using%20Wearable%20Sensors.html)
+            + [Forecast on COVID-19 Confirmed, Deceased and Confirmed/Deceased Case Rate](https://rpubs.com/dpellon/614828)
+            + [Yahoo Finance Visualizer ShinyApp](https://dpellon.shinyapps.io/Yahoo_Finance_Visualizer/)
+            + [SwiftKey Texting Next English Word Predictor](https://dpellon.shinyapps.io/Capstone/)
         + [Johns Hopkins Data Science Specialization](https://github.com/aceri/data-science-specialization)
-        + Time Series
-            + Seasonality study - [[Example Video](https://youtu.be/suUbz6fKUDo)]
-            + [Financial Visualizer (ShinyApp)](https://dpellon.shinyapps.io/Yahoo_Finance_Visualizer/)
         + Correlation Matrix [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python_cryptostats/correlmatrix] [[Demo Image](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/alt-correl-1d.jpg?raw=true)]
             + Autocorrelation / Autosimilarity [[Example](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/tsautocorrel-all-comparison-1h-USD.jpg?raw=true)]
             + Probability ranges [[Python](https://github.com/aceri/portfolio/tree/master/resources/finance/python_cryptostats/probabilityranges)] [[Example](https://github.com/aceri/portfolio/blob/master/resources/finance/python-cryptostats/output/probability-ranges-ETH-1h.jpg?raw=true)]
@@ -73,7 +83,7 @@
             + Voting forecasts based on correlation from "Centro Investigaciones Sociologicas" public polls on spanish society before election in Andalucia and their relation with the Andalucian Elections and trying to forecast National level elections based on the National public poll equivalent. [Google BigQuery]
         + Other
             + Advanced NoSQL for DataScience [Exercises]                    
-+ **Android / HTML5 / Windows Phone**
++ **Android / HTML5 / Windows Phone [2012-2014]** 
     + **Educational**
         + **Programming Manuals**
             + Java Quick Reference Cards - [[Demo Video](https://youtu.be/IClHdrdF5xY)]
@@ -116,6 +126,7 @@
         + The Pop game - [[Demo Video](https://youtu.be/be4roH0WyQc)]
         + Brick Breaker - HTML5 port you can try. Until I can recompile fixing it, you can zoom out your browser with CTRL+MOUSE WHEEL to see the full screen [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/bb1/)] - [[Demo Video](https://youtu.be/Q43iPhfWkOE)]
         + Game of Life - [[TRY IT](https://aceri.github.io/portfolio/resources/html5-stuff/gol/)] The old game of life over an old monochrome monitor!.
+        + A few silly games for my then newborn son.
 + **Web / App Server**
     + Really old webs:
         + Sociedad iberoamericana prevención oral 199x old web.
@@ -128,6 +139,12 @@
         + Intranet crawler & Search Engine based on internship code in Solvay.
     + ls-lrt.com - Portfolio web like this one I am slowly porting to.
     + cryptometrics/cryptostats - Web with many crypto related metrics and stats, correlation between assets, mining graphs, autosimilarity 2016 [[python](https://github.com/aceri/portfolio/tree/master/resources/finance/python_cryptostats)]
++ **Finance**
+    + Amibroker AFL Financial Custom Ratios
+    + CoffeeScript(s) for CryptoTrader
+    + Tradingview Indicator Scripts and Trading Strategies (PineScript)
+    + Python CryptoStats
+    + Python Trading Bots
 + **Marketing / Ads**
     + House ad machine learning servlet
 + **Graphics & Tools**
@@ -144,14 +161,14 @@
         + Automatic button shape & texture generator - [[python] [Demo Video](https://youtu.be/A7lGSW53O3Y)]
     + Font Automation
     + Graphic Filters
-        + QR Code layer decomposing to avoid HTML5 app stealing and having the donation QR in my apps changed by others. [VC++]        
+        + QR Code layer decomposing to avoid HTML5 whole app stealing and having the donation QR in my apps changed by others. [VC++]        
 + **Cryptography** 
     + Ciphers:
         + Classical Substitution Ciphers: Caesar, Monoalphabetic, Vigenere ciphers.
         + Classical Transposition Ciphers: Rail Fence, Permutation, Product
         + Modern Ciphers: Block, DES, Feistel
         + Modern Ciphers II: 3DES, AES implementation
-    + Derive private key from passphrase of a long bitcoin brainwallet where i forgot a part. 
+    + Derive private key from passphrase of a long brainwallet where i forgot a part. 
         + Bruteforce passphrase cracking of A+B+("was this?" or "maybe that?")+D+... chunks -> Private key treasure [python]          + **Financial (Algorithmic System Trading)**:
 + **Server Stack / Back Ops**
     + Virtualized Test reproduction snapshot system in Tech Support in Sybase Europe B.V for server versioning and bug reproduction.
@@ -160,12 +177,16 @@
         + Hyperledger [Course Exercises]
         + Ethereum [Ethereum Certification Project]
     + Database - Database related stuff in multiple projects/customers/roles. 
-        + Stuff + 10 years as Senior DBA
+        + Stuff +10 years as Senior DBA
         + Automated Performance & Optimization report creator for relational database management servers farms.
 + **Other stuff**
-    + VPN auto IP changer for anonimization [bash]
-    + Bash, windows shell & powershell, vbs scripts
-    + A lot of old stuff I have to get from backups and create some video, repro, etc.
+    + Bash Scripts
+        + VPN auto IP changer for anonimization [bash]
+        + ...
+    + PowerShell Scripting
+    + AutoKey Scripting
+    + VisualBasic Script
+    + A lot of old stuff I have to get from backups, virtual machines and create some video, workable repro, or hopefully ask friends/colleages, etc.
 
 
 ***
