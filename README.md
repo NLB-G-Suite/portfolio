@@ -9,7 +9,8 @@
           This is an **ongoing work portfolio** with examples of past projects: 
                   coding repositories, videos, reproducible items... 
           Most are things done in my spare time. 
-          Not everything is easy to reproduce or prepare as they maybe on different environments, platforms, etc.
+          Not everything is easy to reproduce or prepare as different environments, platforms,
+          VMs are needed, some not easily reproducible.
           I will keep adding things. You can check the other code repositories too.
           At your service for any collaboration, question, comment, etc. 
           
